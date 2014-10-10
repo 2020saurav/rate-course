@@ -1,0 +1,10 @@
+{
+  "name": "rate-course",
+  "description": "App to rate courses in IIT Kanpur",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "jade": "*"
+  }
+}
