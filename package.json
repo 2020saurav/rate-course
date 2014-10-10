@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "express": "4.x",
-    "jade": "*"
+    "jade": "*",
+    "express-myconnection": "*",
+    "mysql": "*"
   }
 }
