@@ -1,26 +1,11 @@
 //dependencies
 var express = require('express');
 var routes = require('./routes');
+var model = require('./models/index');
 var http = require('http');
 var path = require('path');
 
-var connection  = require('express-myconnection');
-var mysql = require('mysql');
-
 var app = express();
-
-//db
-app.use(
-    
-    connection(mysql,{
-        host     : 'localhost',
-        user     : 'root',
-        password : 'root',
-        database : 'test',
-        debug    : false 
-    },'request')
-
-);
 
 //environments
 app.set('port', process.env.PORT||3000);
