@@ -19,6 +19,6 @@ models.forEach(function(model) {
 
 // will define relationships here, later TODO
 // create tables in db if not exist:
-//sequelize.sync({force:true})
+sequelize.sync()
 // force true will drop table.
 module.exports.sequelize = sequelize;
