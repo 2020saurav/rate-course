@@ -1,5 +1,6 @@
 /**
- * Model for Course Table
+ * course
+ *
  * id               INTEGER
  * course_number    VARCHAR(11)
  * course_name      VARCHAR(255)
@@ -9,7 +10,7 @@
  */
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define ('course',
+    var Course =  sequelize.define ('course',
     {
 		id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
     	course_number: {type: DataTypes.STRING(10), allowNull:false},
@@ -24,4 +25,6 @@ module.exports = function(sequelize, DataTypes) {
     	tableName : 'course',
     	timestamps : false
     });
+
+    return Course;
 }
