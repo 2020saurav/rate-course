@@ -3,7 +3,8 @@
  *
  * id                   INTEGER
  * rating_id            INTEGER FK
- * comment              TEXT
+ * course_comment       TEXT
+ * prof_comment         TEXT
  * spam_flag_count      INTEGER
  * is_deleted           INTEGER(1)
  *
