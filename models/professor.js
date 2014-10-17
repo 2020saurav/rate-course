@@ -10,3 +10,20 @@
  * homepage_url     VARCHAR(255)
  * photo_url        VARCHAR(255)
  */
+
+module.exports = function(sequelize, DataTypes) {
+    var Professor =  sequelize.define ('professor',
+        {
+            id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true}
+            // TODO complete this
+
+        },
+        {
+            freezeTableName : true,
+            underscored : true,
+            tableName : 'professor',
+            timestamps : false
+        });
+
+    return Professor;
+}

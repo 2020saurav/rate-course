@@ -10,14 +10,23 @@ var sequelize = new Sequelize(
 
 // load models
 var models = [
-    'course'
-];
+    'course',
+    'course_offering',
+    'course_offering_rating_param',
+    'discussion',
+    'professor',
+    'rating',
+    'rating_param',
+    'rating_value',
+    'review',
+    'spam',
+    'user'
+    ];
 
 models.forEach(function(model) {
     module.exports[model] = sequelize.import(__dirname + '/' + model);
 });
 
-// will define relationships here, later TODO
 // create tables in db if not exist:
 sequelize.sync()
 // force true will drop table.

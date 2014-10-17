@@ -8,3 +8,20 @@
  * max_value                INTEGER
  *
  */
+
+module.exports = function(sequelize, DataTypes) {
+    var CourseOfferingRatingParam =  sequelize.define ('course_offering_rating_param',
+        {
+            id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true}
+            // TODO complete this
+
+        },
+        {
+            freezeTableName : true,
+            underscored : true,
+            tableName : 'course_offering_rating_param',
+            timestamps : false
+        });
+
+    return CourseOfferingRatingParam;
+}

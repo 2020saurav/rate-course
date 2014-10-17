@@ -14,3 +14,19 @@
  * password_token   VARCHAR(255)
  *
  */
+module.exports = function(sequelize, DataTypes) {
+    var User =  sequelize.define ('user',
+        {
+            id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true}
+            // TODO complete this
+
+        },
+        {
+            freezeTableName : true,
+            underscored : true,
+            tableName : 'user',
+            timestamps : false
+        });
+
+    return User;
+}
