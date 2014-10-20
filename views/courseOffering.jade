@@ -2,5 +2,29 @@ extends layout
 block content
     div.container
         -var id=courseId
-        h1 Course Id: #{id}
+        -var prof = instructor
+        div.col-md-9
+            h1 Course Id: #{id} Its name
+            h4 #{prof}
+            div.col-md-offset-1.col-md-8
+                ul
+                    li Course Content ****
+                    li Rating Param 1
+            div.col-md-12
+                div.well.row
+                    div.col-md-1
+                        img(src="http://placehold.it/50x50")
+                    div.col-md-9
+                        b Saurav Kumar
+                        p Review by this user
+                div.well.row
+                    div.col-md-1
+                        img(src="http://placehold.it/50x50")
+                    div.col-md-9
+                        b Saurav Kumar
+                        p Review by this user
+
+        div.col-md-3
+            h3 Hello
+
 

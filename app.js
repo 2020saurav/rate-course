@@ -18,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.get('/', routes.index);
 app.get('/course/', routes.course);
-//app.get('/course/:id/', routes.courseOffering(req.param("id")))
 app.get('/course/:id/',function(req,res){
     routes.courseOffering(req,res)
 })
