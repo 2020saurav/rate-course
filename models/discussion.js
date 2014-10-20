@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         {
             id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
             user_id: {type: DataTypes.INTEGER, allowNull:false},
-            as_anon: {type: DataTypes.BOOLEAN, allowNull:false},
+            as_anon: {type: DataTypes.BOOLEAN, allowNull:false, defaultValue: false},
             course_id: {type: DataTypes.INTEGER, allowNull:false},
             comment: {type: DataTypes.TEXT, allowNull:false},
             //why not time ??

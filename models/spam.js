@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
            user_id: {type: DataTypes.INTEGER, allowNull: false},
 	   type: {type: DataTypes.INTEGER,  allowNull: false},
 	   create_time: {type: DataTypes.INTEGER, allowNull: false},
-	   is_resolved: {type: DataTypes.BOOLEAN, allowNull:false}
+	   is_resolved: {type: DataTypes.BOOLEAN, allowNull:false, defaultValue: false}
 	  // item_id: {type: DataTypes.INTEGER}
 	   // TODO complete this
 

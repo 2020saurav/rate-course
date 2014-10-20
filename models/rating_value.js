@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 	    rating_id: {type: DataTypes.INTEGER, allowNull: false},
 	    rating_param_id: {type: DataTypes.INTEGER, allowNull: false},
 	    value: { DataTypes.INTEGER, allowNull: false},
-	    is_deleted: {DataTypes.BOOLEAN, defaultValue: false}
+	    is_deleted: {DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
             // TODO complete this
 
         },
