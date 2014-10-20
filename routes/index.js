@@ -7,5 +7,5 @@ exports.course = function(req, res) {
 }
 
 exports.courseOffering = function(req, res) {
-    res.render('courseOffering')
+    res.render('courseOffering',{"courseId" : req.param("id")});
 }
