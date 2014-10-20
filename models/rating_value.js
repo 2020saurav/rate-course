@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
     var RatingValue =  sequelize.define ('rating_value',
         {
             id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
-	    rating_id: {type: DataTypes.INTEGER, allowNull: false},
-	    rating_param_id: {type: DataTypes.INTEGER, allowNull: false},
-	    value: { DataTypes.INTEGER, allowNull: false},
-	    is_deleted: {DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
+	        rating_id: {type: DataTypes.INTEGER, allowNull: false},
+	        rating_param_id: {type: DataTypes.INTEGER, allowNull: false},
+	        value: { type: DataTypes.INTEGER, allowNull: false},
+	        is_deleted: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
             // TODO complete this
 
         },
