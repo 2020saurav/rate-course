@@ -1,9 +1,17 @@
+var model = require('../models/index');
+
 exports.index = function(req, res) {
 	res.render('index');
 }
 
 exports.course = function(req, res) {
-    res.render('course');
+    var courseModel = model.sequelize.models.course;
+    courseModel.findAll().success(function(courses) {
+        res.render('course',{
+            "courses" : courses
+        });
+    })
+
 }
 
 exports.courseOffering = function(req, res) {

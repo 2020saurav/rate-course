@@ -5,6 +5,8 @@ var model = require('./models/index');
 var http = require('http');
 var path = require('path');
 
+
+
 var app = express();
 
 //environments
@@ -21,6 +23,7 @@ app.get('/course/', routes.course);
 app.get('/course/:id/',function(req,res){
     routes.courseOffering(req,res)
 })
+
 // server creation
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
