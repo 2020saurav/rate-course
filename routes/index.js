@@ -1,4 +1,11 @@
 exports.index = function(req, res) {
 	res.render('index');
-	// write using sequelize
+}
+
+exports.course = function(req, res) {
+    res.render('course');
+}
+
+exports.courseOffering = function(req, res) {
+    res.render('courseOffering')
 }
