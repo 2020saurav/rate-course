@@ -28,6 +28,6 @@ models.forEach(function(model) {
 });
 
 // create tables in db if not exist:
-sequelize.sync()
+//sequelize.sync()
 // force true will drop table.
 module.exports.sequelize = sequelize;
