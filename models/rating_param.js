@@ -12,9 +12,8 @@ module.exports = function(sequelize, DataTypes) {
         {
             id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
             name: {type: DataTypes.TEXT, allowNull: false},
-	       type: {type: DataTypes.INTEGER, allowNull: false},
-	           sort_order: {type: DataTypes.INTEGER, allowNull: true}
-	   // TODO complete this
+	        type: {type: DataTypes.INTEGER, allowNull: false},
+	        sort_order: {type: DataTypes.INTEGER, allowNull: true}
 
         },
         {

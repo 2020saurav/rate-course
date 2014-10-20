@@ -21,8 +21,6 @@ module.exports = function(sequelize, DataTypes) {
             email: {type: DataTypes.STRING(40)},
             homepage_url: {type: DataTypes.STRING(255)},
             photo_url: {type: DataTypes.STRING(255)}
-            // TODO complete this
-
         },
         {
             freezeTableName : true,

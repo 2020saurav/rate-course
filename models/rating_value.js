@@ -14,10 +14,8 @@ module.exports = function(sequelize, DataTypes) {
             id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
 	        rating_id: {type: DataTypes.INTEGER, allowNull: false},
 	        rating_param_id: {type: DataTypes.INTEGER, allowNull: false},
-	        value: { type: DataTypes.INTEGER, allowNull: false},
+	        value: {type: DataTypes.INTEGER, allowNull: false},
 	        is_deleted: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
-            // TODO complete this
-
         },
         {
             freezeTableName : true,
