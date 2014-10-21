@@ -37,9 +37,8 @@ app.get('/admin/',function(req,res){
 app.get('/admin/:form',function(req,res){
     routes.adminForms(req,res)
 })
-});
+
 app.get('/', routes.home);
-app.get('/course-rate', routes.courserate);
 app.get('/contact', routes.contact)
 
 // server creation
