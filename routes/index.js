@@ -1,4 +1,16 @@
 var model = require('../models/index');
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+var courseModel = model.sequelize.models.course;
+var courseOfferingModel = model.sequelize.models.course_offering;
+var profModel = model.sequelize.models.professor;
+
+courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'})
+courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'})
+profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'})
+courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'})
 
 exports.index = function(req, res) {
 	res.render('index');
@@ -18,16 +30,7 @@ exports.courses = function(req, res) {
 }
 
 exports.course = function(req,res) {
-    var courseModel = model.sequelize.models.course;
-    var courseOfferingModel = model.sequelize.models.course_offering;
-    var profModel = model.sequelize.models.professor;
-
-    courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'})
-    courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'})
-    profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'})
-    courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'})
     var courseId = req.param("id");
-
     courseModel.find({
         where: {id: courseId},
         include: [
@@ -43,15 +46,6 @@ exports.course = function(req,res) {
     })
 }
 exports.courseOffering = function(req, res) {
-    var courseModel = model.sequelize.models.course;
-    var courseOfferingModel = model.sequelize.models.course_offering;
-    var profModel = model.sequelize.models.professor;
-
-    courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'})
-    courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'})
-    profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'})
-    courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'})
-
     var courseId = req.param("offeringId");
     courseOfferingModel.find({
         where: {id: courseId},
@@ -79,7 +73,8 @@ exports.admin = function (req, res) {
 }
 
 exports.adminModelViewAll = function (req, res) {
-    res.render('viewAllCourse')
+    var viewFileName = "viewAll"+(req.param("model").capitalize());
+    res.render(viewFileName);
 }
 
 exports.adminModelCreate = function (req, res) {
@@ -95,7 +90,6 @@ exports.adminModelUpdate = function (req, res) {
 exports.adminModelDelete = function (req, res) {
     res.render('viewAllCourse')
 }
-
 
 exports.adminModelCreatePost =  function(req,res) {
     // write sequlize here
