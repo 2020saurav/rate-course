@@ -5,8 +5,6 @@ var model = require('./models/index');
 var http = require('http');
 var path = require('path');
 
-
-
 var app = express();
 
 //environments
@@ -38,7 +36,7 @@ app.get('/admin/:form',function(req,res){
     routes.adminForms(req,res)
 })
 
-app.get('/', routes.home);
+
 app.get('/contact', routes.contact)
 
 // server creation
