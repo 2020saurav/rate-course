@@ -1,11 +1,12 @@
 extends layout
 block content
     div.container
-        -var id=courseId
-        -var prof = instructor
+        -course=courseOffering
+        -prof=course.professor
+
         div.col-md-9
-            h1 Course Id: #{id} Its name
-            h4 #{prof}
+            h1 #{course.course.course_name}
+            h4 Year #{course.year} Semester #{course.semester} by #{prof.first_name} #{prof.last_name}
             div.col-md-offset-1.col-md-8
                 ul
                     li Course Content ****

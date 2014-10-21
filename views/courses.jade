@@ -1,0 +1,14 @@
+extends layout
+block content
+    div.container
+        h2 List of all courses
+        -courses=courses
+        -for course in courses
+            div.well
+                a(href='/course/#{course.id}')
+                    h3 #{course.course_name}
+                p #{course.description}
+
+
+
+

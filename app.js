@@ -18,9 +18,25 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-app.get('/course/', routes.course);
+app.get('/', routes.index); // app home
+
+app.get('/course/', routes.courses); // list all courses
+
 app.get('/course/:id/',function(req,res){
+    routes.course(req,res)
+}) // details of selected course
+
+app.get('/course/:id/:offeringId/',function(req,res){
     routes.courseOffering(req,res)
+})// details of selected course offering
+
+app.get('/admin/',function(req,res){
+    routes.admin(req,res)
+})
+
+app.get('/admin/:form',function(req,res){
+    routes.adminForms(req,res)
+})
 });
 app.get('/', routes.home);
 app.get('/course-rate', routes.courserate);

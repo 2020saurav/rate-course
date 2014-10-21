@@ -1,12 +1,12 @@
 extends layout
 block content
     div.container
-        h2 List of all courses
-        -courses=courses
-        -for course in courses
-            div.well
-                p #{course.course_name}
-
-
-
-
+        -course=course
+        h2 #{course.course_name}
+        p #{course.description}
+        h3 Offerings:
+            ul
+            -offerings=course.course_offerings
+            -for offering in offerings
+                li
+                    a(href='/course/#{course.id}/#{offering.id}') #{offering.year}/#{offering.semester} by #{offering.professor.first_name} #{offering.professor.last_name}
