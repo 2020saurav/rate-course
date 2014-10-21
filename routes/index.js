@@ -4,6 +4,10 @@ exports.index = function(req, res) {
 	res.render('index');
 }
 
+exports.contact = function(req, res) {
+    res.render('contact');
+}
+
 exports.courses = function(req, res) {
     var courseModel = model.sequelize.models.course;
     courseModel.findAll().success(function(courses) {
@@ -38,10 +42,7 @@ exports.course = function(req,res) {
         })
     })
 }
-
-
 exports.courseOffering = function(req, res) {
-
     var courseModel = model.sequelize.models.course;
     var courseOfferingModel = model.sequelize.models.course_offering;
     var profModel = model.sequelize.models.professor;
@@ -67,7 +68,6 @@ exports.courseOffering = function(req, res) {
             res.render('courseOffering',{
             "courseOffering" : courseOffering
         });
-
         }
         else
             res.send("This offering does not belong this course")
@@ -78,10 +78,28 @@ exports.admin = function (req, res) {
     res.render('admin')
 }
 
-exports.adminForms = function(req,res) {
+exports.adminModelViewAll = function (req, res) {
     res.render('viewCourse')
 }
 
-exports.contact = function(req, res) {
-    res.render('contact');
+exports.adminModelCreate = function (req, res) {
+    res.render('createCourse')
 }
+
+exports.adminModelView = function (req, res) {
+    res.render('viewCourse')
+}
+exports.adminModelUpdate = function (req, res) {
+    res.render('viewCourse')
+}
+exports.adminModelDelete = function (req, res) {
+    res.render('viewCourse')
+}
+
+
+exports.adminModelCreatePost =  function(req,res) {
+    // write sequlize here
+    res.send("Here");
+}
+
+

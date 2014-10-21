@@ -1,0 +1,20 @@
+extends adminLayout
+block content
+    div.container
+        h2 Create a new Course
+        form.form-horizontal(method='post', action ='/admin/course/create')
+            div.form-group
+                label.col-md-2.control-label Course No.
+                div.col-md-10
+                    input.form-control(type="text" name="courseNumber" placeholder="Course Number")
+                label.col-md-2.control-label Course Name
+                div.col-md-10
+                    input.form-control(type="text" name="courseName" placeholder="Course Name")
+                label.col-md-2.control-label Description
+                div.col-md-10
+                    textarea.form-control(type="textarea" rows="10" name="description" placeholder="Description")
+                label.col-md-2.control-label Department
+                div.col-md-10
+                    input.form-control(type="text" name="courseNumber" placeholder="Department")
+                button.btn.btn-primary(type = 'submit') Submit
+

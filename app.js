@@ -30,10 +30,29 @@ app.get('/course/:id/:offeringId/',function(req,res){
 
 app.get('/admin/',function(req,res){
     routes.admin(req,res)
+}) // admin Home
+
+app.get('/admin/:model',function(req,res){
+    routes.adminModelViewAll(req,res)
+})  //View all list
+
+app.get('/admin/:model/create', function(req,res){
+    routes.adminModelCreate(req,res)
+})
+app.post('/admin/:model/create', function(req,res){
+    routes.adminModelCreatePost(req,res)
 })
 
-app.get('/admin/:form',function(req,res){
-    routes.adminForms(req,res)
+app.get('/admin/:model/view/:id',function(req,res){
+    routes.adminModelView(req,res)
+})
+
+app.get('/admin/:model/update/:id',function(req,res){
+    routes.adminModelUpdate(req,res)
+})
+
+app.get('/admin/:model/delete/:id',function(req,res){
+    routes.adminModelDelete(req,res)
 })
 
 
