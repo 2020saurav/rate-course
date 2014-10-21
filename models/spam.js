@@ -1,12 +1,9 @@
 /**
- * id               INTEGER
- * user_id          INTEGER
- * type             INTEGER
- * item_id          INTEGER
- * create_time      INTEGER
- * is_resolved      INTEGER(1)
+ * 
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var Spam =  sequelize.define ('spam',
         {

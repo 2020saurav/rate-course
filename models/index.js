@@ -2,6 +2,7 @@ var Sequelize = require('sequelize');
 var config    = require('../config').db;  // we use node-config to handle environments
 
 // initialize database connection
+
 var sequelize = new Sequelize(
     config.database,
     config.username,

@@ -1,16 +1,9 @@
 /**
- * course_offering table
  *
- * id                   INTEGER
- * course_id            INTEGER FK
- * year                 INTEGER
- * semester             INTEGER
- * professor_id         INTEGER FK
- * overall_rating       FLOAT
- * number_of_students   INTEGER
- * website              TEXT
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var CourseOffering =  sequelize.define ('course_offering',
         {

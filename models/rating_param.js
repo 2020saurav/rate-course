@@ -1,12 +1,9 @@
 /**
- * rating_param
- *
- * id           INTEGER
- * name         TEXT
- * type         INTEGER
- * sort_order   INTEGER
+ * 
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var RatingParam =  sequelize.define ('rating_param',
         {
