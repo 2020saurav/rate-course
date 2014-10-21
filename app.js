@@ -18,11 +18,13 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-app.get('/', routes.index);
 app.get('/course/', routes.course);
 app.get('/course/:id/',function(req,res){
     routes.courseOffering(req,res)
-})
+});
+app.get('/', routes.home);
+app.get('/course-rate', routes.courserate);
+app.get('/contact', routes.contact)
 
 // server creation
 http.createServer(app).listen(app.get('port'), function() {

@@ -21,3 +21,15 @@ exports.courseOffering = function(req, res) {
 
     });
 }
+
+exports.home = function(req, res) {
+    res.render('home');
+}
+
+exports.courserate = function(req, res) {
+    res.render('courserate');
+}
+
+exports.contact = function(req, res) {
+    res.render('contact');
+}
