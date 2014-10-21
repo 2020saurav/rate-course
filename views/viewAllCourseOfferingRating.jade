@@ -1,0 +1,33 @@
+extends adminLayout
+block content
+    div.container
+        h2.col-md-9 name of table
+        button.btn.btn-primary.col-md-3 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Course Number
+                td Course Name
+                td Department
+                td Rating Parameter
+                td Weight
+                td Max Value
+                td Actions
+            tr
+                td 1
+                td CS252A
+                td Computing Lab-II
+                td Department
+                td RatingParaI
+                td 1
+                td 10
+                td.row
+                    a(href='view/1')
+                        i.fa.fa-eye.fa-2(title='View')
+                    a(href='update/1')
+                        i.fa.fa-pencil-square-o.fa-2(title='Update')
+                    a(href='delete/1')
+                        i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+

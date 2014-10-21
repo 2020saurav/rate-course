@@ -1,0 +1,38 @@
+extends adminLayout
+block content
+    div.container
+        h2.col-md-9 name of table
+        button.btn.btn-primary.col-md-3 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Course Number
+                td Course Name
+                td Year
+                // year format : yyyy-yy/(I/II)
+                td Professor
+                td Overall Rating
+                td Number of Students
+                td Website
+                td Department
+                td Actions
+            tr
+                td 1
+                td CS252A
+                td Coursewreg Name
+                td 2014-15/II
+                td Prof. Arnab Bhattacharya
+                td 5
+                td 112
+                td complab.cse.iitk.ac.in
+                td CSE
+                td.row
+                    a(href='view/1')
+                        i.fa.fa-eye.fa-2(title='View')
+                    a(href='update/1')
+                        i.fa.fa-pencil-square-o.fa-2(title='Update')
+                    a(href='delete/1')
+                        i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+
