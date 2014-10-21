@@ -38,6 +38,8 @@ exports.course = function(req,res) {
         })
     })
 }
+
+
 exports.courseOffering = function(req, res) {
 
     var courseModel = model.sequelize.models.course;
@@ -77,15 +79,7 @@ exports.admin = function (req, res) {
 }
 
 exports.adminForms = function(req,res) {
-    res.render('formCourse')
-}
-
-exports.home = function(req, res) {
-    res.render('home');
-}
-
-exports.courserate = function(req, res) {
-    res.render('courserate');
+    res.render('viewCourse')
 }
 
 exports.contact = function(req, res) {
