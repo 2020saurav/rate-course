@@ -79,7 +79,7 @@ exports.admin = function (req, res) {
 }
 
 exports.adminModelViewAll = function (req, res) {
-    res.render('viewCourse')
+    res.render('viewAllCourse')
 }
 
 exports.adminModelCreate = function (req, res) {
@@ -87,13 +87,13 @@ exports.adminModelCreate = function (req, res) {
 }
 
 exports.adminModelView = function (req, res) {
-    res.render('viewCourse')
+    res.render('viewAllCourse')
 }
 exports.adminModelUpdate = function (req, res) {
-    res.render('viewCourse')
+    res.render('viewAllCourse')
 }
 exports.adminModelDelete = function (req, res) {
-    res.render('viewCourse')
+    res.render('viewAllCourse')
 }
 
 
