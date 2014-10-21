@@ -30,6 +30,14 @@ app.get('/course/:id/:offeringId/',function(req,res){
     routes.courseOffering(req,res)
 })// details of selected course offering
 
+app.get('/admin/',function(req,res){
+    routes.admin(req,res)
+})
+
+app.get('/admin/:form',function(req,res){
+    routes.adminForms(req,res)
+})
+
 // server creation
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));

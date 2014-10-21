@@ -71,3 +71,11 @@ exports.courseOffering = function(req, res) {
             res.send("This offering does not belong this course")
     })
 }
+
+exports.admin = function (req, res) {
+    res.render('admin')
+}
+
+exports.adminForms = function(req,res) {
+    res.render('formCourse')
+}
