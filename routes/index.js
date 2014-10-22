@@ -75,26 +75,26 @@ exports.courseOffering = function(req, res) {
 };
 
 exports.admin = function (req, res) {
-    res.render('admin')
+    res.render('admin/admin')
 };
 
 exports.adminModelViewAll = function (req, res) {
-    var viewFileName = "viewAll"+(req.param("model").capitalize());
+    var viewFileName = "admin/viewAll"+(req.param("model").capitalize());
     res.render(viewFileName);
 };
 
 exports.adminModelCreate = function (req, res) {
-    res.render('createCourse')
+    res.render('admin/createCourse')
 };
 
 exports.adminModelView = function (req, res) {
-    res.render('viewAllCourse')
+    res.render('admin/viewAllCourse')
 };
 exports.adminModelUpdate = function (req, res) {
-    res.render('viewAllCourse')
+    res.render('admin/viewAllCourse')
 };
 exports.adminModelDelete = function (req, res) {
-    res.render('viewAllCourse')
+    res.render('admin/viewAllCourse')
 };
 
 exports.adminModelCreatePost =  function(req,res) {
