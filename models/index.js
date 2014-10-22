@@ -31,4 +31,5 @@ models.forEach(function(model) {
 // create tables in db if not exist:
 //sequelize.sync({force:true})
 // force true will drop table.
+//console.log("model/index called")
 module.exports.sequelize = sequelize;
