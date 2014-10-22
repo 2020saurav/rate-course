@@ -1,19 +1,22 @@
-Instructions for installation:
-==============================
+Rate-Course
+===========
 
-1. Install node and npm (install globally)
-[Google -> Digitial Ocean or some other link]
-2. Clone this repository.
-[To use ssh, put your ssh key in your git.cse account]
-3. Run npm install
-[It will look in package.json and install all dependencies. This folder is added in gitignore, please do not remove from .gitignore. Install your copy of node_modules. npm install will do this]
-4. Test your server with "node app.js". Open localhost:3000 [In app.js, I have mentioned 3000 as port. All of us should use same port, otherwise with every pull, we will have overwritten copy of app.js's port value locally]
-5. Use Webstorm IDE. (It will be helpful)
-6. Fill up all the model definitions. Course and CourseOffering has been done by me (Saurav).
+This is a course project in CS252A (Computing Laboratory II) under Prof Arnab Bhattacharya.
+This aims to create a node app for viewing and rating courses offered in IITK.
 
+Members
+-------
+* Abhilash Kumar
+* Ankita Pasricha
+* Saurav Kumar
+* Shubhangee Verma
 
+To Do
+-----
+* Completing Admin Panel's functionality (CRUD)
+* Working on user end.
 
-Useful links
-------------
-If if your git says insufficient permission to add to database (happened to me first time today):
-http://stackoverflow.com/questions/6448242/git-push-error-insufficient-permission-for-adding-an-object-to-repository-datab
+Have suggestions?
+-----------------
+Please drop a mail to ksaurav@iitk.ac.in
+
