@@ -45,7 +45,7 @@ app.get('/admin/:model/update/:id',function(req,res){   // update a record
     routes.adminModelUpdate(req,res)
 });
 app.get('/admin/:model/delete/:id',function(req,res){   // delete a record
-    routes.adminModelDelete(req,res)
+    res.send("Delete is not enabled. Please contact developers :P")
 });
 
 // server creation

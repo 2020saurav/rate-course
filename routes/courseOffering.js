@@ -10,9 +10,9 @@ profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'});
 courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'});
 
 module.exports = function(req, res) {
-    var courseId = req.param("offeringId");
+    var courseOfferingId = req.param("offeringId");
     courseOfferingModel.find({
-        where: {id: courseId},
+        where: {id: courseOfferingId},
         include: [
             {
                 model:courseModel

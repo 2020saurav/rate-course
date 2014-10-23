@@ -1,0 +1,28 @@
+-course = course
+extends adminLayout
+block content
+    div.well.row
+        h2 Course: #{course.course_name}
+        div.well
+            b ID:
+            |  #{course.id}
+            br
+            b Course Number:
+            |  #{course.course_number}
+            br
+            b Course Name:
+            |   #{course.course_name}
+            br
+            b Description:
+            |   #{course.description}
+            br
+            b Department:
+            |   #{course.department}
+            br
+            b Overall Rating:
+            |   #{course.overall_rating}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{course.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{course.id}/") DELETE
+
+                                   

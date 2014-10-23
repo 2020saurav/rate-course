@@ -30,9 +30,8 @@ exports.adminModelCreate = function (req, res) {
     res.render('admin/createCourse')
 };
 
-exports.adminModelView = function (req, res) {
-    res.render('admin/viewAllCourse')
-};
+exports.adminModelView = require('./adminView');
+
 exports.adminModelUpdate = function (req, res) {
     res.render('admin/viewAllCourse')
 };
