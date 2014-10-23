@@ -31,10 +31,9 @@ exports.adminModelCreate = function (req, res) {
 };
 
 exports.adminModelView = require('./adminView');
+exports.adminModelUpdate = require('./adminUpdate');
+exports.adminModelUpdatePost = require('./adminUpdatePost');
 
-exports.adminModelUpdate = function (req, res) {
-    res.render('admin/viewAllCourse')
-};
 exports.adminModelDelete = function (req, res) {
     res.render('admin/viewAllCourse')
 };
