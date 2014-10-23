@@ -1,8 +1,9 @@
+-courses = courses
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Course
+        a.btn.btn-primary.col-md-2(href="create/") ADD
         table.table.table-hover
             tr
                 td #
@@ -10,18 +11,20 @@ block content
                 td Course Name
                 td Department
                 td Actions
-            tr
-                td 1
-                td CS252A
-                td Coursewreg Name
-                td Departmente
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            -for course in courses
+                tr
+                    td #{course.id}
+                    td #{course.course_number}
+                    td #{course.course_name}
+                    td #{course.department}
+                    td.row
+                        a(href='view/#{course.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{course.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{course.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
 
 
 

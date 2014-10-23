@@ -1,38 +1,32 @@
+-courseOfferings = courseOfferings
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Course Offering
+        a.btn.btn-primary.col-md-2(href="create/") ADD
         table.table.table-hover
             tr
                 td #
                 td Course Number
                 td Course Name
-                td Year
-                // year format : yyyy-yy/(I/II)
+                td Year / Sem
                 td Professor
-                td Overall Rating
-                td Number of Students
-                td Website
-                td Department
                 td Actions
-            tr
-                td 1
-                td CS252A
-                td Coursewreg Name
-                td 2014-15/II
-                td Prof. Arnab Bhattacharya
-                td 5
-                td 112
-                td complab.cse.iitk.ac.in
-                td CSE
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            -for courseOffering in courseOfferings
+                tr
+                    td #{courseOffering.id}
+                    td #{courseOffering.course.course_number}
+                    td #{courseOffering.course.course_name}
+                    td #{courseOffering.year} / #{courseOffering.semester}
+                    td #{courseOffering.professor.first_name} #{courseOffering.professor.last_name}
+                    td.row
+                        a(href='view/#{courseOffering.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{courseOffering.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{courseOffering.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
 
 
 

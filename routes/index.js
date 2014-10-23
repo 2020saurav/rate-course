@@ -24,10 +24,7 @@ exports.admin = function (req, res) {
     res.render('admin/admin')
 };
 
-exports.adminModelViewAll = function (req, res) {
-    var viewFileName = "admin/viewAll"+(req.param("model").capitalize());
-    res.render(viewFileName);
-};
+exports.adminModelViewAll = require('./adminViewAll');
 
 exports.adminModelCreate = function (req, res) {
     res.render('admin/createCourse')
