@@ -18,6 +18,11 @@ courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'});
 professorModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'});
 courseOfferingModel.belongsTo(professorModel,{foreignKey:'professor_id'});
 
+courseOfferingModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'course_offering_id'});
+courseOfferingRatingParamModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+ratingParamModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'rating_param_id'});
+courseOfferingRatingParamModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
+
 module.exports = function (req, res) {
     var reqModel = req.param("model");
     switch(reqModel)
@@ -31,7 +36,6 @@ module.exports = function (req, res) {
             break;
         case "courseOffering":
             courseOfferingModel.findAll({
-
                 include: [
                     {
                         model:courseModel
@@ -41,15 +45,29 @@ module.exports = function (req, res) {
                     }
                 ]
             }).success(function(courseOfferings) {
-//                res.send(courseOfferings)
                 res.render('admin/viewAllCourseOffering', {
                     "courseOfferings": courseOfferings
                 });
             });
             break;
         case "courseOfferingRatingParam":
-            courseOfferingRatingParamModel.findAll().success(function(courseOfferingRatingParams) {
-//                res.send(courseOfferingRatingParams);
+            courseOfferingRatingParamModel.findAll({
+                include: [
+                    {
+                        model:ratingParamModel
+                    },
+                    {
+                        model:courseOfferingModel,
+                        include : [
+                            {
+                                model:courseModel
+                            }
+                        ]
+                    }
+                ]
+
+            }).success(function(courseOfferingRatingParams) {
+//               res.send(courseOfferingRatingParams)
                 res.render('admin/viewAllCourseOfferingRatingParam',{
                     "params" : courseOfferingRatingParams
                 });

@@ -13,9 +13,9 @@ block content
             -for param in params
                 tr
                     td #{param.id}
-                    td #{param.course_offering_id}
-                    td Year / Sem
-                    td #{param.rating_param_id}
+                    td #{param.course_offering.course.course_number}
+                    td #{param.course_offering.year} / #{param.course_offering.semester}
+                    td #{param.rating_param.name}
                     td.row
                         a(href='view/#{param.id}/')
                             i.fa.fa-eye.fa-2(title='View')
