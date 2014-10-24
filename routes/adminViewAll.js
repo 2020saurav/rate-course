@@ -8,6 +8,10 @@ var discussionModel = model.sequelize.models.discussion;
 var ratingModel = model.sequelize.models.rating;
 var ratingParamModel = model.sequelize.models.rating_param;
 var ratingValueModel = model.sequelize.models.rating_value;
+var reviewModel = model.sequelize.models.review;
+var spamModel = model.sequelize.models.spam;
+var userModel = model.sequelize.models.user;
+
 
 courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'});
 courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'});
@@ -73,10 +77,43 @@ module.exports = function (req, res) {
                 });
             });
             break;
-
-
+        case "ratingParam":
+            ratingParamModel.findAll().success(function(ratingParams) {
+                res.render('admin/viewAllRatingParam',{
+                    "ratingParams" : ratingParams
+                });
+            });
+            break;
+        case "ratingValue":
+            ratingValueModel.findAll().success(function(ratingValues) {
+                res.render('admin/viewAllRatingValue',{
+                    "ratingValues" : ratingValues
+                });
+            });
+            break;
+        case "review":
+            reviewModel.findAll().success(function(reviews) {
+                res.render('admin/viewAllReview',{
+                    "reviews" : reviews
+                });
+            });
+            break;
+        case "spam":
+            spamModel.findAll().success(function(spams) {
+                res.render('admin/viewAllSpam',{
+                    "spams" : spams
+                });
+            });
+            break;
+        case "user":
+            userModel.findAll().success(function(users) {
+                res.render('admin/viewAllUser',{
+                    "users" : users
+                });
+            });
+            break;
         default:
-            res.send(reqModel);
+            res.send("Wrong URL");
             break;
     }
 };

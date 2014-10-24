@@ -1,38 +1,30 @@
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Rating
+        button.btn.btn-primary.col-md-2 ADD
         table.table.table-hover
             tr
                 td #
-                td User Name
-                td Anon / Public
-                td Course Offering ID
-                td Course Number
-                td Course Name
-                td Year
-                // year format : yyyy-yy/(I/II)
-                td Time
-                td Hidden
+                td Name
+                td Anonymous
+                td Course
+                td Year / Sem
                 td Actions
-            tr
-                td 1
-                td Shubhangeeeeeee
-                td 1
-                td 21
-                td CS252
-                td Computing Lab II
-                td 2014-15/II
-                td 1213231
-                td 0
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            -for rating in ratings
+                tr
+                    td #{rating.id}
+                    td #{rating.user_id}
+                    td #{rating.as_anon}
+                    td #{rating.course_offering_id}
+                    td Year / Sem
+                    td.row
+                        a(href='view/#{rating.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{rating.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{rating.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
 
 
 

@@ -1,33 +1,26 @@
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Professor
+        button.btn.btn-primary.col-md-2 ADD
         table.table.table-hover
             tr
                 td #
                 td Professor Name
-                td Designation
                 td Department
-                td Email
-                td Home Page
-                td Photporaph Url
                 td Actions
-            tr
-                td 1
-                td Prof. Arnab Bhattacharya
-                td Assistant Professor
-                td CSE
-                td arnabb@cse.iitk.ac.in
-                td cse.iitk.ac.in/arnabb
-                td chill.com
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            -for professor in professors
+                tr
+                    td #{professor.id}
+                    td #{professor.first_name} #{professor.last_name}
+                    td #{professor.department}
+                    td.row
+                        a(href='view/#{professor.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{professor.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{professor.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
 
 
 
