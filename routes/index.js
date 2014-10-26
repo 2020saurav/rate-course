@@ -1,11 +1,24 @@
 var model = require('../models/index');
-
+var professorModel = model.sequelize.models.professor;
 exports.index = function(req, res) {
 	res.render('index');
 };
 
 exports.contact = function(req, res) {
     res.render('contact');
+};
+
+exports.professors = function(req,res) {
+    professorModel.findAll().success(function (professors) {
+        res.render('professors',{"professors" : professors});
+    })
+};
+exports.professor = function(req,res) {
+    professorModel.find({
+        where : {id : req.param("id")}
+    }).success(function (professor) {
+        res.render('professor',{"professor" : professor});
+    })
 };
 
 // better not to put the following in loop: Comments here explain functionality:

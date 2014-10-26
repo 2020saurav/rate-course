@@ -1,0 +1,15 @@
+extends layout
+block content
+    div.container
+        h2 Professors
+        table.table.table-hover
+            tr
+                td Professor
+                td Department
+                td Email
+            -for professor in professors
+                tr
+                    td
+                        a(href="/professor/#{professor.id}/") #{professor.first_name} #{professor.last_name}
+                    td #{professor.department}
+                    td #{professor.email}

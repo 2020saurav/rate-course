@@ -28,6 +28,14 @@ app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res)
 });
 
+app.get('/professor/', function(req,res) {
+    routes.professors(req,res);
+});
+app.get('/professor/:id/', function(req,res) {
+    routes.professor(req,res);
+});
+
+
 app.get('/admin/', function(req,res) {                    // admin home
     routes.admin(req,res)
 });
