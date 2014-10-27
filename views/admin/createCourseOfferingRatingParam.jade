@@ -1,0 +1,24 @@
+courseOfferingRatingParamModelModel.create({ course_offering_id: req.body.courseOfferingId, rating_param_id: req.body.ratingParamId, weight: req.body.weight, max_value: req.body.maxValue })
+extends adminLayout
+block content
+    div
+        h2 Create a new Course Offering Rating Parameter
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label Course Offering Id
+                div.col-md-10
+                    input.form-control(type="text" name="courseOfferingId" placeholder="Course Offering ID")
+            div.form-group
+                label.col-md-2.control-label Rating Parameter ID
+                div.col-md-10
+                    input.form-control(type="text" name="ratingParamId" placeholder="Rating Param ID")
+            div.form-group
+                label.col-md-2.control-label Weight
+                div.col-md-10
+                    input.form-control(type="text" name="weight" placeholder="Weight of the Rating Parameter")
+            div.form-group
+                label.col-md-2.control-label Maximum Value
+                div.col-md-10
+                    input.form-control(type="text" name="maxValue" placeholder="Maximum Value")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
