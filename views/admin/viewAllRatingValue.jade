@@ -1,31 +1,35 @@
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Rating Value
+        button.btn.btn-primary.col-md-2 ADD
         table.table.table-hover
             tr
                 td #
-                td Rating Id
-                td Rating Param Id
-                td Value
+                td User
+                td Rating Param
+                td Course Name
+                td Course Offering
                 // year format : yyyy-yy/(I/II)
                 td Hidden
+                td Value
                 td Actions
-            tr
-                td 1
-                td 11
-                td 21
-                td 4
-                td 1
-                td CSE
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            - for ratingValue in ratingValues
+                tr
+                    td #{ratingValue.id}
+                    td #{ratingValue.rating.user.first_name}
+                    td #{ratingValue.rating_param.name}
+                    td #{ratingValue.rating.course_offering.course.course_name}
+                    td #{ratingValue.rating.course_offering.year} / #{ratingValue.rating.course_offering.semester}
+                    td #{ratingValue.is_deleted}
+                    td #{ratingValue.value}
+                    td.row
+                        a(href='view/#{ratingValue.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{ratingValue.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{ratingValue.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
 
 
 
