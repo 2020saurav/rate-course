@@ -1,31 +1,31 @@
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Spam
+        button.btn.btn-primary.col-md-2 ADD
         table.table.table-hover
             tr
                 td #
                 td User Name
                 td Type
-                td Item ID
-                td Time
+                td Spam Count
                 td Resolved
                 td Actions
-            tr
-                td 1
-                td Abhilak
-                td 12
-                td 23
-                td 1212312
-                td 0
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
+            - for spam in spams
+                tr
+                    td #{spam.id}
+                    td #{spam.rating.user.first_name}
+                    td #{review.rating.course_offering.course.course_name}
+                    td #{review.rating.course_offering.year} / #{review.rating.course_offering.semester}
+                    td #{review.spam_flag_count}
+                    td #{review.is_deleted}
+                    td.row
+                        a(href='view/#{review.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{review.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{review.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
 
 
 

@@ -23,6 +23,24 @@ courseOfferingRatingParamModel.belongsTo(courseOfferingModel,{foreignKey:'course
 ratingParamModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'rating_param_id'});
 courseOfferingRatingParamModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
+courseModel.hasMany(discussionModel,{foreignKey:'course_id'});
+discussionModel.belongsTo(courseModel,{foreignKey:'course_id'});
+userModel.hasMany(discussionModel,{foreignKey:'user_id'});
+discussionModel.belongsTo(userModel,{foreignKey:'user_id'});
+
+userModel.hasMany(ratingModel,{foreignKey:'user_id'});
+ratingModel.belongsTo(userModel,{foreignKey:'user_id'});
+courseOfferingModel.hasMany(ratingModel,{foreignKey:'course_offering_id'});
+ratingModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+
+ratingModel.hasMany(ratingValueModel,{foreignKey:'rating_id'});
+ratingValueModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
+ratingParamModel.hasMany(ratingValueModel,{foreignKey:'rating_param_id'});
+ratingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
+
+ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
+reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
+
 module.exports = function (req, res) {
     var reqModel = req.param("model");
     switch(reqModel)
@@ -75,7 +93,18 @@ module.exports = function (req, res) {
             });
             break;
         case "discussion":
-            discussionModel.findAll().success(function(discussions) {
+            discussionModel.findAll({
+                include: [
+                    {
+                        model:userModel
+                    },
+                    {
+                        model:courseModel
+                    }
+                ]
+
+            }).success(function(discussions) {
+//                res.send(discussions)
                 res.render('admin/viewAllDiscussion',{
                     "discussions" : discussions
                 });
@@ -89,7 +118,22 @@ module.exports = function (req, res) {
             });
             break;
         case "rating":
-            ratingModel.findAll().success(function(ratings) {
+            ratingModel.findAll({
+                include: [
+                    {
+                        model:userModel
+                    },
+                    {
+                        model:courseOfferingModel,
+                        include : [
+                            {
+                                model:courseModel
+                            }
+                        ]
+                    }
+                ]
+            }).success(function(ratings) {
+//                res.send(ratings)
                 res.render('admin/viewAllRating',{
                     "ratings" : ratings
                 });
@@ -103,14 +147,55 @@ module.exports = function (req, res) {
             });
             break;
         case "ratingValue":
-            ratingValueModel.findAll().success(function(ratingValues) {
+            ratingValueModel.findAll({
+                include: [
+                    {
+                        model:ratingParamModel
+                    },
+                    {
+                        model:ratingModel,
+                        include : [
+                            {
+                                model:userModel
+                            },
+                            {
+                                model:courseOfferingModel,
+                                include : [
+                                    {
+                                        model:courseModel
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }).success(function(ratingValues) {
                 res.render('admin/viewAllRatingValue',{
                     "ratingValues" : ratingValues
                 });
             });
             break;
         case "review":
-            reviewModel.findAll().success(function(reviews) {
+            reviewModel.findAll({
+                include: [
+                    {
+                        model: ratingModel,
+                        include : [
+                            {
+                                model:userModel
+                            },
+                            {
+                                model:courseOfferingModel,
+                                include : [
+                                    {
+                                        model:courseModel
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }).success(function(reviews) {
                 res.render('admin/viewAllReview',{
                     "reviews" : reviews
                 });
