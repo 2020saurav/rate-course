@@ -16,6 +16,7 @@ module.exports = function (req, res) {
                     res.render('admin/createCourseOffering',{"courses":courses, "professors": professors})
                 })
             });
+
             break;
         case "courseOfferingRatingParam":
             res.render('admin/createCourseOfferingRatingParam');
