@@ -1,0 +1,20 @@
+user_id: req.body.userId, course_id: req.body.courseId, comment: req.body.comment, create_time: req.body.createTime}).error(function(err){
+extends adminLayout
+block content
+    div
+        h2 Create a new Discussion
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label User Id
+                div.col-md-10
+                    input.form-control(type="text" name="userId" placeholder="User ID")
+            div.form-group
+                label.col-md-2.control-label Course Id
+                div.col-md-10
+                    input.form-control(type="text" name="courseId" placeholder="Course ID")
+            div.form-group
+                label.col-md-2.control-label Comment
+                div.col-md-10
+                    textarea.form-control(type="textarea" rows="5" name="comment" placeholder="Comment")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

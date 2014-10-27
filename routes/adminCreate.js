@@ -16,9 +16,37 @@ module.exports = function (req, res) {
                     res.render('admin/createCourseOffering',{"courses":courses, "professors": professors})
                 })
             });
+
+            break;
+        case "courseOfferingRatingParam":
+            res.render('admin/createCourseOfferingRatingParam');
+            break;
+        case "discussion":
+            res.render('admin/createDiscussion');
+            break;
+        case "professor":
+            res.render('admin/createProfessor');
+            break;
+        case "rating":
+            res.render('admin/createRating');
+            break;
+        case "ratingParam":
+            res.render('admin/createRatingParam');
+            break;
+        case "ratingValue":
+            res.render('admin/createRatingValue');
+            break;
+        case "review":
+            res.render('admin/createReview');
+            break;
+        case "spam":
+            res.render('admin/createSpam');
+            break;
+        case "user":
+            res.render('admin/User');
             break;
         default :
-            res.send("Not implemented, or wrong model");
+            res.send("wrong model");
             break;
     }
 };

@@ -1,0 +1,15 @@
+extends adminLayout
+block content
+    div
+        h2 Create a new Rating
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label User ID
+                div.col-md-10
+                    input.form-control(type="text" name="userId" placeholder="User ID")
+            div.form-group
+                label.col-md-2.control-label Course Offering ID
+                div.col-md-10
+                    input.form-control(type="text" name="courseOfferingId" placeholder="Course Offering ID")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

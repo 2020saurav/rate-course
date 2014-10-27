@@ -1,0 +1,31 @@
+extends adminLayout
+block content
+div
+h2 Create a new User
+form.form-horizontal(method='post', action ='')
+    div.form-group
+        label.col-md-2.control-label Login ID
+        div.col-md-10
+            input.form-control(type="text" name="login" placeholder="Login ID")
+    div.form-group
+        label.col-md-2.control-label Password
+        div.col-md-10
+            input.form-control(type="password" name="password" placeholder="Password")
+    div.form-group
+        label.col-md-2.control-label Email
+        div.col-md-10
+            input.form-control(type="text" name="email" placeholder="Email")
+    div.form-group
+        label.col-md-2.control-label First Name
+        div.col-md-10
+            input.form-control(type="text" name="firstName" placeholder="First Name")
+    div.form-group
+        label.col-md-2.control-label Last Name
+        div.col-md-10
+            input.form-control(type="text" name="lastName" placeholder="Last Name")
+    div.form-group
+        label.col-md-2.control-label Photo URL
+        div.col-md-10
+            input.form-control(type="text" name="photoUrl" placeholder="Photo URL")
+    div.form-group
+        button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
