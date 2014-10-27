@@ -6,20 +6,16 @@ block content
         table.table.table-hover
             tr
                 td #
-                td User Name
-                td Login Id
+                td Name
+                td Username
                 td Email
-                td Photograph URL
-                td Password Token
                 td Actions
             -for user in users
                 tr
                     td #{user.id}
-                    td #{user.first_name}
+                    td #{user.first_name} #{user.last_name}
                     td #{user.login}
                     td #{user.email}
-                    td #{user.photo_url}
-                    td #{user.password_token}
                     td.row
                         a(href='view/#{user.id}/')
                             i.fa.fa-eye.fa-2(title='View')
