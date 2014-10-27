@@ -22,37 +22,59 @@ module.exports = function (req, res) {
     switch(reqModel)
     {
         case "course":
-            courseModel.create({ course_number: req.body.courseNumber, course_name: req.body.courseName, description: req.body.description, department: req.body.department});
+            courseModel.create({ course_number: req.body.courseNumber, course_name: req.body.courseName, description: req.body.description, department: req.body.department}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "courseOffering":
-            courseOfferingModel.create({ course_id: req.body.courseId, year: req.body.year, semester: req.body.semester, professor_id: req.body.professorId, number_of_students: req.body.numberOfStudents, website: req.body.website});
+            courseOfferingModel.create({ course_id: req.body.courseId, year: req.body.year, semester: req.body.semester, professor_id: req.body.professorId, number_of_students: req.body.numberOfStudents, website: req.body.website}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "courseOfferingRatingParam":
-            courseOfferingRatingParamModelModel.create({ course_offering_id: req.body.courseOfferingId, rating_param_id: req.body.ratingParamId, weight: req.body.weight, max_value: req.body.maxValue });
+            courseOfferingRatingParamModelModel.create({ course_offering_id: req.body.courseOfferingId, rating_param_id: req.body.ratingParamId, weight: req.body.weight, max_value: req.body.maxValue }).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "discussion":
-            discussionModel.create({user_id: req.body.userId, course_id: req.body.courseId, comment: req.body.comment, create_time: req.body.createTime});
+            discussionModel.create({user_id: req.body.userId, course_id: req.body.courseId, comment: req.body.comment, create_time: req.body.createTime}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "professor":
-            professorModel.create({ first_name: req.body.firstName, last_name: req.body.lastName, designation: req.body.designation, department: req.body.department, email: req.body.email, homepage_url: req.body.homepageUrl, photo_url: req.body.photoUrl});
+            professorModel.create({ first_name: req.body.firstName, last_name: req.body.lastName, designation: req.body.designation, department: req.body.department, email: req.body.email, homepage_url: req.body.homepageUrl, photo_url: req.body.photoUrl}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "rating":
-            ratingModel.create({ user_id: req.body.userId, course_offering_id: req.body.courseOfferingId, create_time: req.body.createTime });
+            ratingModel.create({ user_id: req.body.userId, course_offering_id: req.body.courseOfferingId, create_time: req.body.createTime }).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "ratingParam":
-            ratingParamModel.create({name: req.body.name, type: req.body.type, sort_order: req.body.sortOrder});
+            ratingParamModel.create({name: req.body.name, type: req.body.type, sort_order: req.body.sortOrder}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "ratingValue":
-            ratingValueModel.create({rating_id: req.body.ratingId, rating_param_id: req.body.ratingParamId, value: req.body.value});
+            ratingValueModel.create({rating_id: req.body.ratingId, rating_param_id: req.body.ratingParamId, value: req.body.value}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "review":
-            reviewModel.create({rating_id: req.body.ratingId, course_comment: req.body.courseComment, prof_comment: req.body.profComment});
+            reviewModel.create({rating_id: req.body.ratingId, course_comment: req.body.courseComment, prof_comment: req.body.profComment}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         case "spam":
-           spamModel.create({user_id: req.body.userId,type: req.body.type, item_id: req.body.itemId, create_time: req.body.createTime});
+           spamModel.create({user_id: req.body.userId,type: req.body.type, item_id: req.body.itemId, create_time: req.body.createTime}).error(function(err){
+               console.log("unable to update database");
+           });
             break;
         case "user":
-            userModel.create({login: req.body.login, password: req.body.password, email: req.body.email, first_name: req.body.firstName, last_name: req.body.lastName, photo_url: req.body.photoUrl});
+            userModel.create({login: req.body.login, password: req.body.password, email: req.body.email, first_name: req.body.firstName, last_name: req.body.lastName, photo_url: req.body.photoUrl}).error(function(err){
+                console.log("unable to update database");
+            });
             break;
         default:
             res.send("Wrong URL");
