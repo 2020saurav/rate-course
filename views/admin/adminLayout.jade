@@ -8,14 +8,14 @@ html
                 meta(name='description' content='')
                 meta(name='keywords' content='')
             link(rel='stylesheet', href='/css/bootstrap.min.css')
+            link(rel='stylesheet', href='/css/font-awesome.min.css')
+            link(rel='stylesheet', href='/css/site.css')
             | <style>
             | body { padding-top: 60px;}
             | </style>
             //script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     body
-        include header
-        div.col-md-3
-            include formList
+        include ../header
+        include formList
         div.col-md-9
             block content
-        include footer

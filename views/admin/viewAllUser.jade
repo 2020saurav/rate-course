@@ -1,0 +1,37 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-9 name of table
+        button.btn.btn-primary.col-md-3 ADD
+        table.table.table-hover
+            tr
+                td #
+                td User Name
+                td Password
+                td Login Id
+                td Email
+                td Last Login
+                td Last IP
+                td Active
+                td Photograph URL
+                td Password Token
+                td Actions
+            tr
+                td 1
+                td Gee Verma
+                td gee
+                td gee@cse.iitk.ac.in
+                td 1212123
+                td 172.11.1.1
+                td 0
+                td complab.cse.iitk.ac.in/gee.png
+                td.row
+                    a(href='view/1')
+                        i.fa.fa-eye.fa-2(title='View')
+                    a(href='update/1')
+                        i.fa.fa-pencil-square-o.fa-2(title='Update')
+                    a(href='delete/1')
+                        i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+

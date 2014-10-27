@@ -1,14 +1,9 @@
 /**
- * rating
  *
- * id                   INTEGER
- * user_id              INTEGER FK
- * as_anon              INTEGER(1)
- * course_offering_id   INTEGER
- * create_time          INTEGER
- * is_deleted           INTEGER(1)
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var Rating =  sequelize.define ('rating',
         {

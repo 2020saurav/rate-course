@@ -1,0 +1,31 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-9 name of table
+        button.btn.btn-primary.col-md-3 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Rating Id
+                td Rating Param Id
+                td Value
+                // year format : yyyy-yy/(I/II)
+                td Hidden
+                td Actions
+            tr
+                td 1
+                td 11
+                td 21
+                td 4
+                td 1
+                td CSE
+                td.row
+                    a(href='view/1')
+                        i.fa.fa-eye.fa-2(title='View')
+                    a(href='update/1')
+                        i.fa.fa-pencil-square-o.fa-2(title='Update')
+                    a(href='delete/1')
+                        i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+

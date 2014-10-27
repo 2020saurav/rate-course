@@ -1,0 +1,35 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-10 Discussion
+        button.btn.btn-primary.col-md-2 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Name
+                td Anonymous
+                td Course Number
+                td comment
+                td Spam
+                td Deleted
+                td Actions
+            - for discussion in discussions
+                tr
+                    td #{discussion.id}
+                    td #{discussion.user_id}
+                    td #{discussion.as_anon}
+                    td #{discussion.course_id}
+                    td #{discussion.comment}
+                    td #{discussion.spam_flag_count}
+                    td #{discussion.is_deleted}
+                    td.row
+                        a(href='view/#{discussion.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{discussion.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{discussion.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+
+

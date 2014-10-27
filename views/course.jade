@@ -3,10 +3,12 @@ block content
     div.container
         -course=course
         h2 #{course.course_name}
-        p #{course.description}
+        p.well(style="white-space:pre-wrap") #{course.description}
         h3 Offerings:
             ul
             -offerings=course.course_offerings
             -for offering in offerings
-                li
-                    a(href='/course/#{course.id}/#{offering.id}') #{offering.year}/#{offering.semester} by #{offering.professor.first_name} #{offering.professor.last_name}
+                li.well
+                    a(href='/course/#{course.id}/#{offering.id}') Year #{offering.year} Semester #{offering.semester}
+                    |  by
+                    a(href="/professor/#{offering.professor.id}/")  #{offering.professor.first_name} #{offering.professor.last_name}

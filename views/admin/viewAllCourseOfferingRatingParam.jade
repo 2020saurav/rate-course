@@ -1,0 +1,25 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-10 Course Offering Rating Param
+        button.btn.btn-primary.col-md-2 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Course Number
+                td Year / Sem
+                td Parameter
+                td Actions
+            -for param in params
+                tr
+                    td #{param.id}
+                    td #{param.course_offering.course.course_number}
+                    td #{param.course_offering.year} / #{param.course_offering.semester}
+                    td #{param.rating_param.name}
+                    td.row
+                        a(href='view/#{param.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{param.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{param.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')

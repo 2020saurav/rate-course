@@ -1,14 +1,9 @@
 /**
- * course_offering_rating_param
  *
- * id                       INTEGER
- * course_offering_id       INTEGER FK
- * rating_param_id          INTEGER FK
- * weight                   FLOAT
- * max_value                INTEGER
- *
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var CourseOfferingRatingParam =  sequelize.define ('course_offering_rating_param',
         {

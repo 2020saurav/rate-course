@@ -1,0 +1,29 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-10 Course
+        a.btn.btn-primary.col-md-2(href="create/") ADD
+        table.table.table-hover
+            tr
+                td #
+                td Course Number
+                td Course Name
+                td Department
+                td Actions
+            -for course in courses
+                tr
+                    td #{course.id}
+                    td #{course.course_number}
+                    td #{course.course_name}
+                    td #{course.department}
+                    td.row
+                        a(href='view/#{course.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{course.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{course.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+
+

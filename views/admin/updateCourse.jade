@@ -1,0 +1,24 @@
+-course = course
+extends adminLayout
+block content
+    div
+        h2 Update #{course.course_name}
+        form.form-horizontal(method='post', action ='/admin/course/update/#{course.id}')
+            div.form-group
+                label.col-md-2.control-label Course No.
+                div.col-md-10
+                    input.form-control(type="text" name="courseNumber" value="#{course.course_number}")
+            div.form-group
+                label.col-md-2.control-label Course Name
+                div.col-md-10
+                    input.form-control(type="text" name="courseName" value="#{course.course_name}")
+            div.form-group
+                label.col-md-2.control-label Description
+                div.col-md-10
+                    textarea.form-control(type="textarea" rows="10" name="description") #{course.description}
+            div.form-group
+                label.col-md-2.control-label Department
+                div.col-md-10
+                    input.form-control(type="text" name="department" value="#{course.department}")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

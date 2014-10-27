@@ -1,14 +1,9 @@
 /**
- * course
  *
- * id               INTEGER
- * course_number    VARCHAR(11)
- * course_name      VARCHAR(255)
- * description      TEXT
- * overall_rating   FLOAT
- * department       VARCHAR(255)
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
  */
-
 module.exports = function(sequelize, DataTypes) {
     var Course =  sequelize.define ('course',
     {

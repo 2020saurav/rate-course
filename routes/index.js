@@ -1,93 +1,40 @@
 var model = require('../models/index');
-
+var professorModel = model.sequelize.models.professor;
 exports.index = function(req, res) {
 	res.render('index');
-}
-
-exports.courses = function(req, res) {
-    var courseModel = model.sequelize.models.course;
-    courseModel.findAll().success(function(courses) {
-        res.render('courses',{
-            "courses" : courses
-        });
-    })
-}
-
-exports.course = function(req,res) {
-    var courseModel = model.sequelize.models.course;
-    var courseOfferingModel = model.sequelize.models.course_offering;
-    var profModel = model.sequelize.models.professor;
-
-    courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'})
-    courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'})
-    profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'})
-    courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'})
-    var courseId = req.param("id");
-
-    courseModel.find({
-        where: {id: courseId},
-        include: [
-                    {
-                        model:courseOfferingModel,
-                        include:[profModel]
-                    }
-        ]
-    }).success(function(course){
-            res.render('course', {
-            "course" : course
-        })
-    })
-}
-exports.courseOffering = function(req, res) {
-
-    var courseModel = model.sequelize.models.course;
-    var courseOfferingModel = model.sequelize.models.course_offering;
-    var profModel = model.sequelize.models.professor;
-
-    courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'})
-    courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'})
-    profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'})
-    courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'})
-
-    var courseId = req.param("offeringId");
-    courseOfferingModel.find({
-        where: {id: courseId},
-        include: [
-            {
-                model:courseModel
-            },
-            {
-                model:profModel
-            }
-        ]
-    }).success(function(courseOffering){
-        if(courseOffering.course.id==req.param("id")) {
-            res.render('courseOffering',{
-            "courseOffering" : courseOffering
-        });
-
-        }
-        else
-            res.send("This offering does not belong this course")
-    })
-}
-
-exports.admin = function (req, res) {
-    res.render('admin')
-}
-
-exports.adminForms = function(req,res) {
-    res.render('formCourse')
-}
-
-exports.home = function(req, res) {
-    res.render('home');
-}
-
-exports.courserate = function(req, res) {
-    res.render('courserate');
-}
+};
 
 exports.contact = function(req, res) {
     res.render('contact');
-}
+};
+
+exports.professors = function(req,res) {
+    professorModel.findAll().success(function (professors) {
+        res.render('professors',{"professors" : professors});
+    })
+};
+exports.professor = function(req,res) {
+    professorModel.find({
+        where : {id : req.param("id")}
+    }).success(function (professor) {
+        res.render('professor',{"professor" : professor});
+    })
+};
+
+// better not to put the following in loop: Comments here explain functionality:
+exports.courses = require('./courses');                 // list all courses
+exports.course = require('./course');                   // details of selected course
+exports.courseOffering = require('./courseOffering');   // details of selected course offering
+exports.admin = function (req, res) {
+    res.render('admin/admin')
+};
+exports.adminModelViewAll = require('./adminViewAll');
+exports.adminModelCreate = require('./adminCreate');
+exports.adminModelCreatePost = require('./adminCreatePost');
+exports.adminModelView = require('./adminView');
+exports.adminModelUpdate = require('./adminUpdate');
+exports.adminModelUpdatePost = require('./adminUpdatePost');
+exports.adminModelDelete = function (req, res) {
+    res.send("Deleting is reserved!")
+};
+

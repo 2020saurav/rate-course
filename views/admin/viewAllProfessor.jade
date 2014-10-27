@@ -1,0 +1,26 @@
+extends adminLayout
+block content
+    div
+        h2.col-md-10 Professor
+        button.btn.btn-primary.col-md-2 ADD
+        table.table.table-hover
+            tr
+                td #
+                td Professor Name
+                td Department
+                td Actions
+            -for professor in professors
+                tr
+                    td #{professor.id}
+                    td #{professor.first_name} #{professor.last_name}
+                    td #{professor.department}
+                    td.row
+                        a(href='view/#{professor.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{professor.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{professor.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
+
+

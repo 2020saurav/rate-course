@@ -7,7 +7,7 @@ block content
             div.well
                 a(href='/course/#{course.id}')
                     h3 #{course.course_name}
-                p #{course.description}
+                p(style=" text-overflow: ellipsis; overflow:hidden; white-space: nowrap;") #{course.description}
 
 
 

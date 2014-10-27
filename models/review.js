@@ -1,15 +1,9 @@
 /**
- * review
- *
- * id                   INTEGER
- * rating_id            INTEGER FK
- * course_comment       TEXT
- * prof_comment         TEXT
- * spam_flag_count      INTEGER
- * is_deleted           INTEGER(1)
- *
- * */
-
+ * 
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model}
+ */
 module.exports = function(sequelize, DataTypes) {
     var Review =  sequelize.define ('review',
         {
