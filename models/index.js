@@ -14,6 +14,7 @@ var models = [
     'course',
     'course_offering',
     'course_offering_rating_param',
+    'cumulative_rating_value',
     'discussion',
     'professor',
     'rating',
@@ -29,7 +30,7 @@ models.forEach(function(model) {
 });
 
 // create tables in db if not exist:
-//sequelize.sync({force:true})
+sequelize.sync()
 // force true will drop table.
 //console.log("model/index called")
 module.exports.sequelize = sequelize;
