@@ -1,0 +1,31 @@
+-ratingValue = ratingValue
+extends adminLayout
+block content
+    div.well.row
+        h2 Rating value on question: #{ratingValue.rating_param.name}
+        div.well
+            b ID:
+            |   #{ratingValue.id}
+            br
+            b Course:
+            |   #{ratingValue.rating.course_offering.course.course_number} #{ratingValue.rating.course_offering.course.course_name}
+            br
+            b User / User ID:
+            |   #{ratingValue.rating.user.first_name} / #{ratingValue.rating.user_id}
+            br
+            b Rating ID:
+            |   #{ratingValue.rating_id}
+            br
+            b Rating Param ID:
+            |   #{ratingValue.rating_param_id}
+            br
+            b Value:
+            |   #{ratingValue.value}
+            br
+            b Hidden:
+            |   #{ratingValue.is_deleted}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{ratingValue.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{ratingValue.id}/") DELETE
+
+                                   

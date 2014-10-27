@@ -1,0 +1,34 @@
+-discussion = discussion
+extends adminLayout
+block content
+    div.well.row
+        h2 Discussion on Course: #{discussion.course.course_number} #{discussion.course.course_name}
+        div.well
+            b ID:
+            |   #{discussion.id}
+            br
+            b Course:
+            |   #{discussion.course.course_number} #{discussion.course.course_name}
+            br
+            b User / User ID:
+            |   #{discussion.user.first_name} / #{discussion.user_id}
+            br
+            b Anonymous:
+            | #{discussion.as_anon}
+            br
+            b Spam Count:
+            | #{discussion.spam_flag_count}
+            br
+            b Comment:
+            |   #{discussion.comment}
+            br
+            b Time:
+            |   #{discussion.create_time}
+            br
+            b Hidden:
+            |   #{discussion.is_deleted}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{discussion.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{discussion.id}/") DELETE
+
+                                   

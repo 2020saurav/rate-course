@@ -1,0 +1,28 @@
+-professor = professor
+extends adminLayout
+block content
+    div.well.row
+        h2 Name of Professor: #{professor.first_name} #{professor.last_name}
+        div.well
+            b ID:
+            |   #{professor.id}
+            br
+            b Designation:
+            |   #{professor.designation}
+            br
+            b Department:
+            |   #{professor.department}
+            br
+            b Email:
+            |   #{professor.email}
+            br
+            b Home Page:
+            | #{professor.homepage_url}
+            br
+            b Photo Url:
+            | #{professor.photo_url}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{professor.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{professor.id}/") DELETE
+
+                                   

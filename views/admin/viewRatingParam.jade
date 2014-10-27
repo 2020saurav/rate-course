@@ -1,0 +1,22 @@
+-ratingParam = ratingParam
+extends adminLayout
+block content
+    div.well.row
+        h2 Rating Param: #{ratingParam.name}
+        div.well
+            b ID:
+            |   #{ratingParam.id}
+            br
+            b Parameter:
+            |   #{ratingParam.name}
+            br
+            b type:
+            |   #{ratingParam.type}
+            br
+            b Sort Order:
+            |   #{ratingParam.sort_order}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{ratingParam.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{ratingParam.id}/") DELETE
+
+                                   

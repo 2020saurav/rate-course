@@ -1,0 +1,32 @@
+-review = review
+extends adminLayout
+block content
+    div.well.row
+        h2 Review of Course: #{review.rating.course_offering.course.course_name}  #{review.rating.course_offering.year} / #{review.rating.course_offering.semester}
+        div.well
+            b ID:
+            |   #{review.id}
+            br
+            b Course:
+            |   #{review.rating.course_offering.course.course_number} #{review.rating.course_offering.course.course_name}
+            br
+            b User / User ID:
+            |   #{review.rating.user.first_name} / #{review.rating.user_id}
+            br
+            b Course Comment:
+            |   #{review.course_comment}
+            br
+            b Professor Comment:
+            |   #{review.prof_comment}
+            br
+            b Spam Count:
+            |   #{review.spam_flag_count}
+            br
+            b Hidden:
+            |   #{review.is_deleted}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{review.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{review.id}/") DELETE
+//#################### TODO TODO TODO ###############################//
+
+//Name of professor to be added
