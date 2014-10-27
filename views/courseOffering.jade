@@ -23,12 +23,13 @@ block content
             div.well.row
                 h3 Reviews
                 -for rating in ratings
-                    - review = rating.reviews[0]
+                    - review = rating.review
+                    - user = rating.user
                     div.well.row
                         div.col-md-2
-                            img(src="http://placehold.it/75x80", width="70%")
+                            img(src="#{user.photo_url}", width="70%")
                         div.col-md-10
-                            b Name
+                            b #{user.first_name} #{user.last_name}
                             p Course: #{review.course_comment}
                             p Professor: #{review.prof_comment}
 

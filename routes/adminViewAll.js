@@ -38,6 +38,7 @@ ratingValueModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 ratingParamModel.hasMany(ratingValueModel,{foreignKey:'rating_param_id'});
 ratingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
+// TODO rating model has atmost one review model. correct this:
 ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 

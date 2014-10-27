@@ -23,8 +23,11 @@ cumulativeRatingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_
 courseOfferingModel.hasMany(ratingModel,{foreignKey:'course_offering_id'});
 ratingModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
 
-ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
+ratingModel.hasOne(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
+
+userModel.hasMany(ratingModel,{foreignKey:'user_id'});
+ratingModel.belongsTo(userModel,{foreignKey:'user_id'});
 
 module.exports = function(req, res) {
     var courseOfferingId = req.param("offeringId");
@@ -46,13 +49,18 @@ module.exports = function(req, res) {
             {
                 model:ratingModel,
                 include:[
-                    {model:reviewModel}
+                    {
+                        model:reviewModel
+                    },
+                    {
+                        model:userModel
+                    }
                 ]
             }
         ]
     }).success(function(courseOffering){
         if(courseOffering.course.id==req.param("id")) {
-//            res.send(courseOffering)
+            //res.send(courseOffering)
             res.render('courseOffering',{
                 "courseOffering" : courseOffering
             });
