@@ -4,7 +4,8 @@ block content
         -course=courseOffering
         -professor=course.professor
         -ratingValues=course.cumulative_rating_values
-        -reviews=course.reviews
+        -ratings=course.ratings
+
 
         div.col-md-9
             h1 #{course.course.course_name}
@@ -20,27 +21,17 @@ block content
                                 -var val = ratingValue.value * 20
                                 div.rating-stars(data-content="" style="width: #{val}%;")
             div.well.row
-                h3 Reviews about the Course
-            div.well.row
-                h3 Reviews about the Professor
+                h3 Reviews
+                -for rating in ratings
+                    - review = rating.reviews[0]
+                    div.well.row
+                        div.col-md-2
+                            img(src="http://placehold.it/75x80", width="70%")
+                        div.col-md-10
+                            b Name
+                            p Course: #{review.course_comment}
+                            p Professor: #{review.prof_comment}
 
-            //div.col-md-offset-1.col-md-8
-            //    ul
-            //        li Course Content ****
-            //        li Rating Param 1
-            //div.col-md-12(style="height:200px;overflow-y:scroll")
-            //    div.well.row
-            //        div.col-md-1
-            //            img(src="http://placehold.it/50x50")
-            //        div.col-md-9
-            //            b Saurav Kumar
-            //            p Review by this user
-            //    div.well.row
-            //        div.col-md-1
-            //            img(src="http://placehold.it/50x50")
-            //        div.col-md-9
-            //            b Saurav Kumar
-            //            p Review by this user
 
         div.col-md-3
             h3 Visualizations

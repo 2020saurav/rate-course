@@ -7,7 +7,7 @@ var cumulativeRatingValueModel = model.sequelize.models.cumulative_rating_value;
 var ratingParamModel = model.sequelize.models.rating_param;
 var ratingModel = model.sequelize.models.rating;
 var reviewModel = model.sequelize.models.review;
-
+var userModel = model.sequelize.models.user;
 
 courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'});
 courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'});
@@ -52,10 +52,10 @@ module.exports = function(req, res) {
         ]
     }).success(function(courseOffering){
         if(courseOffering.course.id==req.param("id")) {
-            res.send(courseOffering)
-//            res.render('courseOffering',{
-//                "courseOffering" : courseOffering
-//            });
+//            res.send(courseOffering)
+            res.render('courseOffering',{
+                "courseOffering" : courseOffering
+            });
         }
         else
             res.send("This offering does not belong this course")
