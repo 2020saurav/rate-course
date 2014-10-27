@@ -43,7 +43,7 @@ module.exports = function (req, res) {
             res.render('admin/createSpam');
             break;
         case "user":
-            res.render('admin/User');
+            res.render('admin/createUser');
             break;
         default :
             res.send("wrong model");
