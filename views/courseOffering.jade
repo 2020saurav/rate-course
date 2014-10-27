@@ -2,28 +2,45 @@ extends layout
 block content
     div.container
         -course=courseOffering
-        -prof=course.professor
+        -professor=course.professor
+        -ratingValues=course.cumulative_rating_values
+        -reviews=course.reviews
 
         div.col-md-9
             h1 #{course.course.course_name}
-            h4 Year #{course.year} Semester #{course.semester} by #{prof.first_name} #{prof.last_name}
-            div.col-md-offset-1.col-md-8
-                ul
-                    li Course Content ****
-                    li Rating Param 1
-            div.col-md-12(style="height:200px;overflow-y:scroll")
-                div.well.row
-                    div.col-md-1
-                        img(src="http://placehold.it/50x50")
-                    div.col-md-9
-                        b Saurav Kumar
-                        p Review by this user
-                div.well.row
-                    div.col-md-1
-                        img(src="http://placehold.it/50x50")
-                    div.col-md-9
-                        b Saurav Kumar
-                        p Review by this user
+            h4 Year #{course.year} Semester #{course.semester} by #{professor.first_name} #{professor.last_name}
+            div.well.row
+                h3 Ratings by Students
+                - for ratingValue in ratingValues
+                    div.row
+                        div.col-md-9
+                            h4 #{ratingValue.rating_param.name}
+                        div.col-md-3.star-rating.rating-xs
+                            div.rating-container.rating-gly-star(data-content="")
+                                -var val = ratingValue.value * 20
+                                div.rating-stars(data-content="" style="width: #{val}%;")
+            div.well.row
+                h3 Reviews about the Course
+            div.well.row
+                h3 Reviews about the Professor
+
+            //div.col-md-offset-1.col-md-8
+            //    ul
+            //        li Course Content ****
+            //        li Rating Param 1
+            //div.col-md-12(style="height:200px;overflow-y:scroll")
+            //    div.well.row
+            //        div.col-md-1
+            //            img(src="http://placehold.it/50x50")
+            //        div.col-md-9
+            //            b Saurav Kumar
+            //            p Review by this user
+            //    div.well.row
+            //        div.col-md-1
+            //            img(src="http://placehold.it/50x50")
+            //        div.col-md-9
+            //            b Saurav Kumar
+            //            p Review by this user
 
         div.col-md-3
             h3 Visualizations

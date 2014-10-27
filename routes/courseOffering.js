@@ -2,12 +2,29 @@ var model = require('../models/index');
 
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
-var profModel = model.sequelize.models.professor;
+var professorModel = model.sequelize.models.professor;
+var cumulativeRatingValueModel = model.sequelize.models.cumulative_rating_value;
+var ratingParamModel = model.sequelize.models.rating_param;
+var ratingModel = model.sequelize.models.rating;
+var reviewModel = model.sequelize.models.review;
+
 
 courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'});
 courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'});
-profModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'});
-courseOfferingModel.belongsTo(profModel,{foreignKey:'professor_id'});
+professorModel.hasMany(courseOfferingModel,{foreignKey:'professor_id'});
+courseOfferingModel.belongsTo(professorModel,{foreignKey:'professor_id'});
+
+courseOfferingModel.hasMany(cumulativeRatingValueModel,{foreignKey:'course_offering_id'});
+cumulativeRatingValueModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+
+ratingParamModel.hasMany(cumulativeRatingValueModel,{foreignKey:'rating_param_id'});
+cumulativeRatingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
+
+courseOfferingModel.hasMany(ratingModel,{foreignKey:'course_offering_id'});
+ratingModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+
+ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
+reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 
 module.exports = function(req, res) {
     var courseOfferingId = req.param("offeringId");
@@ -18,14 +35,27 @@ module.exports = function(req, res) {
                 model:courseModel
             },
             {
-                model:profModel
+                model:professorModel
+            },
+            {
+                model:cumulativeRatingValueModel,
+                include:[
+                    {model: ratingParamModel}
+                ]
+            },
+            {
+                model:ratingModel,
+                include:[
+                    {model:reviewModel}
+                ]
             }
         ]
     }).success(function(courseOffering){
         if(courseOffering.course.id==req.param("id")) {
-            res.render('courseOffering',{
-                "courseOffering" : courseOffering
-            });
+            res.send(courseOffering)
+//            res.render('courseOffering',{
+//                "courseOffering" : courseOffering
+//            });
         }
         else
             res.send("This offering does not belong this course")
