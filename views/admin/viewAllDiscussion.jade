@@ -8,12 +8,14 @@ block content
                 td #
                 td Name
                 td Course
+                td Comment
                 td Actions
             - for discussion in discussions
                 tr
                     td #{discussion.id}
-                    td #{discussion.first_name} #{discussion.last_name}
-                    td #{discussion.course_name}
+                    td #{discussion.user.first_name}
+                    td #{discussion.course.course_name}
+                    td #{discussion.comment}
                     td.row
                         a(href='view/#{discussion.id}/')
                             i.fa.fa-eye.fa-2(title='View')

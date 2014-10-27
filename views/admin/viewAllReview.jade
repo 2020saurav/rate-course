@@ -1,31 +1,31 @@
 extends adminLayout
 block content
     div
-        h2.col-md-9 name of table
-        button.btn.btn-primary.col-md-3 ADD
+        h2.col-md-10 Reviews
+        button.btn.btn-primary.col-md-2 ADD
         table.table.table-hover
             tr
                 td #
-                td Rating ID
-                td Course Comment
-                td Prof Comment
+                td User
+                td Course Name
+                td Course Offering
                 td Spam Count
                 td Hidden
                 td Actions
-            tr
-                td 1
-                td 21
-                td Nice Course
-                td Nice Prof
-                td 12
-                td 1
-                td.row
-                    a(href='view/1')
-                        i.fa.fa-eye.fa-2(title='View')
-                    a(href='update/1')
-                        i.fa.fa-pencil-square-o.fa-2(title='Update')
-                    a(href='delete/1')
-                        i.fa.fa-trash-o.fa-2(title='Delete')
-
+            - for review in reviews
+                tr
+                    td #{review.id}
+                    td #{review.rating.user.first_name}
+                    td #{review.rating.course_offering.course.course_name}
+                    td #{review.rating.course_offering.year} / #{review.rating.course_offering.semester}
+                    td #{review.spam_flag_count}
+                    td #{review.is_deleted}
+                    td.row
+                        a(href='view/#{review.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='update/#{review.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='delete/#{review.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
 
 
