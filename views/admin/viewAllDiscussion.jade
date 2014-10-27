@@ -7,21 +7,13 @@ block content
             tr
                 td #
                 td Name
-                td Anonymous
-                td Course Number
-                td comment
-                td Spam
-                td Deleted
+                td Course
                 td Actions
             - for discussion in discussions
                 tr
                     td #{discussion.id}
-                    td #{discussion.user_id}
-                    td #{discussion.as_anon}
-                    td #{discussion.course_id}
-                    td #{discussion.comment}
-                    td #{discussion.spam_flag_count}
-                    td #{discussion.is_deleted}
+                    td #{discussion.first_name} #{discussion.last_name}
+                    td #{discussion.course_name}
                     td.row
                         a(href='view/#{discussion.id}/')
                             i.fa.fa-eye.fa-2(title='View')
