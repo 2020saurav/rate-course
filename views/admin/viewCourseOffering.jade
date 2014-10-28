@@ -1,0 +1,39 @@
+-courseOffering = courseOffering
+    extends adminLayout
+    block content
+        div.well.row
+            h2 Course Offering:  #{courseOffering.course.course_name} #{courseOffering.year} / #{courseOffering.semester}
+            div.well
+                b ID:
+                |  #{courseOffering.id}
+                br
+                b Course:
+                |  #{courseOffering.course.course_number} #{courseOffering.course.course_name}
+                br
+                b Course Offering:
+                |  #{courseOffering.year} / #{courseOffering.semester}
+                br
+                b Description:
+                |  #{courseOffering.course.description}
+                br
+                b Department:
+                |  #{courseOffering.course.department}
+                br
+                b Professor:
+                |  #{courseOffering.professor.first_name} #{courseOffering.professor.last_name}
+                br
+                b Number of Registered Students:
+                |  #{courseOffering.number_of_students}
+                br
+                b Website:
+                |  #{courseOffering.website}
+                br
+                b Course Offering Rating:
+                |  #{courseOffering.overall_rating}
+                br
+                b Overall Rating:
+                |  #{courseOffering.course.overall_rating}
+                br
+            a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{courseOffering.id}/") UPDATE
+            a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{courseOffering.id}/") DELETE
+                                                                                   

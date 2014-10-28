@@ -1,0 +1,31 @@
+-courseOfferingRatingParam = courseOfferingRatingParam
+extends adminLayout
+block content
+    div.well.row
+        h2 Course Offering Rating Param: #{courseOfferingRatingParam.course_offering.course.course_name} #{courseOfferingRatingParam.course_offering.year} / #{courseOfferingRatingParam.course_offering.semester}
+        div.well
+            b ID:
+            |  #{courseOfferingRatingParam.id}
+            br
+            b Course:
+            |  #{courseOfferingRatingParam.course_offering.course.course_number} #{courseOfferingRatingParam.course_offering.course.course_name}
+            br
+            b Course Offering:
+            |   #{courseOfferingRatingParam.course_offering.year} / #{courseOfferingRatingParam.course_offering.semester}
+            br
+            b Rating Parameter ID:
+            |   #{courseOfferingRatingParam.rating_param_id}
+            br
+            b Rating Parameter:
+            |   #{courseOfferingRatingParam.rating_param.name}
+            br
+            b Weight:
+            |   #{courseOfferingRatingParam.weight}
+            br
+            b MAX Value:
+            |   #{courseOfferingRatingParam.max_value}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{courseOfferingRatingParam.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{courseOfferingRatingParam.id}/") DELETE
+
+                                   

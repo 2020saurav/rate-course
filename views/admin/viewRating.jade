@@ -1,0 +1,28 @@
+-rating = rating
+extends adminLayout
+block content
+    div.well.row
+        h2 Rating on Course Offering: #{rating.course_offering.course.course_number} #{rating.course_offering.year} / #{rating.course_offering.semester}
+        div.well
+            b ID:
+            |   #{rating.id}
+            br
+            b Course Name:
+            |   #{rating.course_offering.course.course_name}
+            br
+            b User Name / ID:
+            |   #{rating.user.first_name} #{rating.user.last_name} / #{rating.user_id}
+            br
+            b Anonymous:
+            | #{rating.as_anon}
+            br
+            b Hidden:
+            |   #{rating.is_deleted}
+            br
+            b Time:
+            |   #{rating.create_time}
+            br
+        a.btn.btn-primary.col-md-offset-3.col-md-2(href="../../update/#{rating.id}/") UPDATE
+        a.btn.btn-danger.col-md-offset-1.col-md-2(href="../../delete/#{rating.id}/") DELETE
+
+                                   
