@@ -9,6 +9,7 @@ exports.login = function(req, res) {
 };
 
 exports.loginPost = require('./loginPost');
+// TODO ^ pass returnurl to this
 exports.contact = function(req, res) {
     res.render('contact');
 };

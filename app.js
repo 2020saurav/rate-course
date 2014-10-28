@@ -47,17 +47,21 @@ app.get('/courses/dept/:dept/', function(req, res) {
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
     if(req.session.user)
-    {
-        // TODO set return url
-        routes.courseOfferingRate(req,res)
-    }
+        routes.courseOfferingRate(req,res);
     else
+    {
+        var returnURL="/course/"+req.param("id")+"/"+req.param("offeringId")+"/rate/";
         routes.login(req,res);
+    }
+
 });
 
 app.get('/user/:id/', function(req,res) {
     routes.user(req,res);
 });
+app.get('/login/', function(req,res) {
+    res.render('login');
+})
 app.post('/login/', function(req,res) {                     //login POST
    routes.loginPost(req,res);
 });
