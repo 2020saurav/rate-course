@@ -3,7 +3,11 @@ var professorModel = model.sequelize.models.professor;
 exports.index = function(req, res) {
 	res.render('index');
 };
+exports.login = function(req, res) {
+    res.render('login');
+};
 
+exports.loginPost = require('./loginPost');
 exports.contact = function(req, res) {
     res.render('contact');
 };
