@@ -52,6 +52,9 @@ module.exports = function(req, res) {
                 model : courseModel
             },
             {
+                model : professorModel
+            },
+            {
                 model : courseOfferingRatingParamModel,
                 include : [
                     {
@@ -62,9 +65,9 @@ module.exports = function(req, res) {
         ]
 
     }).success(function(courseOfferingRatingParam){
-        res.send(courseOfferingRatingParam);
-//        res.render('courseOfferingRate',{
-//            "courseOfferingRatingParam" : courseOfferingRatingParam
-//        });
+//        res.send(courseOfferingRatingParam);
+        res.render('courseOfferingRate',{
+            "courseOfferingRatingParam" : courseOfferingRatingParam
+        });
     });
 };

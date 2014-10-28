@@ -1,4 +1,15 @@
 extend layout
 block content
     div.container
-        h3 Course
+        h2 Rate: #{courseOfferingRatingParam.course.course_number} #{courseOfferingRatingParam.course.course_name}
+        h3 Instructor: #{courseOfferingRatingParam.professor.first_name} #{courseOfferingRatingParam.professor.last_name}
+        form.form-horizontal(method='post', action ='')
+            -for param in courseOfferingRatingParam.course_offering_rating_params
+                div.form-group.row
+                    div.col-md-6
+                        label.control-label #{param.rating_param.name}
+                    div.col-md-1
+                        input.form-control(type="text" name="#{param.rating_param.id}" placeholder="#{param.max_value}")
+            br
+            div.form-group
+                button.btn.btn-primary.col-md-offset-4(type = 'submit') Submit
