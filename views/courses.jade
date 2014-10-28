@@ -1,7 +1,10 @@
 extends layout
 block content
     div.container
-        h2 List of all courses
+        div.row
+            h2.col-md-4 Courses
+            h6 CSE | EE | BSBE
+
         -courses=courses
         -for course in courses
             div.well

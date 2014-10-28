@@ -41,9 +41,10 @@ exports.user = function(req,res) {
 // better not to put the following in loop: Comments here explain functionality:
 exports.courses = require('./courses');                 // list all courses
 exports.course = require('./course');                   // details of selected course
+exports.coursesDept = require('./coursesDept');           // list all courses of selected department
 exports.courseOffering = require('./courseOffering');   // details of selected course offering
 exports.courseOfferingRate = require('./courseOfferingRate');
-exports.profileUpdate = require('./profileUpdate');
+//exports.profileUpdate = require('./profileUpdate');
 exports.admin = function (req, res) {
     res.render('admin/admin')
 };
