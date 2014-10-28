@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
             id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
             course_offering_id: {type: DataTypes.INTEGER, allowNull: false },
             rating_param_id: {type: DataTypes.INTEGER, allowNull: false},
-            value: {type: DataTypes. INTEGER, allowNull:true}
+            value: {type: DataTypes. FLOAT, allowNull:true}
         },
         {
             freezeTableName : true,

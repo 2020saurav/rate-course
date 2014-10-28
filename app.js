@@ -5,7 +5,7 @@ var model = require('./models/index');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
 
 var app = express();
 //environments
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use(session({secret: 'lak'}));
+//app.use(session({secret: 'lak'}));
 
 var sess;
 //routes
@@ -46,7 +46,7 @@ app.get('/professor/:id/', function(req,res) {
 
 
 app.get('/admin/', function(req,res) {                    // admin home
-    sess = req.session;
+ //   sess = req.session;
     routes.admin(req,res)
 });
 app.get('/admin/:model', function(req,res) {              // complete model object
