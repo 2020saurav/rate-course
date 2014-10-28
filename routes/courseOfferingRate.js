@@ -19,8 +19,10 @@ courseOfferingModel.belongsTo(professorModel,{foreignKey:'professor_id'});
 
 courseOfferingModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'course_offering_id'});
 courseOfferingRatingParamModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+
 ratingParamModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'rating_param_id'});
 courseOfferingRatingParamModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
+
 
 courseModel.hasMany(discussionModel,{foreignKey:'course_id'});
 discussionModel.belongsTo(courseModel,{foreignKey:'course_id'});
@@ -34,6 +36,7 @@ ratingModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
 
 ratingModel.hasMany(ratingValueModel,{foreignKey:'rating_id'});
 ratingValueModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
+
 ratingParamModel.hasMany(ratingValueModel,{foreignKey:'rating_param_id'});
 ratingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
@@ -42,28 +45,41 @@ reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 
 module.exports = function(req, res) {
     var courseOfferingId = req.param("id");
-    courseOfferingRatingParamModel.find({
+    courseOfferingRatingParamModel.findAll({
         where : {id : courseOfferingId},
         include: [
             {
-                model:ratingParamModel
-            },
-            {
-                model:courseOfferingModel,
-                include : [
+                model: courseOfferingModel,
+                include: [
                     {
-                        model:courseModel
+                        model: courseModel
                     },
                     {
-                        model:professorModel
+                        model: professorModel
                     }
                 ]
             }
+
+
+//            {
+//                model:ratingParamModel
+//            },
+//            {
+//                model:courseOfferingModel,
+//                include : [
+//                    {
+//                        model:courseModel
+//                    },
+//                    {
+//                        model:professorModel
+//                    }
+//                ]
+//            }
         ]
     }).success(function(courseOfferingRatingParam){
-//        res.send(courseOfferingRatingParam);
-        res.render('courseOfferingRate',{
-            "courseOfferingRatingParam" : courseOfferingRatingParam
-        });
+        res.send(courseOfferingRatingParam);
+//        res.render('courseOfferingRate',{
+//            "courseOfferingRatingParam" : courseOfferingRatingParam
+//        });
     });
 };

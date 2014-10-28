@@ -39,10 +39,11 @@ app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
 });
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
-    if(req.session.user)
+//    if(req.session.user)
         routes.courseOfferingRate(req,res)
-    else
-        routes.login(req,res);
+//    else
+//        routes.login(req,res);
+// TODO enable these ^
 });
 
 app.post('/login/', function(req,res) {                     //login POST
