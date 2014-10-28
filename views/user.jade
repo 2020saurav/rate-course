@@ -1,0 +1,19 @@
+extends layout
+block content
+    div.container.well
+        h2 User #{user.first_name} #{user.last_name}
+        div.col-md-9.well
+            label.col-md-2 Name
+            label.col-md-10 #{user.first_name} #{user.last_name}
+            label.col-md-2 Login ID
+            label.col-md-10 #{user.login}
+            label.col-md-2 Email
+            label.col-md-10 #{user.email}
+            label.col-md-2 Last Login
+            label.col-md-10 #{user.last_login}
+            label.col-md-10
+
+        div.col-md-3
+            -if(typeof(user.photo_url) == 'string') {
+                img(src="#{user.photo_url}", width = "100%")
+            -}

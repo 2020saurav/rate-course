@@ -19,6 +19,10 @@ courseOfferingModel.belongsTo(professorModel,{foreignKey:'professor_id'});
 
 courseOfferingModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'course_offering_id'});
 courseOfferingRatingParamModel.belongsTo(courseOfferingModel,{foreignKey:'course_offering_id'});
+
+//courseOfferingRatingParamModel.hasMany(ratingParamModel,{foreignKey:'rating_param_id'});
+//ratingParamModel.belongsTo(courseOfferingRatingParamModel,{foreignKey:'rating_param_id'});
+
 ratingParamModel.hasMany(courseOfferingRatingParamModel,{foreignKey:'rating_param_id'});
 courseOfferingRatingParamModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
@@ -41,9 +45,9 @@ ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 
 module.exports = function(req, res) {
-    var courseOfferingId = req.param("id");
+    var courseOfferingId = req.param("offeringId");
     courseOfferingRatingParamModel.find({
-        where : {id : courseOfferingId},
+        where : {course_offering_id : courseOfferingId},
         include: [
             {
                 model:ratingParamModel
@@ -61,9 +65,9 @@ module.exports = function(req, res) {
             }
         ]
     }).success(function(courseOfferingRatingParam){
-//        res.send(courseOfferingRatingParam);
-        res.render('courseOfferingRate',{
-            "courseOfferingRatingParam" : courseOfferingRatingParam
-        });
+        res.send(courseOfferingRatingParam);
+//        res.render('courseOfferingRate',{
+//            "courseOfferingRatingParam" : courseOfferingRatingParam
+//        });
     });
 };
