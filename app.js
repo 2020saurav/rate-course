@@ -38,6 +38,10 @@ app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res)
 });
 
+app.get('/profile/update/', function(req, res) {
+    routes.profileUpdate(req, res)
+});
+
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
 //    if(req.session.user)
         routes.courseOfferingRate(req,res)
