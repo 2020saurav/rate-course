@@ -1,5 +1,6 @@
 var model = require('../models/index');
 var professorModel = model.sequelize.models.professor;
+var userModel = model.sequelize.models.user;
 exports.index = function(req, res) {
 	res.render('index');
 };
@@ -12,6 +13,10 @@ exports.contact = function(req, res) {
     res.render('contact');
 };
 
+exports.team = function(req, res) {
+    res.render('team');
+};
+
 exports.professors = function(req,res) {
     professorModel.findAll().success(function (professors) {
         res.render('professors',{"professors" : professors});
@@ -22,6 +27,14 @@ exports.professor = function(req,res) {
         where : {id : req.param("id")}
     }).success(function (professor) {
         res.render('professor',{"professor" : professor});
+    })
+};
+
+exports.user = function(req,res) {
+    userModel.find({
+        where : {id : req.param("id")}
+    }).success(function (user) {
+        res.render('user',{"user" : user});
     })
 };
 

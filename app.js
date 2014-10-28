@@ -46,6 +46,9 @@ app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offer
 // TODO enable these ^
 });
 
+app.get('/user/:id/', function(req,res) {
+    routes.user(req,res);
+});
 app.post('/login/', function(req,res) {                     //login POST
    routes.loginPost(req,res);
 });
@@ -58,13 +61,16 @@ app.get('/logout/', function(req,res) {                     // logout
     })
 });
 
-app.get('/professor/', function(req,res) {                  // professor all list
+app.get('/professor/', function(req,res) {
     routes.professors(req,res);
 });
-app.get('/professor/:id/', function(req,res) {              // professor profile
+app.get('/professor/:id/', function(req,res) {
     routes.professor(req,res);
 });
 
+app.get('/team/', function(req,res) {
+    routes.team(req,res);
+});
 
 app.get('/admin/', function(req,res) {                    // admin home
     sess = req.session;
