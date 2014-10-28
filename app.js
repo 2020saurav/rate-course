@@ -143,6 +143,10 @@ app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
 })
 
+app.get('/testmail/', function(req,res){
+    routes.testmail(req,res);
+})
+
 // server creation
 
 http.createServer(app).listen(app.get('port'), function() {
