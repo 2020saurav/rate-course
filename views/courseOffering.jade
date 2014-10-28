@@ -8,7 +8,9 @@ block content
 
 
         div.col-md-9
-            h1 #{course.course.course_name}
+            div.row
+                h1.col-md-10 #{course.course.course_name}
+                a.col-md-2.btn.btn-success(href='rate/') RATE
             h4 Year #{course.year} Semester #{course.semester} by #{professor.first_name} #{professor.last_name}
             div.well.row
                 h3 Ratings by Students
