@@ -67,7 +67,8 @@ module.exports = function(req, res) {
     }).success(function(courseOfferingRatingParam){
 //        res.send(courseOfferingRatingParam);
         res.render('courseOfferingRate',{
-            "courseOfferingRatingParam" : courseOfferingRatingParam
+            "courseOfferingRatingParam" : courseOfferingRatingParam,
+            "session":req.session
         });
     });
 };

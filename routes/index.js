@@ -2,32 +2,39 @@ var model = require('../models/index');
 var professorModel = model.sequelize.models.professor;
 var userModel = model.sequelize.models.user;
 exports.index = function(req, res) {
-	res.render('index');
+	res.render('index',{"session":req.session});
 };
-exports.login = function(req, res) {
-    res.render('login');
+exports.loginBackToCourse = function(req, res) {
+    var returnURL="/course/"+req.param("id")+"/"+req.param("offeringId")+"/rate/";
+    if(typeof (req.session.user)!=="undefined")
+        res.redirect(returnURL);
+    res.render('login',{"returnURL" : returnURL, "session":req.session});
+};
+exports.loginBackToAdmin = function(req, res) {
+    var returnURL = "/admin/";
+    res.render('login',{"returnURL" : returnURL, "session":req.session});
 };
 
 exports.loginPost = require('./loginPost');
-// TODO ^ pass returnurl to this
+
 exports.contact = function(req, res) {
-    res.render('contact');
+    res.render('contact',{"session":req.session});
 };
 
 exports.team = function(req, res) {
-    res.render('team');
+    res.render('team',{"session":req.session});
 };
 
 exports.professors = function(req,res) {
     professorModel.findAll().success(function (professors) {
-        res.render('professors',{"professors" : professors});
+        res.render('professors',{"professors" : professors, "session":req.session});
     })
 };
 exports.professor = function(req,res) {
     professorModel.find({
         where : {id : req.param("id")}
     }).success(function (professor) {
-        res.render('professor',{"professor" : professor});
+        res.render('professor',{"professor" : professor, "session":req.session});
     })
 };
 
@@ -35,17 +42,22 @@ exports.user = function(req,res) {
     userModel.find({
         where : {id : req.param("id")}
     }).success(function (user) {
-        res.render('user',{"user" : user});
+        res.render('user',{"user" : user, "session":req.session});
     })
 };
 
-// better not to put the following in loop: Comments here explain functionality:
+// course stuff:
 exports.courses = require('./courses');                 // list all courses
 exports.course = require('./course');                   // details of selected course
 exports.coursesDept = require('./coursesDept');           // list all courses of selected department
 exports.courseOffering = require('./courseOffering');   // details of selected course offering
 exports.courseOfferingRate = require('./courseOfferingRate');
+
+//user profile:
 //exports.profileUpdate = require('./profileUpdate');
+
+
+// admin stuff
 exports.admin = function (req, res) {
     res.render('admin/admin')
 };

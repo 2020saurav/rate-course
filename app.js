@@ -29,7 +29,7 @@ var sess;
 //routes
 
 app.get('/', routes.index);                             // app home
-app.get('/contact', routes.contact);                    // contact
+app.get('/contact/', routes.contact);                    // contact
 app.get('/course/', routes.courses);                    // list all courses
 app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)
@@ -49,18 +49,14 @@ app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offer
     if(req.session.user)
         routes.courseOfferingRate(req,res);
     else
-    {
-        var returnURL="/course/"+req.param("id")+"/"+req.param("offeringId")+"/rate/";
-        routes.login(req,res);
-    }
-
+        routes.loginBackToCourse(req,res);
 });
 
 app.get('/user/:id/', function(req,res) {
     routes.user(req,res);
 });
 app.get('/login/', function(req,res) {
-    res.render('login');
+    res.render('login',{"session":req.session ,"returnURL":"/"});
 })
 app.post('/login/', function(req,res) {                     //login POST
    routes.loginPost(req,res);
@@ -90,56 +86,56 @@ app.get('/admin/', function(req,res) {                    // admin home
     if(sess.user=="admin")
         routes.admin(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.get('/admin/:model/', function(req,res) {              // complete model object
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelViewAll(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.get('/admin/:model/create/', function(req,res) {      // GET create record in model
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelCreate(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.post('/admin/:model/create/', function(req,res) {     // POST create record in model
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelCreatePost(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.get('/admin/:model/view/:id/', function(req,res) {     // view a record
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelView(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.get('/admin/:model/update/:id/', function(req,res) {   // GET update a record
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelUpdate(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.post('/admin/:model/update/:id/', function(req,res) {   // POST update a record
     sess = req.session;
     if(sess.user=="admin")
         routes.adminModelUpdatePost(req,res);
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 app.get('/admin/:model/delete/:id/', function(req,res) {   // delete a record
     sess = req.session;
     if(sess.user=="admin")
         res.send("Delete is not enabled. Please contact developers :P");
     else
-        routes.login(req,res);
+        routes.loginBackToAdmin(req,res);
 });
 
 // server creation

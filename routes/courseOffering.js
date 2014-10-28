@@ -62,7 +62,8 @@ module.exports = function(req, res) {
         if(courseOffering.course.id==req.param("id")) {
             //res.send(courseOffering)
             res.render('courseOffering',{
-                "courseOffering" : courseOffering
+                "courseOffering" : courseOffering,
+                "session":req.session
             });
         }
         else

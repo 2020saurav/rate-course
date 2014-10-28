@@ -15,3 +15,11 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                     a(href="/professor/") Professor
                 li
                     a(href="/contact/") Contact
+                li
+                    a(href="/team/") Team
+                 li.pull-right
+                     -if(typeof (session.user) =="undefined")
+                         a(href='/login/') Login
+                     -else
+                         a(href='/logout/') Logout #{session.user}
+

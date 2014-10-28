@@ -20,7 +20,8 @@ module.exports = function(req,res) {
         ]
     }).success(function(course){
         res.render('course', {
-            "course" : course
+            "course" : course,
+            "session":req.session
         })
     })
 };

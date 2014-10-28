@@ -3,27 +3,28 @@ var model = require('../models/index');
 
 var userModel = model.sequelize.models.user;
 
-module.exports = function(req, res, returnURL) {
-    res.send(returnURL);
-//    var URL="/";
-//    if(returnURL)
-//        URL=returnURL;
-//    userModel.find({
-//        where: {
-//            "login" : req.body.login,
-//            "password" : req.body.password
-//        }
-//    }).success(function (result) {
-//        if(result)
-//        {
-//            req.session.user = req.body.login;
-//            res.redirect(URL);
-//        }
-//        else
-//        {
-//            res.redirect(URL);
-//            // TODO attach a failure message
-//        }
-//    });
+module.exports = function(req, res) {
+    var returnURL="/";
+    if(req.param("returnURL")!=='undefined')
+    {
+        returnURL = req.body.returnURL;
+    }
+    userModel.find({
+        where: {
+            "login" : req.body.login,
+            "password" : req.body.password
+        }
+    }).success(function (result) {
+        if(result)
+        {
+            req.session.user = req.body.login;
+            res.redirect(returnURL);
+        }
+        else
+        {
+            res.redirect(returnURL);
+            // TODO attach a failure message
+        }
+    });
 
 };
