@@ -44,38 +44,23 @@ ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 
 module.exports = function(req, res) {
-    var courseOfferingId = req.param("id");
-    courseOfferingRatingParamModel.findAll({
-        where : {id : courseOfferingId},
-        include: [
+    var courseOfferingId = req.param("offeringId");
+    courseOfferingModel.find({
+        where : {"id" : courseOfferingId},
+        include : [
             {
-                model: courseOfferingModel,
-                include: [
+                model : courseModel
+            },
+            {
+                model : courseOfferingRatingParamModel,
+                include : [
                     {
-                        model: courseModel
-                    },
-                    {
-                        model: professorModel
+                        model: ratingParamModel
                     }
                 ]
             }
-
-
-//            {
-//                model:ratingParamModel
-//            },
-//            {
-//                model:courseOfferingModel,
-//                include : [
-//                    {
-//                        model:courseModel
-//                    },
-//                    {
-//                        model:professorModel
-//                    }
-//                ]
-//            }
         ]
+
     }).success(function(courseOfferingRatingParam){
         res.send(courseOfferingRatingParam);
 //        res.render('courseOfferingRate',{
