@@ -138,6 +138,11 @@ app.get('/admin/:model/delete/:id/', function(req,res) {   // delete a record
         routes.loginBackToAdmin(req,res);
 });
 
+// api
+app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
+    routes.apiUserCourse(req,res);
+})
+
 // server creation
 
 http.createServer(app).listen(app.get('port'), function() {
