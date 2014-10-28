@@ -5,6 +5,7 @@ var model = require('./models/index');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var app = express();
 //environments
@@ -16,6 +17,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(session({secret: 'lak'}));
+
+var sess;
 //routes
 
 app.get('/', routes.index);                             // app home
@@ -28,6 +32,11 @@ app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res)
 });
 
+app.get('/course/:id/:offeringId/rate', function(req,res) {   // selected offering
+    routes.courseOfferingRate(req,res)
+});
+
+
 app.get('/professor/', function(req,res) {
     routes.professors(req,res);
 });
@@ -37,6 +46,7 @@ app.get('/professor/:id/', function(req,res) {
 
 
 app.get('/admin/', function(req,res) {                    // admin home
+    sess = req.session;
     routes.admin(req,res)
 });
 app.get('/admin/:model', function(req,res) {              // complete model object

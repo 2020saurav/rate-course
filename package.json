@@ -9,6 +9,7 @@
     "express-myconnection": "*",
     "mysql": "*",
     "sequelize": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "express-session": "^1.7.6"
   }
 }
