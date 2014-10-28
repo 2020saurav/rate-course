@@ -35,19 +35,24 @@ app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)
 });
 app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
-    routes.courseOffering(req,res)
+    routes.courseOffering(req,res);
+});
+app.get('/courses/dept/:dept/', function(req, res) {
+    routes.coursesDept(req,res);
 });
 
-app.get('/profile/update/', function(req, res) {
-    routes.profileUpdate(req, res)
-});
+//app.get('/profile/update/', function(req, res) {
+//    routes.profileUpdate(req, res)
+//});
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
-//    if(req.session.user)
+    if(req.session.user)
+    {
+        // TODO set return url
         routes.courseOfferingRate(req,res)
-//    else
-//        routes.login(req,res);
-// TODO enable these ^
+    }
+    else
+        routes.login(req,res);
 });
 
 app.get('/user/:id/', function(req,res) {
