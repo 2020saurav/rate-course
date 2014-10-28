@@ -3,11 +3,10 @@ var config    = require('../config').db;  // we use node-config to handle enviro
 
 // initialize database connection
 
-var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password
-);
+var sequelize = new Sequelize(config.database, config.username, config.password, {
+        logging: false,
+        maxConcurrentQueries: 100
+    });
 
 // load models
 var models = [
