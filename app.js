@@ -57,7 +57,7 @@ app.get('/user/:id/', function(req,res) {
 });
 app.get('/login/', function(req,res) {
     res.render('login',{"session":req.session ,"returnURL":"/"});
-})
+});
 app.post('/login/', function(req,res) {                     //login POST
    routes.loginPost(req,res);
 });

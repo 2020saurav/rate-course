@@ -10,3 +10,18 @@
     background-color: #837b7c;
     border-color: #080808;
 }
+
+.body-light
+{
+    background-color: #F5F5F5 ;
+}
+.box-shadow
+{
+    box-shadow: 3px 3px 7px 1px rgba(194, 194, 194, 0.8);
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: inherit;
+    height: inherit;
+    position: relative;
+}
