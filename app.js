@@ -30,7 +30,7 @@ var sess;
 
 app.get('/', routes.index);                             // app home
 app.get('/contact/', routes.contact);                    // contact
-app.get('/course/', routes.courses);                    // list all courses
+app.get('/courses/', routes.courses);                    // list all courses
 app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)
 });
@@ -70,7 +70,7 @@ app.get('/logout/', function(req,res) {                     // logout
     })
 });
 
-app.get('/professor/', function(req,res) {
+app.get('/professors/', function(req,res) {
     routes.professors(req,res);
 });
 app.get('/professor/:id/', function(req,res) {
