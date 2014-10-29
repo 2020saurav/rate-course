@@ -1,8 +1,11 @@
 .container
     .footer
         hr(style='margin: 30px 0 10px 0;')
-        p &copy;&nbsp;
-            a(href='#') Team
-            | 2014
+        small.pull-right
+            a(href='/team/') About Us
+            |  | Powered by You and &nbsp;
+            a(href="http://nodejs.org/")
+                img(src="http://nodejs.org/images/download-logo.png" height="15px" style="position:absolute;")
+
 script(src='/js/bootstrap.min.js')
 block footer

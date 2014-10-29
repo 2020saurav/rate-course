@@ -22,21 +22,30 @@ block content
                             div.rating-container.rating-gly-star(data-content="")
                                 -var val = ratingValue.value * 20
                                 div.rating-stars(data-content="" style="width: #{val}%;")
-            div.well.row
+            div.row
                 h3 Reviews
                 -for rating in ratings
                     - review = rating.review
                     - user = rating.user
-                    div.box-shadow.row
-                        div.col-md-2
-                            img(src="#{user.photo_url}", width="70%")
-                        div.col-md-10
-                            b #{user.first_name} #{user.last_name}
-                            p Course: #{review.course_comment}
-                            p Professor: #{review.prof_comment}
+                    div.box-shadow.row(style="padding-left:0px; padding-top:15px;")
+                        div.col-md-1
+                            a(href="/user/#{user.id}/")
+                                img(src="#{user.photo_url}", width="150%")
+                        div.col-md-11
+                            a(href="/user/#{user.id}/")
+                                b #{user.first_name} #{user.last_name}
+                            small
+                                a(href="#").pull-right Report Spam
+                            br
+                            b Course:
+                            |  #{review.course_comment}
+                            br
+                            b Professor:
+                            |  #{review.prof_comment}
+
 
 
         div.col-md-3
-            h3 Visualizations
+            h3.pull-right Visualizations
 
 
