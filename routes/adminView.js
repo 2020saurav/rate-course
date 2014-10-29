@@ -51,7 +51,8 @@ module.exports = function (req, res) {
 
             }).success(function(course){
                 res.render('admin/viewCourse',{
-                    "course" : course
+                    "course" : course,
+                    "session":req.session
                 });
 
                 });
@@ -69,7 +70,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(courseOffering){
                 res.render('admin/viewCourseOffering',{
-                   "courseOffering" : courseOffering
+                   "courseOffering" : courseOffering,
+                    "session":req.session
                 });
             });
             break;
@@ -91,7 +93,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(courseOfferingRatingParam){
                 res.render('admin/viewCourseOfferingRatingParam',{
-                    "courseOfferingRatingParam" : courseOfferingRatingParam
+                    "courseOfferingRatingParam" : courseOfferingRatingParam,
+                    "session":req.session
                 });
             });
             break;
@@ -110,7 +113,8 @@ module.exports = function (req, res) {
             }).success(function(discussion) {
 //                res.send(discussions)
                 res.render('admin/viewDiscussion',{
-                    "discussion" : discussion
+                    "discussion" : discussion,
+                    "session":req.session
                 });
             });
             break;
@@ -119,7 +123,8 @@ module.exports = function (req, res) {
                 where : {id : reqId}
             }).success(function(professor) {
                 res.render('admin/viewProfessor',{
-                    "professor" : professor
+                    "professor" : professor,
+                    "session":req.session
                 });
             });
             break;
@@ -142,7 +147,8 @@ module.exports = function (req, res) {
             }).success(function(rating) {
 //                res.send(ratings)
                 res.render('admin/viewRating',{
-                    "rating" : rating
+                    "rating" : rating,
+                    "session":req.session
                 });
             });
             break;
@@ -151,7 +157,8 @@ module.exports = function (req, res) {
                 where : {id : reqId}
             }).success(function(ratingParam) {
                 res.render('admin/viewRatingParam',{
-                    "ratingParam" : ratingParam
+                    "ratingParam" : ratingParam,
+                    "session":req.session
                 });
             });
             break;
@@ -181,7 +188,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(ratingValue) {
                 res.render('admin/viewRatingValue',{
-                    "ratingValue" : ratingValue
+                    "ratingValue" : ratingValue,
+                    "session":req.session
                 });
             });
             break;
@@ -208,7 +216,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(review) {
                 res.render('admin/viewReview',{
-                    "review" : review
+                    "review" : review,
+                    "session":req.session
                 });
             });
             break;
@@ -217,7 +226,8 @@ module.exports = function (req, res) {
                 where : {id : reqId}
             }).success(function(spam) {
                 res.render('admin/viewSpam',{
-                    "spam" : spam
+                    "spam" : spam,
+                    "session":req.session
                 });
             });
             break;
@@ -226,7 +236,8 @@ module.exports = function (req, res) {
                 where : {id : reqId}
             }).success(function(user) {
                 res.render('admin/viewUser',{
-                    "user" : user
+                    "user" : user,
+                    "session":req.session
                 });
             });
             break;

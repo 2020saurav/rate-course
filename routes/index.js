@@ -60,7 +60,7 @@ exports.courseOfferingRate = require('./courseOfferingRate');
 
 // admin stuff
 exports.admin = function (req, res) {
-    res.render('admin/admin')
+    res.render('admin/admin',{"session":req.session})
 };
 exports.adminModelViewAll = require('./adminViewAll');
 exports.adminModelCreate = require('./adminCreate');
@@ -101,4 +101,4 @@ exports.testmail = function(req,res)
         }
     });
 
-}
+};

@@ -18,7 +18,10 @@ module.exports = function (req, res) {
             courseModel.find({
                 where : {id : reqId}
             }).success(function(course){
-                res.render('admin/updateCourse',{"course" : course})
+                res.render('admin/updateCourse',{
+                    "course" : course,
+                    "session":req.session
+                })
 
             });
             break;

@@ -49,7 +49,8 @@ module.exports = function (req, res) {
         case "course":
             courseModel.findAll().success(function(courses) {
                 res.render('admin/viewAllCourse',{
-                    "courses" : courses
+                    "courses" : courses,
+                    "session":req.session
                 });
             });
             break;
@@ -65,7 +66,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(courseOfferings) {
                 res.render('admin/viewAllCourseOffering', {
-                    "courseOfferings": courseOfferings
+                    "courseOfferings": courseOfferings,
+                    "session":req.session
                 });
             });
             break;
@@ -88,7 +90,8 @@ module.exports = function (req, res) {
             }).success(function(courseOfferingRatingParams) {
 //               res.send(courseOfferingRatingParams)
                 res.render('admin/viewAllCourseOfferingRatingParam',{
-                    "params" : courseOfferingRatingParams
+                    "params" : courseOfferingRatingParams,
+                    "session":req.session
                 });
 
             });
@@ -107,14 +110,16 @@ module.exports = function (req, res) {
             }).success(function(discussions) {
 //                res.send(discussions)
                 res.render('admin/viewAllDiscussion',{
-                    "discussions" : discussions
+                    "discussions" : discussions,
+                    "session":req.session
                 });
             });
             break;
         case "professor":
             professorModel.findAll().success(function(professors) {
                 res.render('admin/viewAllProfessor',{
-                    "professors" : professors
+                    "professors" : professors,
+                    "session":req.session
                 });
             });
             break;
@@ -136,14 +141,16 @@ module.exports = function (req, res) {
             }).success(function(ratings) {
 //                res.send(ratings)
                 res.render('admin/viewAllRating',{
-                    "ratings" : ratings
+                    "ratings" : ratings,
+                    "session":req.session
                 });
             });
             break;
         case "ratingParam":
             ratingParamModel.findAll().success(function(ratingParams) {
                 res.render('admin/viewAllRatingParam',{
-                    "ratingParams" : ratingParams
+                    "ratingParams" : ratingParams,
+                    "session":req.session
                 });
             });
             break;
@@ -172,7 +179,8 @@ module.exports = function (req, res) {
                 ]
             }).success(function(ratingValues) {
                 res.render('admin/viewAllRatingValue',{
-                    "ratingValues" : ratingValues
+                    "ratingValues" : ratingValues,
+                    "session":req.session
                 });
             });
             break;
@@ -198,21 +206,24 @@ module.exports = function (req, res) {
                 ]
             }).success(function(reviews) {
                 res.render('admin/viewAllReview',{
-                    "reviews" : reviews
+                    "reviews" : reviews,
+                    "session":req.session
                 });
             });
             break;
         case "spam":
             spamModel.findAll().success(function(spams) {
                 res.render('admin/viewAllSpam',{
-                    "spams" : spams
+                    "spams" : spams,
+                    "session":req.session
                 });
             });
             break;
         case "user":
             userModel.findAll().success(function(users) {
                 res.render('admin/viewAllUser',{
-                    "users" : users
+                    "users" : users,
+                    "session":req.session
                 });
             });
             break;
