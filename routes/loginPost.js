@@ -17,7 +17,9 @@ module.exports = function(req, res) {
     }).success(function (result) {
         if(result)
         {
-            req.session.user = req.body.login;
+            req.session.user = result.login;
+            req.session.userId = result.id;
+            req.session.firstName = result.first_name;
             res.redirect(returnURL);
         }
         else

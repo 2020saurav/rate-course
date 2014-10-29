@@ -141,11 +141,11 @@ app.get('/admin/:model/delete/:id/', function(req,res) {   // delete a record
 // api
 app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
-})
+});
 
 app.get('/testmail/', function(req,res){
     routes.testmail(req,res);
-})
+});
 
 // server creation
 
