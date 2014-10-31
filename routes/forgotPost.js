@@ -1,7 +1,9 @@
 /*
-    1. do not change password.
-    2. set new auth token (not null)
-    3. send mail
+TODO
+1. check for valid username and email id.
+2. if not already present, generate random string for token and save there
+3. send email with this token
+4. redirect to some page with success message
  */
 module.exports = function (req, res) {
     res.send(req.body);

@@ -1,4 +1,4 @@
-/*
+/* TODO
 For help see github.com/2020saurav/search-nmjs
 1. get the search query from url param /search/?q=query
 2. classify into possible categories.

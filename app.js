@@ -51,12 +51,12 @@ app.post('/forgot/', function (req, res) {                   // forgot Password 
 });
 app.get('/reset/', function (req, res) {                   // reset Password GET
     if(typeof (req.session.user)=="undefined")
-        res.render('forgot',{"session":req.session});
+        res.render('reset',{"session":req.session});
     else
         res.redirect('/');
 });
 app.post('/reset/', function (req, res) {                   // reset Password POST
-    routes.forgotPost(req,res);
+    routes.resetPost(req,res);
 });
 
 app.get('/faq/', function (req, res) {                      // FAQ

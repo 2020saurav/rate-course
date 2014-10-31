@@ -49,3 +49,5 @@ exports.regEmail = function(userLogin)
         });
     });
 };
+
+// TODO write other email functions: forgot password

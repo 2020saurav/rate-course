@@ -62,6 +62,7 @@ exports.courseOfferingRatePost = require('./courseOfferingRatePost');
 exports.forgotPost = require('./forgotPost');
 exports.search = require('./search');
 exports.registerPost = require('./registerPost');
+exports.resetPost = require('./resetPost');
 //user profile:
 //exports.profileUpdate = require('./profileUpdate');
 

@@ -12,12 +12,12 @@ module.exports = function (req, res) {
     Ftp.auth(cclogin,ccpassword,function(err) {
         if(err)
         {
-            res.send("False"); // wrong CC password or login
+            res.send("False"); // wrong CC password or login : TODO error message
         }
         else
         {
-            // valid IITK user
-            // insert in db if not already there! if success, send email! else say already registered.. use fpwd
+            // valid IITK user TODO
+            // insert in db if not already there! if success, send email and success message! else say already registered.. use fpwd
             helper.regEmail(cclogin);
             console.log("email sent regPost!");
         }
