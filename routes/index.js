@@ -1,5 +1,5 @@
 var model = require('../models/index');
-var nodemailer = require('nodemailer');
+
 var professorModel = model.sequelize.models.professor;
 var userModel = model.sequelize.models.user;
 exports.index = function(req, res) {
@@ -82,38 +82,3 @@ exports.adminModelDelete = function (req, res) {
 
 exports.apiUserCourse = require('./apiUserCourse');
 
-exports.testmail = function(req,res)
-{
-    var transporter = nodemailer.createTransport("SMTP",{
-        service: 'Gmail',
-        auth: {
-            user: 'rate.course.iitk@gmail.com',
-            pass: 'rate.course.iitk2014'
-        }
-    });
-    var mailOptions = {
-        from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
-        to: '2020saurav@gmail.com',
-        subject: 'Test Mail',
-        text: 'Where is this going?',
-        html: '<b> htm test</b> done?'
-    };
-    // text gets suppressed when html is also sent. Better send html always :D
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error)
-        {
-            console.log(error);
-        }
-        else
-        {
-            console.log(
-                    "Sent: \nFrom: " + mailOptions.from +
-                    "\nTo: "+ mailOptions.to +
-                    "\n Subject: "+ mailOptions.subject+
-                    "\n Body: "+ mailOptions.text+
-                    "\n HTML: "+ mailOptions.html
-            );
-        }
-    });
-
-};

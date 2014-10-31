@@ -1,10 +1,5 @@
-/*
-1. CC verification
-2. Insert login as name, login, email@iitk in db
-3. Set random auth token, set password to be some random string, isactive false
-4. send mail
- */
 var JSFtp = require('jsftp');
+var helper = require('./helper');
 
 module.exports = function (req, res) {
     var cclogin = req.body.login;
@@ -21,7 +16,10 @@ module.exports = function (req, res) {
         }
         else
         {
-            res.send("True"); // right login!
+            // valid IITK user
+            // insert in db if not already there! if success, send email! else say already registered.. use fpwd
+            helper.regEmail(cclogin);
+            console.log("email sent regPost!");
         }
 
     })

@@ -49,6 +49,16 @@ app.get('/forgot/', function (req, res) {                   // forgot Password G
 app.post('/forgot/', function (req, res) {                   // forgot Password POST
     routes.forgotPost(req,res);
 });
+app.get('/reset/', function (req, res) {                   // reset Password GET
+    if(typeof (req.session.user)=="undefined")
+        res.render('forgot',{"session":req.session});
+    else
+        res.redirect('/');
+});
+app.post('/reset/', function (req, res) {                   // reset Password POST
+    routes.forgotPost(req,res);
+});
+
 app.get('/faq/', function (req, res) {                      // FAQ
     res.render('faq',{"session":req.session})
 });
@@ -177,9 +187,9 @@ app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
 });
 
-app.get('/testmail/', function(req,res){        // remove when not required
-    routes.testmail(req,res);
-});
+//app.get('/testmail/', function(req,res){        // remove when not required
+//    routes.testmail(req,res);
+//});
 
 // server creation
 
