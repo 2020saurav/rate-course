@@ -72,3 +72,5 @@ module.exports = function(req, res) {
         });
     });
 };
+
+// TODO ensure that user has not already given a rating

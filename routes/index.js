@@ -47,6 +47,10 @@ exports.user = function(req,res) {
     })
 };
 
+exports.faq = function(req,res) {
+  res.render('faq', {"session":req.session})
+};
+
 // course stuff:
 exports.courses = require('./courses');                 // list all courses
 exports.course = require('./course');                   // details of selected course
@@ -55,6 +59,9 @@ exports.courseOffering = require('./courseOffering');   // details of selected c
 exports.courseOfferingRate = require('./courseOfferingRate');
 exports.courseOfferingRatePost = require('./courseOfferingRatePost');
 
+exports.forgotPost = require('./forgotPost');
+exports.search = require('./search');
+exports.registerPost = require('./registerPost');
 //user profile:
 //exports.profileUpdate = require('./profileUpdate');
 

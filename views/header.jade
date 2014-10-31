@@ -22,9 +22,9 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                                 i.glyphicon.glyphicon-search
             ul.nav.navbar-nav.navbar-right
                 li.dropdown.active
-                    -if(typeof(session.user)=="undefined")
+                    -if(typeof(session.user)=="undefined"){
                         a(href='/login/') Login
-                    -else
+                    -} else {
                         a.dropdown-toggle(href="#" data-toggle="dropdown") #{session.firstName} #{session.lastName}
                             span &nbsp;
                             span.caret
@@ -34,5 +34,6 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                             li.divider
                             li
                                 a(href="/logout/") Logout
+                    -}
 
 

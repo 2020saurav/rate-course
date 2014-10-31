@@ -37,8 +37,32 @@ app.get('/course/:id/', function(req,res) {               // selected course
 app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res);
 });
-app.get('/courses/dept/:dept/', function(req, res) {
+app.get('/courses/dept/:dept/', function(req, res) {       // courses of selected department
     routes.coursesDept(req,res);
+});
+app.get('/forgot/', function (req, res) {                   // forgot Password GET
+    if(typeof (req.session.user)=="undefined")
+        res.render('forgot',{"session":req.session});
+    else
+        res.redirect('/');
+});
+app.post('/forgot/', function (req, res) {                   // forgot Password POST
+    routes.forgotPost(req,res);
+});
+app.get('/faq/', function (req, res) {                      // FAQ
+    res.render('faq',{"session":req.session})
+});
+app.get('/register/', function (req, res) {                 // register GET
+    if(typeof (req.session.user)=="undefined")
+        res.render('register',{"session":req.session});
+    else
+        res.redirect('/');
+});
+app.post('/register/', function (req, res) {                 // register POST
+    routes.registerPost(req,res);
+});
+app.get('/search/', function (req, res) {                   // search
+    routes.search(req,res);
 });
 
 //app.get('/profile/update/', function(req, res) {
@@ -58,11 +82,15 @@ app.post('/course/:id/:offeringId/rate/', function(req,res) {   // POST selected
         routes.loginBackToCourse(req,res);
 });
 
-app.get('/user/:id/', function(req,res) {
+app.get('/user/:id/', function(req,res) {                   // public profile of this user
     routes.user(req,res);
 });
-app.get('/login/', function(req,res) {
-    res.render('login',{"session":req.session ,"returnURL":"/"});
+app.get('/login/', function(req,res) {                          // login GET
+    if(typeof (req.session.user)=="undefined")
+        res.render('login',{"session":req.session ,"returnURL":"/"});
+    else
+        res.redirect('/');
+
 });
 app.post('/login/', function(req,res) {                     //login POST
    routes.loginPost(req,res);
@@ -76,14 +104,14 @@ app.get('/logout/', function(req,res) {                     // logout
     })
 });
 
-app.get('/professors/', function(req,res) {
+app.get('/professors/', function(req,res) {             // all professors
     routes.professors(req,res);
 });
-app.get('/professor/:id/', function(req,res) {
+app.get('/professor/:id/', function(req,res) {          // selected professor
     routes.professor(req,res);
 });
 
-app.get('/team/', function(req,res) {
+app.get('/team/', function(req,res) {                   // about us page
     routes.team(req,res);
 });
 
@@ -144,12 +172,12 @@ app.get('/admin/:model/delete/:id/', function(req,res) {   // delete a record
         routes.loginBackToAdmin(req,res);
 });
 
-// api
+// api for Kulharia and Arnab
 app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
 });
 
-app.get('/testmail/', function(req,res){
+app.get('/testmail/', function(req,res){        // remove when not required
     routes.testmail(req,res);
 });
 
