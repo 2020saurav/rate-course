@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(session({
     secret: 'cookieKaSecret',
-    name: 'cookieKaNaam',
+    name: 'IITKRateCourseCookie',
     resave: true,
     saveUninitialized: true
 }));
@@ -48,6 +48,12 @@ app.get('/courses/dept/:dept/', function(req, res) {
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
     if(req.session.user)
         routes.courseOfferingRate(req,res);
+    else
+        routes.loginBackToCourse(req,res);
+});
+app.post('/course/:id/:offeringId/rate/', function(req,res) {   // POST selected offering rating : user needs to be logged in
+    if(req.session.user)
+        routes.courseOfferingRatePost(req,res);
     else
         routes.loginBackToCourse(req,res);
 });

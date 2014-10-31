@@ -53,6 +53,7 @@ exports.course = require('./course');                   // details of selected c
 exports.coursesDept = require('./coursesDept');           // list all courses of selected department
 exports.courseOffering = require('./courseOffering');   // details of selected course offering
 exports.courseOfferingRate = require('./courseOfferingRate');
+exports.courseOfferingRatePost = require('./courseOfferingRatePost');
 
 //user profile:
 //exports.profileUpdate = require('./profileUpdate');
@@ -87,9 +88,10 @@ exports.testmail = function(req,res)
         from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
         to: '2020saurav@gmail.com',
         subject: 'Test Mail',
-        text: 'Text test',
-        html: '<b> htm test</b>'
+        text: 'Where is this going?',
+        html: '<b> htm test</b> done?'
     };
+    // text gets suppressed when html is also sent. Better send html always :D
     transporter.sendMail(mailOptions, function(error, info){
         if(error)
         {
@@ -97,7 +99,13 @@ exports.testmail = function(req,res)
         }
         else
         {
-            console.log("Sent: " + info.response);
+            console.log(
+                    "Sent: \nFrom: " + mailOptions.from +
+                    "\nTo: "+ mailOptions.to +
+                    "\n Subject: "+ mailOptions.subject+
+                    "\n Body: "+ mailOptions.text+
+                    "\n HTML: "+ mailOptions.html
+            );
         }
     });
 

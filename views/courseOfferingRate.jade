@@ -6,10 +6,8 @@ block content
         form.form-horizontal(method='post', action ='')
             -for param in courseOfferingRatingParam.course_offering_rating_params
                 div.form-group.row
-                    div.col-md-6
+                    div.col-md-6.inputVal
                         label.control-label #{param.rating_param.name}
-                    div.col-md-1
-                        input.form-control(type="text" name="#{param.rating_param.id}" placeholder="#{param.max_value}")
-            br
+                    input.rating.form-control(type="number" name="#{param.rating_param.id}" min=0 max=5 step=0.1 data-size="xs" )
             div.form-group
                 button.btn.btn-primary.col-md-offset-4(type = 'submit') Submit
