@@ -12,6 +12,11 @@
     width: inherit;
 }
 
+.agray
+{
+    color: #333333;
+}
+
 .body-light
 {
     background-color: #F5F5F5 ;

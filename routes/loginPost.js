@@ -20,6 +20,7 @@ module.exports = function(req, res) {
             req.session.user = result.login;
             req.session.userId = result.id;
             req.session.firstName = result.first_name;
+            req.session.lastName = result.last_name;
             res.redirect(returnURL);
         }
         else

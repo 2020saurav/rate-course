@@ -9,5 +9,13 @@ block content
                     div.col-md-6.inputVal
                         label.control-label #{param.rating_param.name}
                     input.rating.form-control(type="number" name="#{param.rating_param.id}" min=0 max=5 step=0.1 data-size="xs" )
-            div.form-group
+            div.form-group.row
+                label.col-md-3 Review about the Course
+                div.col-md-6
+                    textarea.form-control(type="textarea"  rows="3" name="courseComment" placeholder="Your review of the course")
+            div.form-group.row
+                label.col-md-3 Review about the Professor
+                div.col-md-6
+                    textarea.form-control(type="textarea" rows="3" name="professorComment" placeholder="Your review of the professor")
+                div.form-group
                 button.btn.btn-primary.col-md-offset-4(type = 'submit') Submit

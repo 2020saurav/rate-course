@@ -1,11 +1,16 @@
-.container
-    .footer
-        hr(style='margin: 30px 0 10px 0;')
-        small.pull-right
-            a(href='/team/') About Us
-            |  | Powered by You and &nbsp;
-            a(href="http://nodejs.org/")
-                img(src="http://nodejs.org/images/download-logo.png" height="15px" style="position:absolute;")
+div(style="background:#7E7E7E; padding: 40px; clear:both")
+    .container
+        .footer
+            small
+                a(href='/faq/').agray FAQs
+                |  |
+                a(href='/contact/').agray  Contact Us
+                |  |
+                a(href='/team/').agray  About Us
+            small.pull-right
+                |  Powered by You and &nbsp;
+                a(href="http://nodejs.org/")
+                    img(src="http://nodejs.org/images/download-logo.png" height="15px" style="position:absolute;")
 
 script(src='/js/bootstrap.min.js')
 block footer

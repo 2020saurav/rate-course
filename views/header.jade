@@ -7,29 +7,32 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                 span.icon-bar
             a.navbar-brand(href="/")
                 | Rate My Course
-        div.collapse.navbar-collapse.col-md-11
+        div.collapse.navbar-collapse
             ul.nav.navbar-nav
                 li
                     a(href="/courses/") Course
                 li
                     a(href="/professors/") Professor
-                li
-                    a(href="/faq/") FAQs
-                li
-                    a(href="/contact/") Contact
+            div.col-md-6
+                form.navbar-form(role='search' action='/search/' method='get')
+                    div.input-group.col-md-12
+                        input.form-control(type="text", placeholder="Search for Courses and Professors", name="q")
+                        div.input-group-btn
+                            button.btn.btn-default(type="submit")
+                                i.glyphicon.glyphicon-search
+            ul.nav.navbar-nav.navbar-right
+                li.dropdown.active
+                    -if(typeof(session.user)=="undefined")
+                        a(href='/login/') Login
+                    -else
+                        a.dropdown-toggle(href="#" data-toggle="dropdown") #{session.firstName} #{session.lastName}
+                            span &nbsp;
+                            span.caret
+                        ul.dropdown-menu(role="menu")
+                            li
+                                a(href="/user/#{session.userId}") My Profile
+                            li.divider
+                            li
+                                a(href="/logout/") Logout
 
-        div(style="float:right;").col-md-1
-             -if(typeof(session.user)=="undefined")
-                 h4
-                    a(href='/login/') Login
-             -else
-                 div.btn-group
-                    button.btn.btn-block.btn-default.dropdown-toggle.nav-black(type="button" data-toggle="dropdown") #{session.firstName}
-                        span &nbsp;
-                        span.caret
-                    ul.dropdown-menu(role="menu")
-                        li
-                            a(href="/user/#{session.userId}") My Profile
-                        li
-                            a(href="/logout/") Logout
 
