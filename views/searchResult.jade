@@ -1,0 +1,9 @@
+extends layout
+block content
+    div.container
+        -for response in responses
+            div.box-shadow(style="padding:2px 15px;")
+                h3
+                    a(href='#{response.url}') #{response.title}
+                p #{response.description}
+
