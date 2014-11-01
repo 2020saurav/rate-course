@@ -6,5 +6,6 @@ TODO
 4. redirect to some page with success message
  */
 module.exports = function (req, res) {
-    res.send(req.body);
+    //res.send(req.body);
+    res.render('message',{"message":"Hello There","session":req.session})
 };

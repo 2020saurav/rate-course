@@ -51,7 +51,8 @@ app.post('/forgot/', function (req, res) {                   // forgot Password 
 });
 app.get('/reset/', function (req, res) {                   // reset Password GET
     if(typeof (req.session.user)=="undefined")
-        res.render('reset',{"session":req.session});
+        routes.reset(req,res);
+        //res.render('reset',{"session":req.session});
     else
         res.redirect('/');
 });
@@ -97,7 +98,7 @@ app.get('/user/:id/', function(req,res) {                   // public profile of
 });
 app.get('/login/', function(req,res) {                          // login GET
     if(typeof (req.session.user)=="undefined")
-        res.render('login',{"session":req.session ,"returnURL":"/"});
+        res.render('login',{"session":req.session ,"returnURL":"/login/"});
     else
         res.redirect('/');
 

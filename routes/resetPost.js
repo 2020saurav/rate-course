@@ -4,6 +4,35 @@
 3. remove auth key
 4. set session or redirect to login page
  */
+var model = require('../models/index');
+var userModel = model.sequelize.models.user;
 module.exports = function (req, res) {
-    res.send(req.body);
+    var userId = req.body.userId;
+    var token = req.body.token;
+    var password = req.body.password;
+    if(token=="") // put more checks : undefined null etc TODO
+    {
+        res.render('message',{"session" : req.session, "message" : "Oops! There was error processing your request. There is something wrong with your token. Please try again!"})
+    }
+    else
+    {
+        userModel.update({password: password, password_token : ""},
+            { where:
+                {
+                    "id" : userId,
+                    "password_token" : token
+                }
+            }
+        ).success(function (user) {
+                if(user)
+                {
+                    res.render('message',{"session" : req.session, "message" : "Congratulations! Your password has been updated."})
+                }
+                else
+                {
+                    res.render('message',{"session" : req.session, "message" : "Oops! Your password could not be updated. Please try again."})
+                }
+        });
+    }
+
 };

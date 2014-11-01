@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
 	        last_ip: {type: DataTypes.STRING(25), allowNull:false, defaultValue:'0'},
 	        is_active: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
 	        photo_url: {type: DataTypes.STRING(255), allowNull:true},
-	        password_token: {type: DataTypes.STRING(255)}
+	        password_token: {type: DataTypes.STRING(255), allowNull:true, defaultValue:""}
         },
         {
             freezeTableName : true,

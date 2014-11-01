@@ -4,7 +4,7 @@ var model = require('../models/index');
 var userModel = model.sequelize.models.user;
 
 module.exports = function(req, res) {
-    var returnURL="/";
+    var returnURL="/login/";
     if(req.param("returnURL")!=='undefined')
     {
         returnURL = req.body.returnURL;

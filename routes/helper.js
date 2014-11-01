@@ -23,11 +23,11 @@ exports.regEmail = function(userLogin)
         var mailOptions = {
             from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
             to: email,
-            subject: 'Course Rate: Complete your registration!',
-            text: ':P',
+            subject: 'Rate My Course: Complete your registration!',
+            text: 'http://172.24.128.203:3000/reset/?u='+userId+'&token='+token,
             html: 'Welcome ' + name+'!<br>'+
                 'Your email id has been used to register at Course Rate IITK.' +
-                ' Please <a href="http://localhost:3000/reset/?u='+userId+'&token='+token + '">click here</a> ' +
+                ' Please <a href="http://172.24.128.203:3000/reset/?u='+userId+'&token='+token + '">click here</a> ' +
                 'to reset your password.<br><br>'+
                 '--<br>Admin'
         };
