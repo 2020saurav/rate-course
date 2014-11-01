@@ -32,10 +32,11 @@ exports.regEmail = function(userLogin)
             from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
             to: email,
             subject: 'Rate My Course: Complete your registration!',
-            text: host+'/reset/?u='+userId+'&token='+token,
+            text: 'Welcome ' + name+ '\n \nYour email id has been used to register at Course Rate IITK. Please use this link '
+                + host+'/reset/?u='+userId+'&token='+token +' to reset your password.\n\n--\nAdmin',
             html: 'Welcome ' + name+'!<br>'+
                 'Your email id has been used to register at Course Rate IITK.' +
-                ' Please <a href="http://172.24.128.203:3000/reset/?u='+userId+'&token='+token + '">click here</a> ' +
+                ' Please <a href="'+host+'/reset/?u='+userId+'&token='+token + '">click here</a> ' +
                 'to reset your password.<br><br>'+
                 '--<br>Admin'
         };
@@ -72,9 +73,11 @@ exports.forgotEmail = function(userLogin)
             from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
             to: email,
             subject: 'Rate My Course: Reset your password!',
-            text: host+'/reset/?u='+userId+'&token='+token,
+            text: 'Hi ' + name+ '!\n \nYou have requested to change your password. Please use this link '
+                + host+'/reset/?u='+userId+'&token='+token +' to reset your password.\n\n--\nAdmin',
             html: 'Hi ' + name+'!<br>'+
-                ' Please <a href="http://172.24.128.203:3000/reset/?u='+userId+'&token='+token + '">click here</a> ' +
+                'You have requested to change your password.' +
+                ' Please <a href="'+host+'/reset/?u='+userId+'&token='+token + '">click here</a> ' +
                 'to reset your password.<br><br>'+
                 '--<br>Admin'
         };

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 	        last_name: {type: DataTypes.STRING(50)},
 	        last_login: {type: DataTypes.INTEGER, allowNull:false, defaultValue:0},
 	        last_ip: {type: DataTypes.STRING(25), allowNull:false, defaultValue:'0'},
-	        is_active: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+	        is_active: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
 	        photo_url: {type: DataTypes.STRING(255), allowNull:true},
 	        password_token: {type: DataTypes.STRING(255), allowNull:true, defaultValue:""}
         },

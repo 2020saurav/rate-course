@@ -16,7 +16,7 @@ module.exports = function (req, res) {
     }
     else
     {
-        userModel.update({password: password, password_token : ""},
+        userModel.update({password: password, password_token : "", is_active:true},
             { where:
                 {
                     "id" : userId,
