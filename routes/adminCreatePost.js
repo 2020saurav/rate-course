@@ -13,74 +13,125 @@ var spamModel = model.sequelize.models.spam;
 var userModel = model.sequelize.models.user;
 
 module.exports = function (req, res) {
-    res.send(req.body);
-    //return
     var reqModel = req.param("model");
-    //res.send(reqModel);
-
-
     switch(reqModel)
     {
         case "course":
-            courseModel.create({ course_number: req.body.courseNumber, course_name: req.body.courseName, description: req.body.description, department: req.body.department}).error(function(err){
-                console.log("unable to update database");
+            courseModel.create({ 
+                course_number: req.body.courseNumber, 
+                course_name: req.body.courseName, 
+                description: req.body.description, 
+                department: req.body.department
+            }).success(function(data){
+                console.log("Table Course : Entry Added");
             });
             break;
         case "courseOffering":
-            courseOfferingModel.create({ course_id: req.body.courseId, year: req.body.year, semester: req.body.semester, professor_id: req.body.professorId, number_of_students: req.body.numberOfStudents, website: req.body.website}).error(function(err){
-                console.log("unable to update database");
+            courseOfferingModel.create({
+                course_id: req.body.courseId,
+                year: req.body.year,
+                semester: req.body.semester,
+                professor_id: req.body.professorId,
+                number_of_students: req.body.numberOfStudents,
+                website: req.body.website
+            }).success(function(data){
+                console.log("Table CO: Entry Added");
             });
             break;
         case "courseOfferingRatingParam":
-            courseOfferingRatingParamModelModel.create({ course_offering_id: req.body.courseOfferingId, rating_param_id: req.body.ratingParamId, weight: req.body.weight, max_value: req.body.maxValue }).error(function(err){
-                console.log("unable to update database");
+            courseOfferingRatingParamModel.create({
+                course_offering_id: req.body.courseOfferingId,
+                rating_param_id: req.body.ratingParamId,
+                weight: req.body.weight,
+                max_value: req.body.maxValue
+            }).success(function(data){
+                console.log("Table CORP : Entry Added");
             });
             break;
         case "discussion":
-            discussionModel.create({user_id: req.body.userId, course_id: req.body.courseId, comment: req.body.comment, create_time: req.body.createTime}).error(function(err){
-                console.log("unable to update database");
+            discussionModel.create({
+                user_id: req.body.userId,
+                course_id: req.body.courseId,
+                comment: req.body.comment,
+                create_time: req.body.createTime
+            }).success(function(data){
+                console.log("Table DISC : Entry Added");
             });
             break;
         case "professor":
-            professorModel.create({ first_name: req.body.firstName, last_name: req.body.lastName, designation: req.body.designation, department: req.body.department, email: req.body.email, homepage_url: req.body.homepageUrl, photo_url: req.body.photoUrl}).error(function(err){
-                console.log("unable to update database");
+            professorModel.create({
+                first_name: req.body.firstName,
+                last_name: req.body.lastName,
+                designation: req.body.designation,
+                department: req.body.department,
+                email: req.body.email,
+                homepage_url: req.body.homepageUrl,
+                photo_url: req.body.photoUrl
+            }).success(function(data){
+                console.log("Table PROF : Entry Added");
             });
             break;
         case "rating":
-            ratingModel.create({ user_id: req.body.userId, course_offering_id: req.body.courseOfferingId, create_time: req.body.createTime }).error(function(err){
-                console.log("unable to update database");
+            ratingModel.create({
+                user_id: req.body.userId,
+                course_offering_id: req.body.courseOfferingId,
+                create_time: req.body.createTime
+            }).success(function(data){
+                console.log("Table RATING : Entry Added");
             });
             break;
         case "ratingParam":
-            ratingParamModel.create({name: req.body.name, type: req.body.type, sort_order: req.body.sortOrder}).error(function(err){
-                console.log("unable to update database");
+            ratingParamModel.create({
+                name: req.body.name,
+                type: req.body.type,
+                sort_order: req.body.sortOrder
+            }).success(function(data){
+                console.log("Table RP : Entry Added");
             });
             break;
         case "ratingValue":
-            ratingValueModel.create({rating_id: req.body.ratingId, rating_param_id: req.body.ratingParamId, value: req.body.value}).error(function(err){
-                console.log("unable to update database");
+            ratingValueModel.create({
+                rating_id: req.body.ratingId,
+                rating_param_id: req.body.ratingParamId,
+                value: req.body.value
+            }).success(function(data){
+                console.log("Table RV : Entry Added");
             });
             break;
         case "review":
-            reviewModel.create({rating_id: req.body.ratingId, course_comment: req.body.courseComment, prof_comment: req.body.profComment}).error(function(err){
-                console.log("unable to update database");
+            reviewModel.create({
+                rating_id: req.body.ratingId,
+                course_comment: req.body.courseComment,
+                prof_comment: req.body.profComment
+            }).success(function(data){
+                console.log("Table REVIEW : Entry Added");
             });
             break;
         case "spam":
-           spamModel.create({user_id: req.body.userId,type: req.body.type, item_id: req.body.itemId, create_time: req.body.createTime}).error(function(err){
-               console.log("unable to update database");
+           spamModel.create({
+               user_id: req.body.userId,
+               type: req.body.type,
+               item_id: req.body.itemId,
+               create_time: req.body.createTime
+           }).success(function(data){
+               console.log("Table SPAM: Entry Added");
            });
             break;
         case "user":
-            userModel.create({login: req.body.login, password: req.body.password, email: req.body.email, first_name: req.body.firstName, last_name: req.body.lastName, photo_url: req.body.photoUrl}).error(function(err){
-                console.log("unable to update database");
+            userModel.create({
+                login: req.body.login,
+                password: req.body.password,
+                email: req.body.email,
+                first_name: req.body.firstName,
+                last_name: req.body.lastName,
+                photo_url: req.body.photoUrl
+            }).success(function(data){
+                console.log("Table USER: Entry Added");
             });
             break;
         default:
             res.send("Wrong URL");
             break;
     }
-    // Ankita will insert this in database.
-    // will need switch case here. look at json response and accordingly name the fields and enter in db
-
-}
+    res.redirect('/admin/');
+};

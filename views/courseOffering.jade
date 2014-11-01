@@ -11,8 +11,6 @@ block content
         -professor=course.professor
         -ratingValues=course.cumulative_rating_values
         -ratings=course.ratings
-
-
         div.col-md-9
             div.row
                 h1.col-md-10 #{course.course.course_name}
@@ -26,8 +24,6 @@ block content
                             h4 #{ratingValue.rating_param.name}
                         div.col-md-4
                             input.rating.form-control(type="number" value="#{ratingValue.value}" min=0 max=5 step=0.1 data-size="xs" disabled="true")
-
-
             div.row
                 h3 Reviews
                 -for rating in ratings
@@ -39,12 +35,12 @@ block content
                     div.box-shadow.row(style="padding:15px 0px 10px;")
                         div.col-md-1
                             a(href="/user/#{user.id}/")
-                                img(src="#{user.photo_url}", width="150%")
+                                img(src="#{user.photo_url}" width="150%")
                         div.col-md-11
                             a(href="/user/#{user.id}/")
                                 b #{user.first_name} #{user.last_name}
                             small.pull-right
-                                a(href="#", style="color:#333333")(title="#{actualTime}") #{timeago}
+                                a(href="#" style="color:#333333" title="#{actualTime}") #{timeago}
                             br
                             b Course:
                             |  #{review.course_comment}
@@ -54,9 +50,6 @@ block content
                             br
                             small
                                 a(href="#").pull-right Report Spam
-
-
-
         div.col-md-3
             h3.pull-right Visualizations
 
