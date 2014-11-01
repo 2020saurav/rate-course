@@ -26,6 +26,7 @@ module.exports = function (req, res) {
         }
     ];
     // write sequelize here : put things in responses as shown above TODO
+    // send sorted results from here if need be
     res.render('searchResult',{"query":query, "responses": responses, "session" : req.session});
 
 
