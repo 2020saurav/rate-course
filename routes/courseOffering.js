@@ -1,4 +1,5 @@
 var model = require('../models/index');
+var moment = require('moment');
 
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
@@ -63,7 +64,8 @@ module.exports = function(req, res) {
             //res.send(courseOffering)
             res.render('courseOffering',{
                 "courseOffering" : courseOffering,
-                "session":req.session
+                "session":req.session,
+                "moment" : moment
             });
         }
         else

@@ -33,21 +33,27 @@ block content
                 -for rating in ratings
                     - review = rating.review
                     - user = rating.user
-                    div.box-shadow.row(style="padding-left:0px; padding-top:15px;")
+                    - var timeago = moment(String(rating.create_time),"X").fromNow();
+                    - var actualTime = moment.unix(rating.create_time).format("YYYY-MM-DD HH:mm");
+
+                    div.box-shadow.row(style="padding:15px 0px 10px;")
                         div.col-md-1
                             a(href="/user/#{user.id}/")
                                 img(src="#{user.photo_url}", width="150%")
                         div.col-md-11
                             a(href="/user/#{user.id}/")
                                 b #{user.first_name} #{user.last_name}
-                            small
-                                a(href="#").pull-right Report Spam
+                            small.pull-right
+                                a(href="#", style="color:#333333")(title="#{actualTime}") #{timeago}
                             br
                             b Course:
                             |  #{review.course_comment}
                             br
                             b Professor:
                             |  #{review.prof_comment}
+                            br
+                            small
+                                a(href="#").pull-right Report Spam
 
 
 
