@@ -25,7 +25,11 @@ block content
                 div.box-shadow.row(style="padding:15px 0px 10px;")
                     div.col-md-1
                         a(href="/user/#{user.login}/")
+                            -if(user.photo_url) {
                             img(src="#{user.photo_url}" width="100%" style="max-width:100px;")
+                            -} else {
+                            img(src="/images/anon.jpg" width="100%" style="max-width:100px;")
+                            -}
                     div.col-md-11
                         a(href="/user/#{user.login}/")
                             b #{user.first_name} #{user.last_name}
@@ -40,7 +44,13 @@ block content
             div.box-shadow.row(style="padding:15px 0px 10px;")
                 form.form-horizontal(method='post', action ='')
                     div.col-md-1
+                        -if(session.photoURL){
                         img(src="#{session.photoURL}" width="100%" style="max-width:100px;")
+                        -} else {
+                        img(src="/images/anon.jpg" width="100%" style="max-width:100px;")
+                        -}
+
+
                     div.col-md-10
                         textarea.form-control(type="textarea" rows="3" name="discussion" placeholder="Add your comment")
                     button.btn.btn-primary.pull-right(type = 'submit' style="bottom:10px; right:10px; position: absolute; ") POST
