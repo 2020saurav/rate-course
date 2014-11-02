@@ -9,17 +9,41 @@ block content
                     | By Department:
                     a(href="/courses/")  ALL
                     |  |
+                    a(href="/courses/dept/AE/")  AE
+                    |  |
+                    a(href="/courses/dept/BSBE/")  BSBE
+                    |  |
+                    a(href="/courses/dept/CHE/")  CHE
+                    |  |
+                    a(href="/courses/dept/CE/")  CE
+                    |  |
                     a(href="/courses/dept/CSE/")  CSE
                     |  |
                     a(href="/courses/dept/EE/")  EE
+                    |  |
+                    a(href="/courses/dept/MSE/")  MSE
+                    |  |
+                    a(href="/courses/dept/IME/")  IME
+                    |  |
+                    a(href="/courses/dept/HSS/")  HSS
+                    |  |
+                    a(href="/courses/dept/PHY/")  PHY
+                    |  |
+                    a(href="/courses/dept/MTH/")  MTH
+                    |  |
+                    a(href="/courses/dept/CHEM/")  CHEM
+                    |  |
+                    a(href="/courses/dept/ES/")  ES
 
 
 
-        -courses=courses
+
+
+
         -for course in courses
             div.box-shadow
                 a(href='/course/#{course.id}/')
-                    h3 #{course.course_name}
+                    h3 #{course.course_number} #{course.course_name}
                 p(style=" text-overflow: ellipsis; overflow:hidden; white-space: nowrap;") Contents: #{course.description}
                 p Department: #{course.department}
 
