@@ -66,6 +66,7 @@ exports.resetPost = require('./resetPost');
 exports.reset = require('./reset');
 exports.userUpdate = require('./userUpdate');
 exports.userUpdatePost = require('./userUpdatePost');
+exports.profilePicUpload = require('./profilePicUpload');
 //user profile:
 //exports.profileUpdate = require('./profileUpdate');
 

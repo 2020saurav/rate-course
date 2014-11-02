@@ -12,6 +12,7 @@
     "express-session": "^1.7.6",
     "nodemailer": "0.7",
     "jsftp" : "*",
-    "moment" : "*"
+    "moment" : "*",
+    "fs" : "*"
   }
 }

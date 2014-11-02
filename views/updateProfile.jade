@@ -2,7 +2,11 @@ extends layout
 block content
     div.container
         h3 Update Profile
-        //form.form-horizontal : image upload
+        div.row
+            form.well.col-md-offset-3.col-md-5.form-horizontal(method='post' action='/profilePicUpload/' enctype='multipart/form-data')
+                img(src="#{user.photo_url}")
+                input(type='file' name='profilePic')
+                button.btn.btn-primary.col-md-offset-7.col-md-3(type = 'submit') Upload
         form.form-horizontal(method='post', action ='')
             div.form-group.row
                 label.col-md-4.control-label Username
