@@ -96,6 +96,19 @@ app.post('/course/:id/:offeringId/rate/', function(req,res) {   // POST selected
 app.get('/user/:login/', function(req,res) {                   // public profile of this user
     routes.user(req,res);
 });
+app.get('/user/profile/update/', function(req,res) {                   // public profile of this user
+    if(req.session.user)
+        routes.userUpdate(req,res);
+    else
+        res.redirect('/');
+});
+app.post('/user/profile/update/', function(req,res) {                   // public profile of this user
+    if(req.session.user)
+        routes.userUpdatePost(req,res);
+    else
+        res.redirect('/');
+});
+
 app.get('/login/', function(req,res) {                          // login GET
     if(typeof (req.session.user)=="undefined")
         res.render('login',{"session":req.session ,"returnURL":"/login/"});
@@ -192,6 +205,10 @@ app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
 //    routes.testmail(req,res);
 //});
 
+// last route : 404
+app.get('*',function(req,res) {
+   res.render('404',{"session":req.session});
+});
 // server creation
 
 http.createServer(app).listen(app.get('port'), function() {

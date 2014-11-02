@@ -64,6 +64,8 @@ exports.search = require('./search');
 exports.registerPost = require('./registerPost');
 exports.resetPost = require('./resetPost');
 exports.reset = require('./reset');
+exports.userUpdate = require('./userUpdate');
+exports.userUpdatePost = require('./userUpdatePost');
 //user profile:
 //exports.profileUpdate = require('./profileUpdate');
 
