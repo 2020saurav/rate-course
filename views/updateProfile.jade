@@ -1,31 +1,33 @@
 extends layout
 block content
     div.container
-        h3 Update Profile
-        div.row
-            form.well.col-md-offset-3.col-md-5.form-horizontal(method='post' action='/profilePicUpload/' enctype='multipart/form-data')
-                div.well
-                    img(src="#{user.photo_url}" width="250px" border="1")
-                div
-                    input.col-md-6(type='file' name='profilePic')
-                    button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Upload
-        form.form-horizontal(method='post', action ='')
-            div.form-group.row
-                label.col-md-4.control-label Username
-                div.col-md-3
-                    fieldset(disabled)
-                        input.form-control(type="text" value="#{user.login}")
-            div.form-group.row
-                label.col-md-4.control-label Email
-                div.col-md-3
-                    fieldset(disabled)
-                        input.form-control(type="text" value="#{user.email}")
-            div.form-group.row
-                label.col-md-4.control-label Name
-                div.col-md-3
-                    input.form-control(type="text" name="firstName" placeholder="First Name" value="#{user.first_name}")
-                div.col-md-3
-                    input.form-control(type="text" name="lastName" placeholder="Last Name" value="#{user.last_name}")
-
-            div.form-group.row
-                button.btn.btn-primary.col-md-offset-7.col-md-2(type = 'submit') Update
+        h3.col-md-offset-3 Update Profile
+        div.well.row.col-md-offset-3.col-md-6
+            div.row.well
+                form.form-horizontal(method='post' action='/profilePicUpload/' enctype='multipart/form-data')
+                    h4 Profile Picture
+                    div.well
+                        img(src="#{user.photo_url}" width="250px")
+                    div
+                        input.col-md-6(type='file' name='profilePic')
+                        button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Upload
+            div.row
+                form.form-horizontal(method='post', action ='')
+                    div.form-group.row
+                        label.col-md-3.control-label Username
+                        div.col-md-8
+                            fieldset(disabled)
+                                input.form-control(type="text" value="#{user.login}")
+                    div.form-group.row
+                        label.col-md-3.control-label Email
+                        div.col-md-8
+                            fieldset(disabled)
+                                input.form-control(type="text" value="#{user.email}")
+                    div.form-group.row
+                        label.col-md-3.control-label Name
+                        div.col-md-4
+                            input.form-control(type="text" name="firstName" placeholder="First Name" value="#{user.first_name}")
+                        div.col-md-4
+                            input.form-control(type="text" name="lastName" placeholder="Last Name" value="#{user.last_name}")
+                    div
+                        button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Update

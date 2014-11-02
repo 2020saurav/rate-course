@@ -147,6 +147,18 @@ app.get('/professor/:id/', function(req,res) {          // selected professor
 app.get('/team/', function(req,res) {                   // about us page
     routes.team(req,res);
 });
+app.get('/feedback/', function(req,res) {
+    if(req.session.user)
+        res.render('feedback',{"session":req.session});
+    else
+        res.render('login',{"session": req.session, "returnURL":"/feedback/"});
+});
+app.post('/feedback/', function(req,res) {
+    if(req.session.user)
+        routes.feedbackPost(req,res);
+    else
+        res.redirect('/');
+});
 
 app.get('/admin/', function(req,res) {                    // admin home
     sess = req.session;

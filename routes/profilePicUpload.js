@@ -6,7 +6,6 @@ var userModel = model.sequelize.models.user;
 
 module.exports = function(req, res) {
     var userId = req.session.userId;
-console.log(req.session);
     var form = new formidable.IncomingForm();
     form.parse(req,function(err,fields,files) {
         var pic = files.profilePic;
@@ -16,7 +15,7 @@ console.log(req.session);
         // TODO check for non-allowed extensions and file size
             file_name = req.session.user,
             new_path = path.join(process.env.PWD, '/public/images/', file_name + '.' + file_ext);
-        console.log(new_path);
+
         fs.readFile(old_path, function (err, data) {
             fs.writeFile(new_path, data, function(err) {
                 fs.unlink(old_path, function(err) {

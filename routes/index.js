@@ -40,16 +40,21 @@ exports.professor = function(req,res) {
 };
 
 exports.user = function(req,res) {
-    userModel.find({
+    userModel.findOne({
         where : {"login" : req.param("login")}
     }).success(function (user) {
-        res.render('user',{"user" : user, "session":req.session});
+        if(user)
+            res.render('user',{"user" : user, "session":req.session});
+        else
+            res.render('404',{"session":req.session});
     })
 };
 
 exports.faq = function(req,res) {
   res.render('faq', {"session":req.session})
 };
+
+exports.feedbackPost = require('./feedbackPost');
 
 // course stuff:
 exports.courses = require('./courses');                 // list all courses
