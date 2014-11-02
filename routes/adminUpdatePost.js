@@ -46,8 +46,6 @@ module.exports = function (req, res) {
             break;
         case "courseOfferingRatingParam":
             courseOfferingRatingParamModelModel.update({
-                    course_offering_id: req.body.courseOfferingId,
-                    rating_param_id: req.body.ratingParamId,
                     weight: req.body.weight,
                     max_value: req.body.maxValue
                 },
@@ -59,10 +57,9 @@ module.exports = function (req, res) {
             break;
         case "discussion":
             discussionModel.update({
-                    user_id: req.body.userId,
-                    course_id: req.body.courseId,
-                    comment: req.body.comment,
-                    create_time: req.body.createTime
+                    spam_flag_count: req.body.spamCount,
+                    is_deleted: req.body.isDeleted,
+                    as_anon: req.body.asAnon
                 },
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                     console.log(affectedRows);
@@ -123,9 +120,8 @@ module.exports = function (req, res) {
             break;
         case "review":
             reviewModel.update({
-                    rating_id: req.body.ratingId,
-                    course_comment: req.body.courseComment,
-                    prof_comment: req.body.profComment},
+                    spam_flag_count: req.body.spamCount,
+                    is_deleted: req.body.isDeleted},
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                     console.log(affectedRows);
             }).success(function(info){
@@ -147,8 +143,6 @@ module.exports = function (req, res) {
             break;
         case "user":
             userModel.update({
-                    login: req.body.login,
-                    password: req.body.password,
                     email: req.body.email,
                     first_name: req.body.firstName,
                     last_name: req.body.lastName,
