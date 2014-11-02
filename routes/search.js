@@ -10,17 +10,22 @@ var model = require('../models/index');
 var professorModel = model.sequelize.models.professor;
 var courseModel = model.sequelize.models.course;
 var Sequelize = require('sequelize');
+var helper = require('./helper');
 
 module.exports = function (req, res) {
     var urlParse = URL.parse(req.url, true);
     var query = urlParse.query.q;
     var title, description, url, response;
     var responses = [];
+    var tag = helper.getParentFromTag(query);
     courseModel.findAll({
         where : Sequelize.or(
             {"department": query},
             ["course_name LIKE '%"+query+"%'"],
-            ["course_number LIKE '%"+query+"%'"]
+            ["course_number LIKE '%"+query+"%'"],
+            {"department": tag},
+            ["course_name LIKE '%"+tag+"%'"],
+            ["course_number LIKE '%"+tag+"%'"]
         )
     }).success(function(courses){
         for(var i=0; i<courses.length; i++)

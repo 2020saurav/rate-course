@@ -154,3 +154,24 @@ exports.reCalculateCourseRating = function(courseId)
 {
 
 }
+
+
+exports.getParentFromTag = function(tag)
+{
+    var parentTags = ["CSE","EE","CE"];
+    var tagArray = [
+            [ "Computer", "computer"],
+            ["Batti" , "batti" , "Electrical" ,"electrical"],
+            ["Civil","civil","building","Building","BOOM"]
+        ];
+    for (var i = tagArray.length - 1; i >= 0; i--)
+    {
+        for (var j = tagArray[i].length - 1; j >= 0; j--)
+        {
+            if (tagArray[i][j]==tag)
+                return parentTags[i];
+        }
+    }
+
+    return tag;
+};
