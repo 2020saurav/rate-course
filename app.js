@@ -93,7 +93,7 @@ app.post('/course/:id/:offeringId/rate/', function(req,res) {   // POST selected
         routes.loginBackToCourse(req,res);
 });
 
-app.get('/user/:id/', function(req,res) {                   // public profile of this user
+app.get('/user/:login/', function(req,res) {                   // public profile of this user
     routes.user(req,res);
 });
 app.get('/login/', function(req,res) {                          // login GET

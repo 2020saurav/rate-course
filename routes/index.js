@@ -41,7 +41,7 @@ exports.professor = function(req,res) {
 
 exports.user = function(req,res) {
     userModel.find({
-        where : {id : req.param("id")}
+        where : {"login" : req.param("login")}
     }).success(function (user) {
         res.render('user',{"user" : user, "session":req.session});
     })
