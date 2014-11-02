@@ -2,6 +2,11 @@ var model = require('../models/index');
 
 var courseModel = model.sequelize.models.course;
 var professorModel = model.sequelize.models.professor;
+var courseOfferingModel = model.sequelize.models.course_offering;
+var ratingParamModel = model.sequelize.models.rating_param;
+
+courseModel.hasMany(courseOfferingModel,{foreignKey:'course_id'});
+courseOfferingModel.belongsTo(courseModel,{foreignKey:'course_id'});
 
 module.exports = function (req, res) {
     var reqModel = req.param("model");
@@ -19,7 +24,20 @@ module.exports = function (req, res) {
 
             break;
         case "courseOfferingRatingParam":
-            res.render('admin/createCourseOfferingRatingParam',{"session":req.session});
+            courseOfferingModel.findAll({
+                include: [
+                    {
+                        model: courseModel
+                    }
+                ]
+            }).success(function(courseOfferings){
+                ratingParamModel.findAll().success(function(ratingParams){
+//                    res.send(courseOfferings);
+                    res.render('admin/createCourseOfferingRatingParam',
+                        {"courseOfferings":courseOfferings, "ratingParams":ratingParams, "session":req.session })
+
+                })
+            });
             break;
         case "discussion":
             res.render('admin/createDiscussion',{"session":req.session});

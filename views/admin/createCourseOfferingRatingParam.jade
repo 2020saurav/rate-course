@@ -5,13 +5,17 @@ block content
         h2 Create a new Course Offering Rating Parameter
         form.form-horizontal(method='post', action ='')
             div.form-group
-                label.col-md-2.control-label Course Offering Id
+                label.col-md-2.control-label Select Course Offering
                 div.col-md-10
-                    input.form-control(type="text" name="courseOfferingId" placeholder="Course Offering ID")
+                    select.form-control(name="courseOfferingId")
+                        -for courseOffering in courseOfferings
+                            option(value="#{courseOffering.id}") #{courseOffering.course.course_number} #{courseOffering.course.course_name} #{courseOffering.year} / #{courseOffering.semester}
             div.form-group
-                label.col-md-2.control-label Rating Parameter ID
+                label.col-md-2.control-label Select Question
                 div.col-md-10
-                    input.form-control(type="text" name="ratingParamId" placeholder="Rating Param ID")
+                    select.form-control(name="ratingParamId")
+                        -for ratingParam in ratingParams
+                            option(value="#{ratingParam.id}") #{ratingParam.name}
             div.form-group
                 label.col-md-2.control-label Weight
                 div.col-md-10
