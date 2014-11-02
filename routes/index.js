@@ -63,6 +63,7 @@ exports.coursesDept = require('./coursesDept');           // list all courses of
 exports.courseOffering = require('./courseOffering');   // details of selected course offering
 exports.courseOfferingRate = require('./courseOfferingRate');
 exports.courseOfferingRatePost = require('./courseOfferingRatePost');
+exports.courseDiscussionPost = require('./courseDiscussionPost');
 
 exports.forgotPost = require('./forgotPost');
 exports.search = require('./search');

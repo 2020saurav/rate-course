@@ -1,44 +1,47 @@
 extends layout
 block content
     div.container
-        h2 #{course.course_name}
-        p.well(style="white-space:pre-wrap") #{course.description}
         -discussions = course.discussions
-        h3 Offerings:
-            ul
-            -offerings=course.course_offerings
-            -for offering in offerings
-                li.box-shadow
-                    a(href='/course/#{course.id}/#{offering.id}/') Year #{offering.year} Semester #{offering.semester}
-                    |  by
-                    a(href="/professor/#{offering.professor.id}/")  #{offering.professor.first_name} #{offering.professor.last_name}
+        h2 #{course.course_number} #{course.course_name}
         div.row
-        h3 Discussions
-            div.row
-                -for discussion in discussions
-                    - user = discussion.user
-                    - var timeago = moment(String(discussion.create_time),"X").fromNow();
-                    - var actualTime = moment.unix(discussion.create_time).format("YYYY-MM-DD HH:mm");
+            div.col-md-7.well
+                h3 Description
+                p(style="white-space:pre-wrap") #{course.description}
 
-                    div.box-shadow.row(style="padding:15px 0px 10px;")
-                        div.col-md-1
-                            a(href="/user/#{user.login}/")
-                                img(src="#{user.photo_url}" width="150%")
-                        div.col-md-11
-                            a(href="/user/#{user.login}/")
-                                b #{user.first_name} #{user.last_name}
-                            small.pull-right
-                                a(href="#" style="color:#333333" title="#{actualTime}") #{timeago}
-                            br
-                            |  #{discussion.comment}
-                            small
-                                a(href="#").pull-right Report Spam
+            div.col-md-5.well
+                h3 Offerings
+                -offerings=course.course_offerings
+                -for offering in offerings
+                    div.box-shadow(style="width:100%")
+                        a(href='/course/#{course.id}/#{offering.id}/') Year #{offering.year} Semester #{offering.semester}
+                        |  by
+                        a(href="/professor/#{offering.professor.id}/")  Professor #{offering.professor.first_name} #{offering.professor.last_name}
+        div.row
+            h3 Discussions
+            -for discussion in discussions
+                - user = discussion.user
+                - var timeago = moment(String(discussion.create_time),"X").fromNow();
+                - var actualTime = moment.unix(discussion.create_time).format("YYYY-MM-DD HH:mm");
+                div.box-shadow.row(style="padding:15px 0px 10px;")
+                    div.col-md-1
+                        a(href="/user/#{user.login}/")
+                            img(src="#{user.photo_url}" width="100%" style="max-width:100px;")
+                    div.col-md-11
+                        a(href="/user/#{user.login}/")
+                            b #{user.first_name} #{user.last_name}
+                        small.pull-right
+                            a(href="#" style="color:#333333" title="#{actualTime}") #{timeago}
+                        br
+                        |  #{discussion.comment}
+                        small
+                            a(href="#").pull-right Report Spam
+            -if(typeof(session.user)=="undefined") {
+            -} else {
+            div.box-shadow.row(style="padding:15px 0px 10px;")
                 form.form-horizontal(method='post', action ='')
-                    div.form-group
-                        label.col-md-2.control-label
-                            a(href="/user/#{user.login}/")
-                                img(src="#{user.photo_url}" width="20%")
-                        div.col-md-10
-                            textarea.form-control(type="textarea" rows="5" name="discussion" placeholder="Add a Comment")
-                    div.form-group
-                        button.btn.btn-primary.col-md-offset-10(type = 'submit') Reply
+                    div.col-md-1
+                        img(src="#{session.photoURL}" width="100%" style="max-width:100px;")
+                    div.col-md-10
+                        textarea.form-control(type="textarea" rows="3" name="discussion" placeholder="Add your comment")
+                    button.btn.btn-primary.pull-right(type = 'submit' style="bottom:10px; right:10px; position: absolute; ") POST
+            -}

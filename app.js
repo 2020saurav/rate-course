@@ -37,6 +37,9 @@ app.get('/courses/', routes.courses);                    // list all courses
 app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)
 });
+app.post('/course/:id/', function (req, res) {
+   routes.courseDiscussionPost(req,res);
+});
 app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res);
 });

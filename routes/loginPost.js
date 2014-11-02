@@ -21,6 +21,7 @@ module.exports = function(req, res) {
             req.session.userId = result.id;
             req.session.firstName = result.first_name;
             req.session.lastName = result.last_name;
+            req.session.photoURL = result.photo_url;
             res.redirect(returnURL);
         }
         else
