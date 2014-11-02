@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(session({
     secret: 'cookieKaSecret',
@@ -107,6 +107,9 @@ app.post('/user/profile/update/', function(req,res) {                   // publi
         routes.userUpdatePost(req,res);
     else
         res.redirect('/');
+});
+app.post('/profilePicUpload/', function(req,res) {
+   routes.profilePicUpload(req,res);
 });
 
 app.get('/login/', function(req,res) {                          // login GET
