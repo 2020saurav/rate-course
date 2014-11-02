@@ -6,6 +6,8 @@ var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var formidable = require('formidable');
+var fs = require('fs');
 
 var app = express();
 //environments
@@ -16,6 +18,7 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
 
 app.use(session({
     secret: 'cookieKaSecret',
@@ -109,7 +112,10 @@ app.post('/user/profile/update/', function(req,res) {                   // publi
         res.redirect('/');
 });
 app.post('/profilePicUpload/', function(req,res) {
-   routes.profilePicUpload(req,res);
+    if(req.session.user)
+      routes.profilePicUpload(req,res);
+    else
+        res.redirect('/');
 });
 
 app.get('/login/', function(req,res) {                          // login GET
