@@ -1,0 +1,23 @@
+extends adminLayout
+block content
+    div
+        h2 Update Course Offering Rating Parameter
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label Course Offering
+                div.col-md-10
+                    p #{courseOfferingRatingParam.course_offering.course.course_name} #{courseOfferingRatingParam.course_offering.year} / #{courseOfferingRatingParam.course_offering.semester}
+            div.form-group
+                label.col-md-2.control-label Select Question
+                div.col-md-10
+                    p #{courseOfferingRatingParam.rating_param.name}
+            div.form-group
+                label.col-md-2.control-label Weight
+                div.col-md-10
+                    input.form-control(type="text" name="weight" placeholder="#{courseOfferingRatingParam.weight}")
+            div.form-group
+                label.col-md-2.control-label Maximum Value
+                div.col-md-10
+                    input.form-control(type="text" name="maxValue" placeholder="#{courseOfferingRatingParam.max_value}")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

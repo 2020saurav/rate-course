@@ -1,0 +1,35 @@
+extends adminLayout
+block content
+    div
+        h2 Update Course Offering
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label Course
+                div.col-md-10
+                    select.form-control(name="courseId")
+                        -for course in courses
+                            option(value="#{course.id}") #{course.course_number} #{course.course_name}
+            div.form-group
+                label.col-md-2.control-label Year
+                div.col-md-10
+                    input.form-control(type="text" name="year" placeholder="#{courseOffering.year}")
+            div.form-group
+                label.col-md-2.control-label Semester
+                div.col-md-10
+                    input.form-control(type="text" name="semester" placeholder="#{courseOffering.semester}")
+            div.form-group
+                label.col-md-2.control-label Select Professor
+                div.col-md-10
+                    select.form-control(name="professorId")
+                        -for professor in professors
+                            option(value="#{professor.id}") #{professor.first_name} #{professor.last_name} (#{professor.department})
+            div.form-group
+                label.col-md-2.control-label Number of Students
+                div.col-md-10
+                    input.form-control(type="text" name="numberOfStudents" placeholder="#{courseOffering.number_of_students}")
+            div.form-group
+                label.col-md-2.control-label Course Website
+                div.col-md-10
+                    input.form-control(type="text" name="website" placeholder="#{courseOffering.website}")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

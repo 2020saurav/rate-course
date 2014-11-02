@@ -1,0 +1,35 @@
+extends adminLayout
+block content
+    div
+        h2 Update Professor Details
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label First Name
+                div.col-md-10
+                    input.form-control(type="text" name="firstName" placeholder="#{professor.first_name}")
+            div.form-group
+                label.col-md-2.control-label Last Name
+                div.col-md-10
+                    input.form-control(type="text" name="lastName" placeholder="#{professor.last_name}")
+            div.form-group
+                label.col-md-2.control-label Designation
+                div.col-md-10
+                    input.form-control(type="text" name="designation" placeholder="#{professor.designation}")
+            div.form-group
+                label.col-md-2.control-label Department
+                div.col-md-10
+                    input.form-control(type="text" name="department" placeholder="#{professor.department}")
+            div.form-group
+                label.col-md-2.control-label Email
+                div.col-md-10
+                    input.form-control(type="text" name="email" placeholder="#{professor.email}")
+            div.form-group
+                label.col-md-2.control-label Homepage URL
+                div.col-md-10
+                    input.form-control(type="text" name="homepageUrl" placeholder="#{professor.homepage_url}")
+            div.form-group
+                label.col-md-2.control-label Photo URL
+                div.col-md-10
+                    input.form-control(type="text" name="photoUrl" placeholder="#{professor.photo_url}")
+            div.form-group
+                button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
