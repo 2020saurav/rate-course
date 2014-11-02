@@ -1,6 +1,7 @@
 var nodemailer = require('nodemailer');
 var model = require('../models/index');
 var config    = require('../config').server;
+var Sequelize = require('sequelize');
 var ip  = config.ip;
 var port = config.port;
 var host;
@@ -99,3 +100,57 @@ exports.forgotEmail = function(userLogin)
         });
     });
 };
+
+exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
+{
+    var ratingModel = model.sequelize.models.rating;
+    var ratingValueModel = model.sequelize.models.rating_value;
+    ratingModel.findAll({
+        where : {"course_offering_id" : courseOfferingId},
+        attributes: ['id']
+    }).success(function (ratings) {
+        var ratingIds =[];
+        for (var i=0; i<ratings.length; i++)
+        {
+            ratingIds.push(ratings[i].id);
+        }
+        ratingValueModel.findAll({
+            where : {rating_id : ratingIds},
+            attributes : [
+
+                'rating_param_id',
+                [Sequelize.fn('avg',Sequelize.col('value')),'average']
+            ],
+            group : ["rating_param_id"]
+
+
+        }).success(function(ratingValues) {
+            res.send(ratingValues)
+/*
+ Table.findAll({
+ attributes: [
+                    'column1',
+                    sequelize.fn('count', sequelize.col('column2'))
+            ],
+ group: [
+                "Table.column1"
+       ]
+     }).success(function (result) { });
+
+ */
+        });
+//        res.send(ratingIds);
+
+    });
+    // go to rating table. find all ratings with this course_offering_id : carry along the ids
+    // go to rating_values table select those having above rating_ids
+    // group by rating_param_id
+    // get average of each group
+    // create/update this value in cumulative_rating_table
+
+};
+
+exports.reCalculateCourseRating = function(courseId)
+{
+
+}
