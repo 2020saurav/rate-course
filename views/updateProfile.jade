@@ -1,4 +1,25 @@
 extends layout
 block content
     div.container
-        p #{user.first_name}
+        h3 Update Profile
+        //form.form-horizontal : image upload
+        form.form-horizontal(method='post', action ='')
+            div.form-group.row
+                label.col-md-4.control-label Username
+                div.col-md-3
+                    fieldset(disabled)
+                        input.form-control(type="text" value="#{user.login}")
+            div.form-group.row
+                label.col-md-4.control-label Email
+                div.col-md-3
+                    fieldset(disabled)
+                        input.form-control(type="text" value="#{user.email}")
+            div.form-group.row
+                label.col-md-4.control-label Name
+                div.col-md-3
+                    input.form-control(type="text" name="firstName" placeholder="First Name" value="#{user.first_name}")
+                div.col-md-3
+                    input.form-control(type="text" name="lastName" placeholder="Last Name" value="#{user.last_name}")
+
+            div.form-group.row
+                button.btn.btn-primary.col-md-offset-7.col-md-2(type = 'submit') Update
