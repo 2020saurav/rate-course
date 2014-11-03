@@ -108,6 +108,7 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
     var ratingModel = model.sequelize.models.rating;
     var ratingValueModel = model.sequelize.models.rating_value;
     var cumulativeRatingValueModel = model.sequelize.models.cumulative_rating_value;
+    var courseOfferingModel = model.sequelize.models.course_offering;
 
     var avgarr=[];
     ratingModel.findAll({
@@ -156,6 +157,15 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
                             })
                     }
                 })
+
+                if(rpi == 1){
+                    courseOfferingModel.update({
+                        "overall_rating" : avg
+                    },
+                        {
+                            where: {"id": courseOfferingId}
+                        });
+                }
             }
         })
 
@@ -163,12 +173,20 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
     });
 };
 
-exports.reCalculateCourseRating = function(courseId)
-{
+exports.reCalculateCourseRating = function(courseId) {
+    var courseModel = model.sequelize.models.course;
+    model.sequelize.query('select avg(overall_rating) as average from course_offering WHERE course_id = ' + courseId + ' and overall_rating>=0').success(function (overall_average) {
+        var avg = overall_average[0].average;
+        console.log("Average = " + avg);
+        courseModel.update({
+                "overall_rating": avg
+            },
+            {
+                where: {"id": courseId}
+            });
+    });
 
 };
-
-
 exports.getParentFromTag = function(tag)
 {
     tag = tag.toLocaleLowerCase();
