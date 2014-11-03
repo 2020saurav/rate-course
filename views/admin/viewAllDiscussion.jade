@@ -9,13 +9,15 @@ block content
                 td Name
                 td Course
                 td Comment
+                td Spam Count
                 td Actions
             - for discussion in discussions
                 tr
                     td #{discussion.id}
                     td #{discussion.user.first_name}
-                    td #{discussion.course.course_name}
+                    td #{discussion.course.course_number}
                     td #{discussion.comment}
+                    td #{discussion.spam_flag_count}
                     td.row
                         a(href='view/#{discussion.id}/')
                             i.fa.fa-eye.fa-2(title='View')

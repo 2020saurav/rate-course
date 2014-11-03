@@ -1,20 +1,13 @@
 extends adminLayout
 block content
     div
-        h2 Update Spam Table Entry
+        h2 Update Spam ID #{spam.id}
         form.form-horizontal(method='post', action ='')
             div.form-group
-                label.col-md-2.control-label User ID
-                div.col-md-10
-                    input.form-control(type="text" name="userId" placeholder="User ID")
-            div.form-group
-                label.col-md-2.control-label Type
-                div.col-md-10
-                    input.form-control(type="text" name="type" placeholder="Type")
-            div.form-group
-                label.col-md-2.control-label Item ID
-                div.col-md-10
-                    input.form-control(type="text" name="itemId" placeholder="Item ID")
+                label.col-md-3.control-label Resolved
+                div.col-md-2
+                    select.form-control(name="isResolved")
+                        option(value="0") No
+                        option(value="1") Yes
             div.form-group
                 button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
-//TODO after viewAllSpam done

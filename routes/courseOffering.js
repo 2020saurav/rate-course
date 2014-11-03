@@ -51,7 +51,8 @@ module.exports = function(req, res) {
                 model:ratingModel,
                 include:[
                     {
-                        model:reviewModel
+                        model:reviewModel,
+                        where : {"is_deleted" : false}
                     },
                     {
                         model:userModel

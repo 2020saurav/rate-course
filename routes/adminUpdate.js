@@ -142,7 +142,6 @@ module.exports = function (req, res) {
             });
             break;
 
-        // TODO lak will complete this and corresponding update forms also
         default :
             res.send("def");
             break;

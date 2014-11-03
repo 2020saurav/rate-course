@@ -1,20 +1,27 @@
-//user_id: req.body.userId, course_id: req.body.courseId, comment: req.body.comment, create_time: req.body.createTime}).error(function(err){
 extends adminLayout
 block content
     div
-        h2 Update Discussion
+        h2 Update Discussion #{discussion.id}
         form.form-horizontal(method='post', action ='')
             div.form-group
                 label.col-md-2.control-label Spam Count
                 div.col-md-10
                     input.form-control(type="text" name="spamCount" placeholder="#{discussion.spam_flag_count}")
             div.form-group
+                label.col-md-2.control-label Comment
+                div.col-md-10
+                    input.form-control(type="text" name="comment" placeholder="#{discussion.comment}")
+            div.form-group
                 label.col-md-2.control-label Hidden
                 div.col-md-10
-                    input.form-control(type="text" name="isDeleted" placeholder="#{discussion.is_deleted}")
+                    select.form-control(name="isDeleted")
+                        option(value="0") No
+                        option(value="1") Yes
             div.form-group
                 label.col-md-2.control-label As Anonymous
                 div.col-md-10
-                    textarea.form-control(type="text" name="asAnon" placeholder="#{discussion.as_anon}")
+                    select.form-control(name="asAnon")
+                        option(value="0") No
+                        option(value="1") Yes
             div.form-group
                 button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

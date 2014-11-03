@@ -26,7 +26,9 @@ module.exports = function (req, res) {
                 { where: {id: req.param("id")}
                 }).success(function(info){
                 console.log("Table Course updated");
-            });
+                    res.redirect('/admin/course/');
+
+                });
             break;
         case "courseOffering":
             courseOfferingModel.update({ 
@@ -42,10 +44,12 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table CO updated");
-            });
+                    res.redirect('/admin/courseOffering/');
+
+                });
             break;
         case "courseOfferingRatingParam":
-            courseOfferingRatingParamModelModel.update({
+            courseOfferingRatingParamModel.update({
                     weight: req.body.weight,
                     max_value: req.body.maxValue
                 },
@@ -53,7 +57,9 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table CORP updated");
-            });
+                    res.redirect('/admin/courseOfferingRatingParam/');
+
+                });
             break;
         case "discussion":
             discussionModel.update({
@@ -65,7 +71,9 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table DISC updated");
-            });
+                    res.redirect('/admin/discussion/');
+
+                });
             break;
         case "professor":
             professorModel.update({
@@ -81,7 +89,9 @@ module.exports = function (req, res) {
                 console.log(affectedRows);
             }).success(function(info){
                 console.log("Table PROF updated");
-            });
+                    res.redirect('/admin/professor/');
+
+                });
             break;
         case "rating":
             ratingModel.update({
@@ -93,7 +103,9 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table RATING updated");
-            });
+                    res.redirect('/admin/rating/');
+
+                });
             break;
         case "ratingParam":
             ratingParamModel.update({
@@ -105,7 +117,9 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table RP updated");
-            });
+                    res.redirect('/admin/ratingParam/');
+
+                });
             break;
         case "ratingValue":
             ratingValueModel.update({
@@ -116,7 +130,9 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table RV updated");
-            });
+                    res.redirect('/admin/ratingValue/');
+
+                });
             break;
         case "review":
             reviewModel.update({
@@ -126,19 +142,19 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table REVIEW updated");
-            });
+                    res.redirect('/admin/review/');
+
+                });
             break;
         case "spam":
             spamModel.update({
-                    user_id: req.body.userId,
-                    type: req.body.type,
-                    item_id: req.body.itemId,
-                    create_time: req.body.createTime
+                    "is_resolved" : req.body.isResolved
                 },
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table SPAM updated");
+                    res.redirect('/admin/spam/');
             });
             break;
         case "user":
@@ -152,11 +168,13 @@ module.exports = function (req, res) {
                     console.log(affectedRows);
             }).success(function(info){
                 console.log("Table USER updated");
-            });
+                    res.redirect('/admin/user/');
+
+                });
             break;
         default:
             res.send("Wrong URL");
             break;
     }
-    res.redirect('/admin/');
+
 };

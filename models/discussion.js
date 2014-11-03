@@ -21,7 +21,9 @@ module.exports = function(sequelize, DataTypes) {
             freezeTableName : true,
             underscored : true,
             tableName : 'discussion',
-            timestamps : false
+            timestamps : false,
+            charset: 'utf8',
+            collate: 'utf8_general_ci'
         });
 
     return Discussion;

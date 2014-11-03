@@ -34,11 +34,19 @@ block content
 
                     div.box-shadow.row(style="padding:15px 0px 10px;")
                         div.col-md-1
+                            -if(rating.as_anon==false){
                             a(href="/user/#{user.login}/")
-                                img(src="#{user.photo_url}" width="150%")
+                                img(src="#{user.photo_url}" width="150%" style="max-width:100px;")
+                            -} else {
+                            img(src="/images/anon.jpg" width="150%" style="max-width:100px;")
+                            -}
                         div.col-md-11
+                            -if(rating.as_anon==false){
                             a(href="/user/#{user.login}/")
                                 b #{user.first_name} #{user.last_name}
+                            -} else {
+                            b Anonymous
+                            -}
                             small.pull-right
                                 a(href="#" style="color:#333333" title="#{actualTime}") #{timeago}
                             br

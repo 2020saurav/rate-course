@@ -1,4 +1,5 @@
 var model = require('../models/index');
+var moment = require('moment');
 
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
@@ -39,8 +40,11 @@ ratingParamModel.hasMany(ratingValueModel,{foreignKey:'rating_param_id'});
 ratingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
 // TODO rating model has atmost one review model. correct this:
-ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
+ratingModel.hasOne(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
+
+userModel.hasMany(spamModel,{foreignKey:'user_id'});
+spamModel.belongsTo(userModel,{foreignKey:'user_id'});
 
 module.exports = function (req, res) {
     var reqModel = req.param("model");
@@ -212,10 +216,20 @@ module.exports = function (req, res) {
             });
             break;
         case "spam":
-            spamModel.findAll().success(function(spams) {
+            spamModel.findAll(
+                {
+                include : [
+                    {
+                        model: userModel
+                    }
+                ],
+                order:'id DESC'
+
+            }).success(function(spams) {
                 res.render('admin/viewAllSpam',{
                     "spams" : spams,
-                    "session":req.session
+                    "session":req.session,
+                    "moment" : moment
                 });
             });
             break;

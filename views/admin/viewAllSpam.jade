@@ -6,25 +6,28 @@ block content
         table.table.table-hover
             tr
                 td #
-                td User Name
-                td Type
-                td Spam Count
+                td Reporter
+                td Spammer's Item
+                td Time
                 td Resolved
                 td Actions
             - for spam in spams
                 tr
                     td #{spam.id}
-                    td #{spam.rating.user.first_name}
-                    td #{review.rating.course_offering.course.course_name}
-                    td #{review.rating.course_offering.year} / #{review.rating.course_offering.semester}
-                    td #{review.spam_flag_count}
-                    td #{review.is_deleted}
+                    td #{spam.user.first_name}
+                    -if(spam.type==0){
+                    td
+                        a(href='/admin/discussion/view/#{spam.item_id}/') Discussion
+                    -} else {
+                    td Review
+                    -}
+                    - var timeago = moment(String(spam.create_time),"X").fromNow();
+                    td #{timeago}
+                    td #{spam.is_resolved}
                     td.row
-                        a(href='view/#{review.id}/')
-                            i.fa.fa-eye.fa-2(title='View')
-                        a(href='update/#{review.id}/')
+                        a(href='update/#{spam.id}/')
                             i.fa.fa-pencil-square-o.fa-2(title='Update')
-                        a(href='delete/#{review.id}/')
+                        a(href='delete/#{spam.id}/')
                             i.fa.fa-trash-o.fa-2(title='Delete')
 
 

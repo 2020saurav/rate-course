@@ -31,7 +31,7 @@ var sess;
 
 //routes
 
-app.get('/', routes.index);                             // app home
+app.get('/', routes.courses);                             // app home
 app.get('/contact/', function(req,res) {                   // about us page
     routes.team(req,res);
 });                    // contact
@@ -69,6 +69,9 @@ app.post('/reset/', function (req, res) {                   // reset Password PO
 
 app.get('/faq/', function (req, res) {                      // FAQ
     res.render('faq',{"session":req.session})
+});
+app.get('/terms/', function(req,res) {
+   res.render('terms',{"session" : req.session})
 });
 app.get('/register/', function (req, res) {                 // register GET
     if(req.session.user)
