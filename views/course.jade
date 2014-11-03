@@ -1,6 +1,11 @@
 extends layout
 block content
     div.container
+        script.
+            function reportSpam (courseId, discussionId)
+            {
+                $.post('/course/'+courseId+'/discussion/spam/'+discussionId+'/');
+            }
         -discussions = course.discussions
         h2 #{course.course_number} #{course.course_name}
         div.row
@@ -39,7 +44,11 @@ block content
                         br
                         |  #{discussion.comment}
                         small
-                            a(href="#").pull-right Report Spam
+                            -if(session.user) {
+                            a(onclick="reportSpam(#{course.id},#{discussion.id}); this.innerHTML='Reported';").pull-right Report Spam
+                            -} else {
+                            a(onclick="reportSpam(#{course.id},#{discussion.id}); this.innerHTML='Please login to report';").pull-right Report Spam
+                            -}
                     -} else {
                     div.col-md-1
                         img(src="/images/anon.jpg" width="100%" style="max-width:100px;")
@@ -50,9 +59,13 @@ block content
                         br
                         |  #{discussion.comment}
                         small
-                            a(href="#").pull-right Report Spam
+                            -if(session.user) {
+                            a(onclick="reportSpam(#{course.id},#{discussion.id}); this.innerHTML='Reported';").pull-right Report Spam
+                            -} else {
+                            a(onclick="reportSpam(#{course.id},#{discussion.id}); this.innerHTML='Please login to report';").pull-right Report Spam
+                            -}
                     -}
-            -if(typeof(session.user)=="undefined") {
+            -if(!session.user) {
             -} else {
             div.box-shadow.row(style="padding:15px 0px 10px;")
                 form.form-horizontal(method='post', action ='')

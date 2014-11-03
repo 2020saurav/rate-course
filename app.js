@@ -47,20 +47,19 @@ app.get('/courses/dept/:dept/', function(req, res) {       // courses of selecte
     routes.coursesDept(req,res);
 });
 app.get('/forgot/', function (req, res) {                   // forgot Password GET
-    if(typeof (req.session.user)=="undefined")
-        res.render('forgot',{"session":req.session});
-    else
+    if(req.session.user)
         res.redirect('/');
+    else
+        res.render('forgot',{"session":req.session});
 });
 app.post('/forgot/', function (req, res) {                   // forgot Password POST
     routes.forgotPost(req,res);
 });
 app.get('/reset/', function (req, res) {                   // reset Password GET
-    if(typeof (req.session.user)=="undefined")
-        routes.reset(req,res);
-        //res.render('reset',{"session":req.session});
+    if(req.session.user)
+            res.redirect('/');
     else
-        res.redirect('/');
+        routes.reset(req,res);
 });
 app.post('/reset/', function (req, res) {                   // reset Password POST
     routes.resetPost(req,res);
@@ -70,10 +69,10 @@ app.get('/faq/', function (req, res) {                      // FAQ
     res.render('faq',{"session":req.session})
 });
 app.get('/register/', function (req, res) {                 // register GET
-    if(typeof (req.session.user)=="undefined")
-        res.render('register',{"session":req.session});
-    else
+    if(req.session.user)
         res.redirect('/');
+    else
+    res.render('register',{"session":req.session});
 });
 app.post('/register/', function (req, res) {                 // register POST
     routes.registerPost(req,res);
@@ -82,9 +81,13 @@ app.get('/search/', function (req, res) {                   // search
     routes.search(req,res);
 });
 
-//app.get('/profile/update/', function(req, res) {
-//    routes.profileUpdate(req, res)
-//});
+app.post('/course/:id/discussion/spam/:discussionId/', function(req,res) {
+    if(req.session.user)
+        routes.spamDiscussion(req,res);
+    else
+        res.send("Login to report spam");
+});
+
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
     if(req.session.user)
@@ -122,10 +125,10 @@ app.post('/profilePicUpload/', function(req,res) {
 });
 
 app.get('/login/', function(req,res) {                          // login GET
-    if(typeof (req.session.user)=="undefined")
-        res.render('login',{"session":req.session ,"returnURL":"/login/"});
-    else
+    if(req.session.user)
         res.redirect('/');
+    else
+        res.render('login',{"session":req.session ,"returnURL":"/login/"});
 
 });
 app.post('/login/', function(req,res) {                     //login POST
@@ -225,16 +228,11 @@ app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
 });
 
-//app.get('/testmail/', function(req,res){        // remove when not required
-//    routes.testmail(req,res);
-//});
-
 // last route : 404
 app.get('*',function(req,res) {
    res.render('404',{"session":req.session});
 });
 // server creation
-
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });

@@ -32,6 +32,7 @@ module.exports = function(req,res) {
             },
             {
                 model:discussionModel,
+                where : {"is_deleted" : false},
                 include:[
                     {
                         model: userModel

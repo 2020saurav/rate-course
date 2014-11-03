@@ -4,6 +4,11 @@
  * @param DataTypes
  * @returns {*|Model}
  */
+/*
+types:
+0 : discussion
+1 : review
+ */
 module.exports = function(sequelize, DataTypes) {
     var Spam =  sequelize.define ('spam',
         {
