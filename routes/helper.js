@@ -103,8 +103,13 @@ exports.forgotEmail = function(userLogin)
 
 exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
 {
+
+
     var ratingModel = model.sequelize.models.rating;
     var ratingValueModel = model.sequelize.models.rating_value;
+    var cumulativeRatingValueModel = model.sequelize.models.cumulative_rating_value;
+
+    var avgarr=[];
     ratingModel.findAll({
         where : {"course_offering_id" : courseOfferingId},
         attributes: ['id']
@@ -114,40 +119,48 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
         {
             ratingIds.push(ratings[i].id);
         }
-        ratingValueModel.findAll({
-            where : {rating_id : ratingIds},
-            attributes : [
+        model.sequelize.query('select rating_param_id, avg(value) as average from rating_value WHERE rating_id in ('+ ratingIds +') group by rating_param_id').success(function(rows) {
+//            console.log(rows);
+            for(var i=0; i<rows.length; i++)
+            {
+                var avg = rows[i].average;
+                var rpi = rows[i].rating_param_id;
 
-                'rating_param_id',
-                [Sequelize.fn('avg',Sequelize.col('value')),'average']
-            ],
-            group : ["rating_param_id"]
+                cumulativeRatingValueModel.findAll({
+                    where : {
+                        "course_offering_id" : courseOfferingId,
+                        "rating_param_id" : rpi
+                    }
+                }).success(function(crvs) {
+                    if(crvs.length == 0)
+                    {
+                        console.log("No entry found.. creating");
+                        console.log("RPI" + rpi)
+                        cumulativeRatingValueModel.create({
+                            "course_offering_id" : courseOfferingId,
+                            "rating_param_id" : rpi,
+                            "value" : avg
+                        })
 
+                    }
+                    else
+                    {
+                        console.log("Entry found.. Updating");
+                        cumulativeRatingValueModel.update({
+                            "value" : avg
+                        },
+                            {
+                                where : {"course_offering_id" : courseOfferingId,
+                                        "rating_param_id" : rpi
+                                }
+                            })
+                    }
+                })
+            }
+        })
 
-        }).success(function(ratingValues) {
-            res.send(ratingValues)
-/*
- Table.findAll({
- attributes: [
-                    'column1',
-                    sequelize.fn('count', sequelize.col('column2'))
-            ],
- group: [
-                "Table.column1"
-       ]
-     }).success(function (result) { });
-
- */
-        });
-//        res.send(ratingIds);
 
     });
-    // go to rating table. find all ratings with this course_offering_id : carry along the ids
-    // go to rating_values table select those having above rating_ids
-    // group by rating_param_id
-    // get average of each group
-    // create/update this value in cumulative_rating_table
-
 };
 
 exports.reCalculateCourseRating = function(courseId)

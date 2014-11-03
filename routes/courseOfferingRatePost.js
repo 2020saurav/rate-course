@@ -7,6 +7,8 @@ var helper = require('./helper');
 
 var ratingId = 0;
 module.exports = function (req, res) {
+
+
     ratingModel.create({
         user_id: req.session.userId,
         course_offering_id: req.param("offeringId"),
@@ -31,20 +33,18 @@ module.exports = function (req, res) {
             {
                 if(x !== 'courseComment' && x !== 'professorComment')
                 {
+                    console.log("1");
                     ratingValueModel.create({
                         rating_id: ratingId,
                         rating_param_id: x,
                         value: object[x]
                     });
-                    console.log(object[x]);
-                    helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
-                    helper.reCalculateCourseRating(req.param("id"));
-
                 }
             }
+            console.log("2");
+            helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
+            helper.reCalculateCourseRating(req.param("id"));
         }
-//        res.send(req.body);
-
     });
 
 }

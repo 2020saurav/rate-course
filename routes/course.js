@@ -1,6 +1,7 @@
 var model = require('../models/index');
 var moment = require('moment');
 
+
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
 var profModel = model.sequelize.models.professor;
@@ -20,7 +21,7 @@ discussionModel.belongsTo(userModel,{foreignKey:'user_id'});
 module.exports = function(req,res) {
     var courseId = req.param("id");
     courseModel.find({
-        where: {id: courseId},
+        where: {"id": courseId},
         include: [
             {
                 model:courseOfferingModel,
@@ -31,17 +32,14 @@ module.exports = function(req,res) {
                 ]
             },
             {
-                model:discussionModel,
-                where : {"is_deleted" : false},
-                include:[
-                    {
-                        model: userModel
-                    }
+                model : discussionModel,
+                include : [
+                    {model : userModel}
                 ]
             }
+
         ]
     }).success(function(course){
-//        res.send(course);
         res.render('course', {
             "course" : course,
             "session":req.session,
