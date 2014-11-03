@@ -32,7 +32,9 @@ var sess;
 //routes
 
 app.get('/', routes.index);                             // app home
-app.get('/contact/', routes.contact);                    // contact
+app.get('/contact/', function(req,res) {                   // about us page
+    routes.team(req,res);
+});                    // contact
 app.get('/courses/', routes.courses);                    // list all courses
 app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)

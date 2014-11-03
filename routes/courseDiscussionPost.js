@@ -10,18 +10,22 @@ module.exports = function(req, res) {
         as_anon = false;
     if(req.body.asAnon)
         as_anon = true;
-
-
-    discussionModel.create({
-        "user_id" : userId,
-        "comment" : comment,
-        "course_id" : courseId,
-        "create_time" : createTime,
-        "as_anon" : as_anon
-    }).success(function(discussion) {
-        if(discussion)
-            res.redirect('/course/'+courseId+'/');
-        else
-            res.redirect('/');
-    })
+    if(comment!==null && comment && comment!== "") {
+        discussionModel.create({
+            "user_id": userId,
+            "comment": comment,
+            "course_id": courseId,
+            "create_time": createTime,
+            "as_anon": as_anon
+        }).success(function (discussion) {
+            if (discussion)
+                res.redirect('/course/' + courseId + '/');
+            else
+                res.redirect('/');
+        })
+    }
+    else
+    {
+        res.redirect('/course/' + courseId + '/');
+    }
 };

@@ -153,7 +153,7 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
 exports.reCalculateCourseRating = function(courseId)
 {
 
-}
+};
 
 
 exports.getParentFromTag = function(tag)
@@ -174,4 +174,72 @@ exports.getParentFromTag = function(tag)
     }
 
     return tag;
+};
+
+exports.feedbackEmailReceipt = function(userEmail)
+{
+    userModel.find({
+        where: {"email" : userEmail}
+    }).success(function (user) {
+        var email = user.email;
+        var name = user.first_name;
+
+        var mailOptions = {
+            from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
+            to: email,
+            subject: 'Rate My Course: Thank You for your feedback',
+            text: 'Hi ' + name+ '!\n \n Your feedback is highly appreciated and will help us to improve our ability to serve you and other users of our web site.'
+                +'\n\n--\nAdmin',
+            html: 'Hi ' + name+'!<br>'+
+                'Your feedback is highly appreciated and will help us to improve our ability to serve you and other users of our web site. <br> --<br> Admin'
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error)
+            {
+                console.log(error);
+            }
+            else
+            {
+                console.log(
+                        "Sent: \nFrom: " + mailOptions.from +
+                        "\nTo: "+ mailOptions.to +
+                        "\n Subject: "+ mailOptions.subject+
+                        "\n Body: "+ mailOptions.text+
+                        "\n HTML: "+ mailOptions.html
+                );
+            }
+        });
+    });
+};
+
+exports.feedbackEmailAdmin = function(userEmail,feedback,time)
+{
+    var mailOptions = {
+        from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
+        to: '2020saurav@gmail.com',
+        subject: 'Feedback on Rate My Course',
+        text: '',
+        html:
+            '<b>Feedback</b>' +
+            '<br> Email : ' + userEmail +
+            '<br> Feedback : ' + feedback +
+             '<br> Time : ' + time
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error)
+        {
+            console.log(error);
+        }
+        else
+        {
+            console.log(
+                    "Sent: \nFrom: " + mailOptions.from +
+                    "\nTo: "+ mailOptions.to +
+                    "\n Subject: "+ mailOptions.subject+
+                    "\n Body: "+ mailOptions.text+
+                    "\n HTML: "+ mailOptions.html
+            );
+        }
+    });
+
 };
