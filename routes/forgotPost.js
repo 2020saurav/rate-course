@@ -12,7 +12,7 @@ var helper = require('./helper');
 module.exports = function (req, res) {
     var login = req.body.login;
     var email = req.body.email;
-    var token = "Saurav"; // TODO randomize
+    var token = helper.randomToken();
     userModel.findOne({
         where: {"login" : login, "email" : email}
     }).success(function (user) {

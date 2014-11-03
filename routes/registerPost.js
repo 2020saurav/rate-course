@@ -29,10 +29,10 @@ module.exports = function (req, res) {
                 }
                 else
                 {
-                    var token="Saurav"; // random
+                    var token=helper.randomToken();
                     userModel.create({
                         login : cclogin,
-                        password : token, // save another random string
+                        password : helper.randomToken(), // save another random string
                         email : cclogin+"@iitk.ac.in",
                         first_name : cclogin,
                         is_active : false,

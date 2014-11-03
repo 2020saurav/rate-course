@@ -16,15 +16,16 @@ block content
                 h1.col-md-10 #{course.course.course_name}
                 a.col-md-2.btn.btn-success(href='rate/') RATE
             h4 Year #{course.year} Semester #{course.semester} by #{professor.first_name} #{professor.last_name}
-            div.well.row
-                h3 Ratings by Students
-                - for ratingValue in ratingValues
-                    div.row
-                        div.col-md-8
-                            h4 #{ratingValue.rating_param.name}
-                        div.col-md-4
-                            input.rating.form-control(type="number" value="#{ratingValue.value}" min=0 max=5 step=0.1 data-size="xs" disabled="true")
             div.row
+                h3 Ratings by Students
+                div.box-shadow.row(style="width:100%")
+                    - for ratingValue in ratingValues
+                        div.row
+                            div.col-md-8
+                                h4 #{ratingValue.rating_param.name}
+                            div.col-md-4
+                                input.rating.form-control(type="number" value="#{ratingValue.value}" min=0 max=5 step=0.1 data-size="xs" disabled="true")
+                div.row
                 h3 Reviews
                 -for rating in ratings
                     - review = rating.review
@@ -32,7 +33,7 @@ block content
                     - var timeago = moment(String(rating.create_time),"X").fromNow();
                     - var actualTime = moment.unix(rating.create_time).format("YYYY-MM-DD HH:mm");
 
-                    div.box-shadow.row(style="padding:15px 0px 10px;")
+                    div.box-shadow.row(style="padding:15px 0px 10px; width:100%")
                         div.col-md-1
                             -if(rating.as_anon==false){
                             a(href="/user/#{user.login}/")
