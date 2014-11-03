@@ -171,22 +171,33 @@ exports.reCalculateCourseRating = function(courseId)
 
 exports.getParentFromTag = function(tag)
 {
-    var parentTags = ["CSE","EE","CE"];
+    tag = tag.toLocaleLowerCase();
+    tag = tag.trim();
+    tag = tag.split(" ");
+    var parentTags = ["CSE","EE","CE","BSBE","CHE","AE","MTH","MSE","PHY","CHM","HSS","IME"];
     var tagArray = [
-            [ "Computer", "computer"],
-            ["Batti" , "batti" , "Electrical" ,"electrical"],
-            ["Civil","civil","building","Building","BOOM"]
-        ];
-    for (var i = tagArray.length - 1; i >= 0; i--)
-    {
-        for (var j = tagArray[i].length - 1; j >= 0; j--)
-        {
-            if (tagArray[i][j]==tag)
-                return parentTags[i];
+        [ "computer"],
+        ["batti" ,"electrical"],
+        ["civil","building","boom"],
+        ["bio" , "biology" ],
+        ["chemical"],
+        [ "aero" ],
+        ["maths","math"],
+        ["matti","material"],
+        ["physics"],
+        ["chemistry"],
+        ["humanities","social science"],
+        ["industrial","management"]
+    ];
+    for (var k = tag.length - 1; k >= 0; k--) {
+        for (var i = tagArray.length - 1; i >= 0; i--) {
+            for (var j = tagArray[i].length - 1; j >= 0; j--) {
+                if (tagArray[i][j]==tag[k])
+                    return parentTags[i];
+            }
         }
     }
-
-    return tag;
+    return tag[0];
 };
 
 exports.feedbackEmailReceipt = function(userEmail)
