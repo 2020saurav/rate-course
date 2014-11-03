@@ -14,6 +14,12 @@ block content
             div.row
                 form.form-horizontal(method='post', action ='')
                     div.form-group.row
+                        label.col-md-3.control-label Name
+                        div.col-md-4
+                            input.form-control(type="text" name="firstName" placeholder="First Name" value="#{user.first_name}")
+                        div.col-md-4
+                            input.form-control(type="text" name="lastName" placeholder="Last Name" value="#{user.last_name}")
+                    div.form-group.row
                         label.col-md-3.control-label Username
                         div.col-md-8
                             fieldset(disabled)
@@ -23,11 +29,5 @@ block content
                         div.col-md-8
                             fieldset(disabled)
                                 input.form-control(type="text" value="#{user.email}")
-                    div.form-group.row
-                        label.col-md-3.control-label Name
-                        div.col-md-4
-                            input.form-control(type="text" name="firstName" placeholder="First Name" value="#{user.first_name}")
-                        div.col-md-4
-                            input.form-control(type="text" name="lastName" placeholder="Last Name" value="#{user.last_name}")
                     div
                         button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Update

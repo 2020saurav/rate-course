@@ -5,6 +5,10 @@ block content
             $(".glyphicon-minus-sign").hide();
             $(".label-default").hide();
             $(".label-success").hide();
+            $(".label-primary").hide();
+            $(".label-danger").hide();
+            $(".label-warning").hide();
+            $(".label-info").hide();
         });
     div.container
         -course=courseOffering
@@ -13,11 +17,11 @@ block content
         -ratings=course.ratings
         div.col-md-9
             div.row
-                h1.col-md-10 #{course.course.course_name}
+                h1.col-md-10 #{course.course.course_number} #{course.course.course_name}
                 a.col-md-2.btn.btn-success(href='rate/') RATE
             h4 Year #{course.year} Semester #{course.semester} by #{professor.first_name} #{professor.last_name}
             div.row
-                h3 Ratings by Students
+                h3 Average Ratings by Students
                 div.box-shadow.row(style="width:100%")
                     - for ratingValue in ratingValues
                         div.row

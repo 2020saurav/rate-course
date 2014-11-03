@@ -1,25 +1,24 @@
 extends layout
 block content
-    div.container.well
-        h2 Professor #{professor.first_name} #{professor.last_name}
-        div.col-md-9.well
-            label.col-md-2 Name
-            label.col-md-10 #{professor.first_name} #{professor.last_name}
-            label.col-md-2 Designation
-            label.col-md-10 #{professor.designation}
-            label.col-md-2 Department
-            label.col-md-10 #{professor.department}
-            label.col-md-2 Email
-            label.col-md-10 #{professor.email}
-            label.col-md-2 Homepage
-            label.col-md-10
-                a(href="#{professor.homepage_url}", target="_blank") #{professor.homepage_url}
-            a.btn.btn-success.pull-right(href="meet/") Request a meeting
+    div.container
+        div.col-md-offset-2.col-md-8(style="margin-top:80px;")
+            div.box-shadow(style="width:100%").row
+                div.col-md-4
+                    -if(professor.photo_url) {
+                    img(src="#{professor.photo_url}" width="100%" style="max-width:200px")
+                    -} else {
+                    img(src="/images/anon.jpg" width="100%" style="max-width:200px")
+                    -}
+                div.col-md-8
+                    -if(professor.homepage_url){
+                    a(href="#{professor.homepage_url}")
+                        h1 #{professor.first_name} #{professor.last_name}
+                    -} else {
+                    h1 #{professor.first_name} #{professor.last_name}
+                    -}
+                    h3 #{professor.email}
+                    h3 Department: #{professor.department}
+                    a.btn.btn-success.pull-right(href='meet/') Request a meet
 
 
 
-
-        div.col-md-3
-            -if(typeof(professor.photo_url) == 'string') {
-                img(src="#{professor.photo_url}", width = "100%")
-            -}

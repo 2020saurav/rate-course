@@ -35,7 +35,10 @@ exports.professor = function(req,res) {
     professorModel.find({
         where : {id : req.param("id")}
     }).success(function (professor) {
-        res.render('professor',{"professor" : professor, "session":req.session});
+        if(professor)
+            res.render('professor',{"professor" : professor, "session":req.session});
+        else
+            res.render('404',{"session" : req.session})
     })
 };
 

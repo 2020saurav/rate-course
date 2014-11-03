@@ -1,19 +1,14 @@
 extends layout
 block content
-    div.container.well
-        h2 User #{user.first_name} #{user.last_name}
-        div.col-md-9.well
-            label.col-md-2 Name
-            label.col-md-10 #{user.first_name} #{user.last_name}
-            label.col-md-2 Login ID
-            label.col-md-10 #{user.login}
-            label.col-md-2 Email
-            label.col-md-10 #{user.email}
-            label.col-md-2 Last Login
-            label.col-md-10 #{user.last_login}
-            label.col-md-10
-
-        div.col-md-3
-            -if(typeof(user.photo_url) == 'string') {
-                img(src="#{user.photo_url}", width = "100%")
-            -}
+    div.container
+        div.col-md-offset-2.col-md-8(style="margin-top:80px;")
+            div.box-shadow(style="width:100%").row
+                div.col-md-4
+                    -if(user.photo_url) {
+                    img(src="#{user.photo_url}" width="100%" style="max-width:200px")
+                    -} else {
+                    img(src="/images/anon.jpg" width="100%" style="max-width:200px")
+                    -}
+                div.col-md-8
+                    h1 #{user.first_name} #{user.last_name}
+                    h3 #{user.email}
