@@ -6,13 +6,18 @@ module.exports = function(req, res) {
     var comment = req.body.discussion,
         userId = req.session.userId,
         courseId = req.param("id"),
-        createTime = moment().unix();
+        createTime = moment().unix(),
+        as_anon = false;
+    if(req.body.asAnon)
+        as_anon = true;
+
 
     discussionModel.create({
         "user_id" : userId,
         "comment" : comment,
         "course_id" : courseId,
-        "create_time" : createTime
+        "create_time" : createTime,
+        "as_anon" : as_anon
     }).success(function(discussion) {
         if(discussion)
             res.redirect('/course/'+courseId+'/');

@@ -23,6 +23,7 @@ block content
                 - var timeago = moment(String(discussion.create_time),"X").fromNow();
                 - var actualTime = moment.unix(discussion.create_time).format("YYYY-MM-DD HH:mm");
                 div.box-shadow.row(style="padding:15px 0px 10px;")
+                    -if(discussion.as_anon==false) {
                     div.col-md-1
                         a(href="/user/#{user.login}/")
                             -if(user.photo_url) {
@@ -39,6 +40,18 @@ block content
                         |  #{discussion.comment}
                         small
                             a(href="#").pull-right Report Spam
+                    -} else {
+                    div.col-md-1
+                        img(src="/images/anon.jpg" width="100%" style="max-width:100px;")
+                    div.col-md-11
+                        b Anonymous
+                        small.pull-right
+                            a(href="#" style="color:#333333" title="#{actualTime}") #{timeago}
+                        br
+                        |  #{discussion.comment}
+                        small
+                            a(href="#").pull-right Report Spam
+                    -}
             -if(typeof(session.user)=="undefined") {
             -} else {
             div.box-shadow.row(style="padding:15px 0px 10px;")
@@ -53,5 +66,7 @@ block content
 
                     div.col-md-10
                         textarea.form-control(type="textarea" rows="3" name="discussion" placeholder="Add your comment")
+                    input(type="checkbox" name="asAnon")
+                    small  Anonymous
                     button.btn.btn-primary.pull-right(type = 'submit' style="bottom:10px; right:10px; position: absolute; ") POST
             -}
