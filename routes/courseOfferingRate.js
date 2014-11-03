@@ -40,9 +40,8 @@ ratingValueModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 ratingParamModel.hasMany(ratingValueModel,{foreignKey:'rating_param_id'});
 ratingValueModel.belongsTo(ratingParamModel,{foreignKey:'rating_param_id'});
 
-ratingModel.hasMany(reviewModel,{foreignKey:'rating_id'});
+ratingModel.hasOne(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
-//TODO the same user will not be allowed to rate a course offering again
 module.exports = function(req, res) {
     var courseOfferingId = req.param("offeringId");
     courseOfferingModel.find({

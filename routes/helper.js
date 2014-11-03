@@ -110,7 +110,7 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
     var cumulativeRatingValueModel = model.sequelize.models.cumulative_rating_value;
     var courseOfferingModel = model.sequelize.models.course_offering;
 
-    var avgarr=[];
+var avg, rpi;
     ratingModel.findAll({
         where : {"course_offering_id" : courseOfferingId},
         attributes: ['id']
@@ -121,55 +121,60 @@ exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
             ratingIds.push(ratings[i].id);
         }
         model.sequelize.query('select rating_param_id, avg(value) as average from rating_value WHERE rating_id in ('+ ratingIds +') group by rating_param_id').success(function(rows) {
-//            console.log(rows);
             for(var i=0; i<rows.length; i++)
             {
-                var avg = rows[i].average;
-                var rpi = rows[i].rating_param_id;
+                (function(avg,rpi)
+                {
+                    // Javascript, you have lost my respect now! Had it not been for S.O., this had no future -_-
+                    avg = rows[i].average;
+                    rpi = rows[i].rating_param_id;
 
-                cumulativeRatingValueModel.findAll({
-                    where : {
-                        "course_offering_id" : courseOfferingId,
-                        "rating_param_id" : rpi
-                    }
-                }).success(function(crvs) {
-                    if(crvs.length == 0)
-                    {
-                        console.log("No entry found.. creating");
-                        console.log("RPI" + rpi)
-                        cumulativeRatingValueModel.create({
+                    cumulativeRatingValueModel.findAll({
+                        where :
+                        {
                             "course_offering_id" : courseOfferingId,
-                            "rating_param_id" : rpi,
-                            "value" : avg
-                        })
-
-                    }
-                    else
+                            "rating_param_id" : rpi
+                        }
+                    }).success(function(crvs)
                     {
-                        console.log("Entry found.. Updating");
-                        cumulativeRatingValueModel.update({
-                            "value" : avg
-                        },
+                        if(crvs.length == 0)    // create if not exists
+                        {
+                            cumulativeRatingValueModel.create(
                             {
-                                where : {"course_offering_id" : courseOfferingId,
-                                        "rating_param_id" : rpi
+                                "course_offering_id" : courseOfferingId,
+                                "rating_param_id" : rpi,
+                                "value" : avg
+                            })
+                        }
+                        else
+                        {                          // update if exists
+                            cumulativeRatingValueModel.update(
+                            {
+                                "value" : avg
+                            },
+                            {
+                                where :
+                                {
+                                    "course_offering_id" : courseOfferingId,
+                                    "rating_param_id" : rpi
                                 }
                             })
-                    }
-                })
+                        }
+                    });
 
-                if(rpi == 1){
-                    courseOfferingModel.update({
-                        "overall_rating" : avg
-                    },
+                    if(rpi==1)  // this is assumed to be main question to judge a course
+                    {
+                        courseOfferingModel.update(
+                        {
+                            "overall_rating" : avg
+                        },
                         {
                             where: {"id": courseOfferingId}
                         });
-                }
+                    }
+                })(i);
             }
         })
-
-
     });
 };
 

@@ -51,8 +51,7 @@ module.exports = function(req, res) {
                 model:ratingModel,
                 include:[
                     {
-                        model:reviewModel,
-                        where : {"is_deleted" : false}
+                        model:reviewModel
                     },
                     {
                         model:userModel
@@ -62,7 +61,7 @@ module.exports = function(req, res) {
         ]
     }).success(function(courseOffering){
         if(courseOffering.course.id==req.param("id")) {
-            //res.send(courseOffering)
+//            res.send(courseOffering)
             res.render('courseOffering',{
                 "courseOffering" : courseOffering,
                 "session":req.session,
