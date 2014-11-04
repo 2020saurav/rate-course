@@ -123,44 +123,45 @@ var avg, rpi;
         model.sequelize.query('select rating_param_id, avg(value) as average from rating_value WHERE rating_id in ('+ ratingIds +') group by rating_param_id').success(function(rows) {
             for(var i=0; i<rows.length; i++)
             {
+                avg = rows[i].average;
+                rpi = rows[i].rating_param_id;
                 (function(avg,rpi)
                 {
                     // Javascript, you have lost my respect now! Had it not been for S.O., this had no future -_-
                     avg = rows[i].average;
                     rpi = rows[i].rating_param_id;
-
-                    cumulativeRatingValueModel.findAll({
-                        where :
-                        {
-                            "course_offering_id" : courseOfferingId,
-                            "rating_param_id" : rpi
-                        }
-                    }).success(function(crvs)
+                    if(rpi!==0)
                     {
-                        if(crvs.length == 0)    // create if not exists
-                        {
-                            cumulativeRatingValueModel.create(
+
+                        cumulativeRatingValueModel.findAll({
+                            where: {
+                                "course_offering_id": courseOfferingId,
+                                "rating_param_id": rpi
+                            }
+                        }).success(function (crvs) {
+                            if (crvs.length == 0)    // create if not exists
                             {
-                                "course_offering_id" : courseOfferingId,
-                                "rating_param_id" : rpi,
-                                "value" : avg
-                            })
-                        }
-                        else
-                        {                          // update if exists
-                            cumulativeRatingValueModel.update(
-                            {
-                                "value" : avg
-                            },
-                            {
-                                where :
-                                {
-                                    "course_offering_id" : courseOfferingId,
-                                    "rating_param_id" : rpi
-                                }
-                            })
-                        }
-                    });
+                                cumulativeRatingValueModel.create(
+                                    {
+                                        "course_offering_id": courseOfferingId,
+                                        "rating_param_id": rpi,
+                                        "value": avg
+                                    })
+                            }
+                            else {                          // update if exists
+                                cumulativeRatingValueModel.update(
+                                    {
+                                        "value": avg
+                                    },
+                                    {
+                                        where: {
+                                            "course_offering_id": courseOfferingId,
+                                            "rating_param_id": rpi
+                                        }
+                                    })
+                            }
+                        });
+                    }
 
                     if(rpi==1)  // this is assumed to be main question to judge a course
                     {

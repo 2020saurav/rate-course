@@ -8,7 +8,7 @@ block content
                     h3.col-md-6 Instructor: #{courseOfferingRatingParam.professor.first_name} #{courseOfferingRatingParam.professor.last_name}
                     h3.col-md-6 Year: #{courseOfferingRatingParam.year} Semester: #{courseOfferingRatingParam.semester}
         div.row.col-md-offset-1.col-md-10
-            form.form-horizontal(method='post', action ='').col-md-9.box-shadow(style="width:100%")
+            form.form-horizontal(method='post' action ='' style="width:100%").col-md-9.box-shadow
                 -for param in courseOfferingRatingParam.course_offering_rating_params
                     div.form-group.row
                         div.col-md-8.inputVal

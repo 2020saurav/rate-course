@@ -44,32 +44,42 @@ ratingModel.hasOne(reviewModel,{foreignKey:'rating_id'});
 reviewModel.belongsTo(ratingModel,{foreignKey:'rating_id'});
 module.exports = function(req, res) {
     var courseOfferingId = req.param("offeringId");
-    courseOfferingModel.find({
-        where : {"id" : courseOfferingId},
-        include : [
-            {
-                model : courseModel
-            },
-            {
-                model : professorModel
-            },
-            {
-                model : courseOfferingRatingParamModel,
+
+    ratingModel.findOne({
+        where: { "user_id" : req.session.userId, "course_offering_id": courseOfferingId}
+    }).success(function(rating) {
+        if(rating)
+        {
+            // already rated
+            res.render("message",{"message" : "You have already rated this Course!", "session" : req.session});
+        }
+        else
+        {
+            courseOfferingModel.find({
+                where : {"id" : courseOfferingId},
                 include : [
                     {
-                        model: ratingParamModel
+                        model : courseModel
+                    },
+                    {
+                        model : professorModel
+                    },
+                    {
+                        model : courseOfferingRatingParamModel,
+                        include : [
+                            {
+                                model: ratingParamModel
+                            }
+                        ]
                     }
                 ]
-            }
-        ]
-
-    }).success(function(courseOfferingRatingParam){
-//        res.send(courseOfferingRatingParam);
-        res.render('courseOfferingRate',{
-            "courseOfferingRatingParam" : courseOfferingRatingParam,
-            "session":req.session
-        });
+            }).success(function(courseOfferingRatingParam){
+                res.render('courseOfferingRate',{
+                    "courseOfferingRatingParam" : courseOfferingRatingParam,
+                    "session":req.session
+                });
+            });
+        }
     });
 };
 
-// TODO ensure that user has not already given a rating

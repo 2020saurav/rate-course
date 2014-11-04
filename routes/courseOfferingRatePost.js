@@ -44,7 +44,7 @@ module.exports = function (req, res) {
                     var object = req.body;
                     for(var x in  object )
                     {
-                        if(x !== 'courseComment' && x !== 'professorComment')
+                        if(x !== 'courseComment' && x !== 'professorComment' && x!==0)
                         {
                             ratingValueModel.create({
                                 rating_id: ratingId,
