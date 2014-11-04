@@ -92,6 +92,12 @@ app.post('/course/:id/discussion/spam/:discussionId/', function(req,res) {
     else
         res.send("Login to report spam");
 });
+app.post('/review/spam/:reviewId/', function(req,res) {
+    if(req.session.user)
+        routes.spamReview(req,res);
+    else
+        res.send("Login to report spam");
+});
 
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in

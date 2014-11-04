@@ -19,7 +19,8 @@ block content
                     td
                         a(href='/admin/discussion/view/#{spam.item_id}/') Discussion
                     -} else {
-                    td Review
+                    td
+                        a(href='/admin/review/view/#{spam.item_id}/') Review
                     -}
                     - var timeago = moment(String(spam.create_time),"X").fromNow();
                     td #{timeago}
@@ -30,6 +31,3 @@ block content
                         a(href='delete/#{spam.id}/')
                             i.fa.fa-trash-o.fa-2(title='Delete')
 
-
-
-//TODO complete this. right now it is all wrong

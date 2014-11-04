@@ -10,6 +10,10 @@ block content
             $(".label-warning").hide();
             $(".label-info").hide();
         });
+        function reportSpam (reviewId)
+            {
+                $.post('/review/spam/'+reviewId+'/');
+            }
     div.container
         -course=courseOffering
         -professor=course.professor
@@ -38,7 +42,7 @@ block content
                     - user = rating.user
                     - var timeago = moment(String(rating.create_time),"X").fromNow();
                     - var actualTime = moment.unix(rating.create_time).format("YYYY-MM-DD HH:mm");
-                    - if(review.prof_comment!=="" || review.course_comment!==""){
+                    - if((review.is_deleted==false)&&(review.prof_comment!=="" || review.course_comment!=="")){
 
                     div.box-shadow.row(style="padding:15px 0px 10px; width:100%")
                         div.col-md-1
@@ -69,7 +73,11 @@ block content
                             |  #{review.prof_comment}
                             br
                             small
-                                a(href="#").pull-right Report Spam
+                                -if(session.user) {
+                                a(onclick="reportSpam(#{review.id}); this.innerHTML='Reported';").pull-right Report Spam
+                                -} else {
+                                a(onclick="this.innerHTML='Please login to report';").pull-right Report Spam
+                                -}
                     -}
         div.col-md-3
             h3.pull-right Visualizations

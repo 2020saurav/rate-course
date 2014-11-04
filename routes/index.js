@@ -81,6 +81,7 @@ exports.userUpdatePost = require('./userUpdatePost');
 exports.profilePicUpload = require('./profilePicUpload');
 
 exports.spamDiscussion = require('./spamDiscussion');
+exports.spamReview = require('./spamReview');
 
 // admin stuff
 exports.admin = function (req, res) {
