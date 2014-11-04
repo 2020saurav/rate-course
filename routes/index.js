@@ -28,7 +28,10 @@ exports.team = function(req, res) {
 
 exports.professors = function(req,res) {
     professorModel.findAll().success(function (professors) {
-        res.render('professors',{"professors" : professors, "session":req.session});
+        if(professors)
+            res.render('professors',{"professors" : professors, "session":req.session});
+        else
+            res.render('404',{"session":req.session})
     })
 };
 exports.professor = function(req,res) {

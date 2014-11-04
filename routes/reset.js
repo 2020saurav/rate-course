@@ -21,5 +21,4 @@ module.exports = function (req, res) {
         else
             res.render('message',{"session" : req.session, "message" : "Oops! There was error processing your request. There is something wrong with your token. Please try again!"})
     });
-
 };

@@ -40,10 +40,16 @@ module.exports = function(req,res) {
 
         ]
     }).success(function(course){
-        res.render('course', {
-            "course" : course,
-            "session":req.session,
-            "moment":moment
-        })
+        if(course) {
+            res.render('course', {
+                "course": course,
+                "session": req.session,
+                "moment": moment
+            })
+        }
+        else
+        {
+            res.render('404',{"session":req.session})
+        }
     })
 };

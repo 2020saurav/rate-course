@@ -3,9 +3,15 @@ var model = require('../models/index');
 module.exports = function(req, res) {
     var courseModel = model.sequelize.models.course;
     courseModel.findAll().success(function(courses) {
-        res.render('courses',{
-            "courses" : courses,
-            "session":req.session
-        });
+        if(courses) {
+            res.render('courses', {
+                "courses": courses,
+                "session": req.session
+            });
+        }
+        else
+        {
+            res.render('404',{"session":req.session})
+        }
     })
 };

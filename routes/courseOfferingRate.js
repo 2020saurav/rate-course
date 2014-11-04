@@ -74,10 +74,16 @@ module.exports = function(req, res) {
                     }
                 ]
             }).success(function(courseOfferingRatingParam){
-                res.render('courseOfferingRate',{
-                    "courseOfferingRatingParam" : courseOfferingRatingParam,
-                    "session":req.session
-                });
+                if(courseOfferingRatingParam) {
+                    res.render('courseOfferingRate', {
+                        "courseOfferingRatingParam": courseOfferingRatingParam,
+                        "session": req.session
+                    });
+                }
+                else
+                {
+                    res.render('404',{"session":req.session})
+                }
             });
         }
     });

@@ -60,15 +60,20 @@ module.exports = function(req, res) {
             }
         ]
     }).success(function(courseOffering){
-        if(courseOffering.course.id==req.param("id")) {
-//            res.send(courseOffering)
-            res.render('courseOffering',{
-                "courseOffering" : courseOffering,
-                "session":req.session,
-                "moment" : moment
-            });
+        if(courseOffering) {
+            if (courseOffering.course.id == req.param("id")) {
+                res.render('courseOffering', {
+                    "courseOffering": courseOffering,
+                    "session": req.session,
+                    "moment": moment
+                });
+            }
+            else
+                res.render('404', {"session": req.session})
         }
         else
-            res.send("This offering does not belong this course")
+        {
+            res.render('404',{"session":req.session})
+        }
     })
 };

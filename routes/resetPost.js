@@ -10,7 +10,7 @@ module.exports = function (req, res) {
     var userId = req.body.userId;
     var token = req.body.token;
     var password = req.body.password;
-    if(token=="") // put more checks : undefined null etc TODO
+    if(token==""||token==null) // put more checks : undefined null etc TODO
     {
         res.render('message',{"session" : req.session, "message" : "Oops! There was error processing your request. There is something wrong with your token. Please try again!"})
     }

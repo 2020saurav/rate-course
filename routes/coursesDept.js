@@ -6,10 +6,16 @@ module.exports = function(req, res) {
     courseModel.findAll({
         where : {"department" : dept}
     }).success(function(courses) {
-
-        res.render('courses',{
-            "courses" : courses,
-            "session":req.session
-        });
+        if(courses)
+        {
+            res.render('courses',{
+                "courses" : courses,
+                "session":req.session
+            });
+        }
+        else
+        {
+            res.render('404',{"session":req.session})
+        }
     })
 };

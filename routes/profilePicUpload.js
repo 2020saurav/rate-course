@@ -31,11 +31,8 @@ module.exports = function(req, res) {
                                 {photo_url: publicPath},
                                 { where: {"id": userId}}
                             ).success(function (user) {
-
                                     res.redirect('/user/profile/update');
                                 })
-
-
                         }
                     })
                 })

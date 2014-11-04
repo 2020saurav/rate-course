@@ -5,6 +5,9 @@ module.exports = function (req, res) {
     userModel.findOne({
         where : {"login":req.session.user}
     }).success(function(user){
-        res.render('updateProfile',{"session":req.session, "user": user});
+        if(user)
+            res.render('updateProfile',{"session":req.session, "user": user});
+        else
+            res.render('404',{"session":req.session})
     });
 };
