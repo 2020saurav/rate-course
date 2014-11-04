@@ -1,21 +1,30 @@
 extend layout
 block content
     div.container
-        h2 Rate: #{courseOfferingRatingParam.course.course_number} #{courseOfferingRatingParam.course.course_name}
-        h3 Instructor: #{courseOfferingRatingParam.professor.first_name} #{courseOfferingRatingParam.professor.last_name}
-        form.form-horizontal(method='post', action ='')
-            -for param in courseOfferingRatingParam.course_offering_rating_params
+        div.row.col-md-offset-1.col-md-10
+            div.box-shadow(style="width:100%")
+                h2 #{courseOfferingRatingParam.course.course_number} #{courseOfferingRatingParam.course.course_name}
+                div.row
+                    h3.col-md-6 Instructor: #{courseOfferingRatingParam.professor.first_name} #{courseOfferingRatingParam.professor.last_name}
+                    h3.col-md-6 Year: #{courseOfferingRatingParam.year} Semester: #{courseOfferingRatingParam.semester}
+        div.row.col-md-offset-1.col-md-10
+            form.form-horizontal(method='post', action ='').col-md-9.box-shadow(style="width:100%")
+                -for param in courseOfferingRatingParam.course_offering_rating_params
+                    div.form-group.row
+                        div.col-md-8.inputVal
+                            label.control-label #{param.rating_param.name}
+                        input.rating.form-control(type="number" name="#{param.rating_param.id}" min=0 max=5 step=0.1 data-size="xs" )
                 div.form-group.row
-                    div.col-md-6.inputVal
-                        label.control-label #{param.rating_param.name}
-                    input.rating.form-control(type="number" name="#{param.rating_param.id}" min=0 max=5 step=0.1 data-size="xs" )
-            div.form-group.row
-                label.col-md-3 Review about the Course
-                div.col-md-6
-                    textarea.form-control(type="textarea"  rows="3" name="courseComment" placeholder="Your review of the course")
-            div.form-group.row
-                label.col-md-3 Review about the Professor
-                div.col-md-6
-                    textarea.form-control(type="textarea" rows="3" name="professorComment" placeholder="Your review of the professor")
-                div.form-group
-                button.btn.btn-primary.col-md-offset-4(type = 'submit') Submit
+                    label.col-md-4 Review about the Course
+                    div.col-md-8
+                        textarea.form-control(type="textarea"  rows="3" name="courseComment" placeholder="Your review of the course")
+                div.form-group.row
+                    label.col-md-4 Review about the Professor
+                    div.col-md-8
+                        textarea.form-control(type="textarea" rows="3" name="professorComment" placeholder="Your review of the professor")
+                div.form-group.row
+                    div.col-md-offset-7.col-md-2
+                        input(type="checkbox" name="asAnon")
+                        small  As Anonymous
+                    div.col-md-3
+                        button.btn.btn-success(type = 'submit').col-md-12 Submit
