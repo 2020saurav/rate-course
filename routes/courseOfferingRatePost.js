@@ -44,14 +44,15 @@ module.exports = function (req, res) {
                     var object = req.body;
                     for(var x in  object )
                     {
-                        if(x !== 'courseComment' && x !== 'professorComment' && x!==0)
-                        {
-                            ratingValueModel.create({
-                                rating_id: ratingId,
-                                rating_param_id: x,
-                                value: object[x]
-                            });
-                        }
+                        (function(x) {
+                            if (x !== 'courseComment' && x !== 'professorComment' && x !== 0 && x!=='0') { // still x becomes 0 :'(
+                                ratingValueModel.create({
+                                    rating_id: ratingId,
+                                    rating_param_id: x,
+                                    value: object[x]
+                                });
+                            }
+                        })(x);
                     }
                     helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
                     helper.reCalculateCourseRating(req.param("id"));

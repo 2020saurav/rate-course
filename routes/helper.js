@@ -200,7 +200,7 @@ exports.getParentFromTag = function(tag)
     tag = tag.split(" ");
     var parentTags = ["CSE","EE","CE","BSBE","CHE","AE","MTH","MSE","PHY","CHM","HSS","IME"];
     var tagArray = [
-        [ "computer"],
+        [ "computer","dabba"],
         ["batti" ,"electrical"],
         ["civil","building","boom"],
         ["bio" , "biology" ],

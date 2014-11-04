@@ -10,6 +10,7 @@ block content
                 td Course
                 td Comment
                 td Spam Count
+                td Hidden
                 td Actions
             - for discussion in discussions
                 tr
@@ -18,6 +19,7 @@ block content
                     td #{discussion.course.course_number}
                     td #{discussion.comment}
                     td #{discussion.spam_flag_count}
+                    td #{discussion.is_deleted}
                     td.row
                         a(href='view/#{discussion.id}/')
                             i.fa.fa-eye.fa-2(title='View')

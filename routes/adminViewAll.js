@@ -160,6 +160,7 @@ module.exports = function (req, res) {
             break;
         case "ratingValue":
             ratingValueModel.findAll({
+                where : ["rating_param_id > ?",0],
                 include: [
                     {
                         model:ratingParamModel
