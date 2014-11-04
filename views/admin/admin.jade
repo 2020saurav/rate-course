@@ -1,9 +1,48 @@
 extends adminLayout
 block content
-    div.container
-        h2 Discussion Spams (rev sorted by spam_flag_count)
-        br
-        p Table of those items
-        br
-        h2 Review Spams (rev sorted by s_f_c)
+    div
+        h2 Discussion Spams
+        table.table.table-hover
+            tr
+                td ID
+                td Comment
+                td Spam Count
+                td Actions
+
+            - for discussionSpam in discussionSpams
+                tr
+                    td #{discussionSpam.id}
+                    td #{discussionSpam.comment}
+                    td #{discussionSpam.spam_flag_count}
+                    td.row
+                        a(href='/admin/discussion/view/#{discussionSpam.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='/admin/discussion/update/#{discussionSpam.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='/admin/discussion/delete/#{discussionSpam.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+        h2 Review Spams
+        table.table.table-hover
+            tr
+                td ID
+                td Professor Comment
+                td Course Comment
+                td Spam Count
+                td Actions
+
+            - for reviewSpam in reviewSpams
+                tr
+                    td #{reviewSpam.id}
+                    td #{reviewSpam.prof_comment}
+                    td #{reviewSpam.course_comment}
+                    td #{reviewSpam.spam_flag_count}
+                    td.row
+                        a(href='/admin/review/view/#{reviewSpam.id}/')
+                            i.fa.fa-eye.fa-2(title='View')
+                        a(href='/admin/review/update/#{reviewSpam.id}/')
+                            i.fa.fa-pencil-square-o.fa-2(title='Update')
+                        a(href='/admin/review/delete/#{reviewSpam.id}/')
+                            i.fa.fa-trash-o.fa-2(title='Delete')
+
+
 

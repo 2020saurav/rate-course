@@ -84,9 +84,10 @@ exports.spamDiscussion = require('./spamDiscussion');
 exports.spamReview = require('./spamReview');
 
 // admin stuff
-exports.admin = function (req, res) {
-    res.render('admin/admin',{"session":req.session})
-};
+//exports.admin = function (req, res) {
+//    res.render('admin/admin',{"session":req.session})
+//};
+exports.admin = require('./adminHome');
 exports.adminModelViewAll = require('./adminViewAll');
 exports.adminModelCreate = require('./adminCreate');
 exports.adminModelCreatePost = require('./adminCreatePost');
