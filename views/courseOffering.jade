@@ -17,9 +17,11 @@ block content
         -ratings=course.ratings
         div.col-md-9
             div.row
-                h1.col-md-10 #{course.course.course_number} #{course.course.course_name}
-                a.col-md-2.btn.btn-success(href='rate/') RATE
-            h4 Year #{course.year} Semester #{course.semester} by #{professor.first_name} #{professor.last_name}
+                div.box-shadow(style="width:100%").row
+                    h1 #{course.course.course_number} #{course.course.course_name}
+                    div.row
+                        h4.col-md-9 Year #{course.year} Semester #{course.semester} by Professor #{professor.first_name} #{professor.last_name}
+                        a.col-md-3.btn.btn-success(href='rate/') RATE
             div.row
                 h3 Average Ratings by Students
                 div.box-shadow.row(style="width:100%")
@@ -36,12 +38,17 @@ block content
                     - user = rating.user
                     - var timeago = moment(String(rating.create_time),"X").fromNow();
                     - var actualTime = moment.unix(rating.create_time).format("YYYY-MM-DD HH:mm");
+                    - if(review.prof_comment!=="" || review.course_comment!==""){
 
                     div.box-shadow.row(style="padding:15px 0px 10px; width:100%")
                         div.col-md-1
                             -if(rating.as_anon==false){
                             a(href="/user/#{user.login}/")
+                                -if(user.photo_url){
                                 img(src="#{user.photo_url}" width="150%" style="max-width:100px;")
+                                -} else {
+                                img(src="/images/anon.jpg" width="150%" style="max-width:100px;")
+                                -}
                             -} else {
                             img(src="/images/anon.jpg" width="150%" style="max-width:100px;")
                             -}
@@ -63,6 +70,7 @@ block content
                             br
                             small
                                 a(href="#").pull-right Report Spam
+                    -}
         div.col-md-3
             h3.pull-right Visualizations
 
