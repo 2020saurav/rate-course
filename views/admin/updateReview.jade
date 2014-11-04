@@ -6,10 +6,10 @@ block content
             div.form-group
                 label.col-md-2.control-label Spam Count
                 div.col-md-10
-                    input.form-control(type="text" name="spamCount" placeholder="#{review.spam_flag_count}")
+                    input.form-control(type="text" name="spamCount" value="#{review.spam_flag_count}")
             div.form-group
                 label.col-md-2.control-label Hidden
                 div.col-md-10
-                    input.form-control(type="text" name="isDeleted" placeholder="#{review.is_deleted}")
+                    input.form-control(type="text" name="isDeleted" value="#{review.is_deleted}")
             div.form-group
                 button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
