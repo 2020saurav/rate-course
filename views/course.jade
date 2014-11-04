@@ -24,6 +24,7 @@ block content
         div.row
             h3 Discussions
             -for discussion in discussions
+                -if(discussion.is_deleted==false) {
                 - user = discussion.user
                 - var timeago = moment(String(discussion.create_time),"X").fromNow();
                 - var actualTime = moment.unix(discussion.create_time).format("YYYY-MM-DD HH:mm");
@@ -65,6 +66,7 @@ block content
                             a(onclick="this.innerHTML='Please login to report';").pull-right Report Spam
                             -}
                     -}
+                -}
             -if(!session.user) {
             -} else {
             div.box-shadow.row(style="padding:15px 0px 10px;")

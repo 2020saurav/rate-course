@@ -65,7 +65,8 @@ module.exports = function (req, res) {
             discussionModel.update({
                     spam_flag_count: req.body.spamCount,
                     is_deleted: req.body.isDeleted,
-                    as_anon: req.body.asAnon
+                    as_anon: req.body.asAnon,
+                    comment : req.body.comment
                 },
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                     console.log(affectedRows);

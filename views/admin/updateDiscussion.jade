@@ -6,22 +6,26 @@ block content
             div.form-group
                 label.col-md-2.control-label Spam Count
                 div.col-md-10
-                    input.form-control(type="text" name="spamCount" placeholder="#{discussion.spam_flag_count}")
+                    input.form-control(type="text" name="spamCount" value="#{discussion.spam_flag_count}")
             div.form-group
                 label.col-md-2.control-label Comment
                 div.col-md-10
-                    input.form-control(type="text" name="comment" placeholder="#{discussion.comment}")
+                    input.form-control(type="text" name="comment" value="#{discussion.comment}")
             div.form-group
                 label.col-md-2.control-label Hidden
-                div.col-md-10
+                div.col-md-2
+                    label.control-label #{discussion.is_deleted}
+                div.col-md-8
                     select.form-control(name="isDeleted")
-                        option(value="0") No
-                        option(value="1") Yes
+                        option(value="0") False
+                        option(value="1") True
             div.form-group
                 label.col-md-2.control-label As Anonymous
-                div.col-md-10
+                div.col-md-2
+                    label.control-label #{discussion.as_anon}
+                div.col-md-8
                     select.form-control(name="asAnon")
-                        option(value="0") No
-                        option(value="1") Yes
+                        option(value="0") False
+                        option(value="1") True
             div.form-group
                 button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
