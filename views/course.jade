@@ -48,7 +48,7 @@ block content
                             -if(session.user) {
                             a(onclick="reportSpam(#{course.id},#{discussion.id}); this.innerHTML='Reported';").pull-right Report Spam
                             -} else {
-                            a(onclick="reportSpam(this.innerHTML='Please login to report';").pull-right Report Spam
+                            a(onclick="this.innerHTML='Please login to report';").pull-right Report Spam
                             -}
                     -} else {
                     div.col-md-1
