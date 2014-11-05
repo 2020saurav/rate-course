@@ -8,6 +8,7 @@ module.exports = function(req, res) {
     var professorId = req.session.userId;
     meetProfessorModel.findAll({
         where: { "professor_id" : professorId},
+        order:'id DESC',
         include : [
             {model : userModel}
         ]

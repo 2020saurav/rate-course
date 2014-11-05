@@ -2,11 +2,11 @@ extends layout
 block content
     div.container
         div.col-md-offset-2.col-md-8
-            h2 Reject Meeting Request
+            h2 Make a meeting request
             form.form-horizontal(method='post', action ='')
                 div.form-group
                     label.col-md-2.control-label Message
                     div.col-md-10
-                        textarea.form-control(type="textarea" rows="5" name="reply" placeholder="Message")
+                        textarea.form-control(type="textarea" rows="5" name="message" placeholder="Message")
                 div.form-group
                 button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit

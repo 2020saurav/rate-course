@@ -4,25 +4,21 @@ block content
         h2 Meeting Requests
         table.table.table-hover.box-shadow
             tr
-                td Name
                 td Message
+                td Professor
                 td Status
                 td Reply
                 td Approved Date
                 td Approved Time
             -for meet in meets
                 tr
-                    td #{meet.user.first_name} #{meet.user.last_name}
                     td #{meet.user_message}
+                    td #{meet.professor.first_name} #{meet.professor.last_name}
                     -var status;
                     - if(meet.status==1) status="PENDING"; else if(meet.status==2) status="REJECTED"; else status="ACCEPTED";
                     td #{status}
                     td #{meet.professor_reply}
                     -if(meet.status==1){
-                    td
-                        a(href='/faculty/meet/approve/#{meet.id}/').btn.btn-success APPROVE
-                    td
-                        a(href='/faculty/meet/reject/#{meet.id}/').btn.btn-danger  REJECT
                     -} else {
                     td #{meet.approved_date}
                     td #{meet.approved_time}

@@ -79,6 +79,7 @@ exports.reset = require('./reset');
 exports.userUpdate = require('./userUpdate');
 exports.userUpdatePost = require('./userUpdatePost');
 exports.profilePicUpload = require('./profilePicUpload');
+exports.meetRequests = require('./meetRequests');
 
 exports.spamDiscussion = require('./spamDiscussion');
 exports.spamReview = require('./spamReview');
@@ -103,5 +104,7 @@ exports.facultyLoginPost=require('./facultyLoginPost');
 exports.facultyHome=require('./facultyHome');
 exports.facultyApproveMeet=require('./facultyApproveMeet');
 exports.facultyRejectMeet=require('./facultyRejectMeet');
+
+exports.professorMeetPost=require('./professorMeetPost');
 exports.apiUserCourse = require('./apiUserCourse');
 

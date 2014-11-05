@@ -31,6 +31,8 @@ var sess;
 
 //routes
 
+// TODO ensure professor does not access other user portals when logged in as professor
+
 app.get('/', routes.courses);                             // app home
 app.get('/contact/', function(req,res) {                   // about us page
     routes.team(req,res);
@@ -68,7 +70,7 @@ app.post('/reset/', function (req, res) {                   // reset Password PO
 });
 
 app.get('/faq/', function (req, res) {                      // FAQ
-    res.render('faqs',{"session":req.session})
+    res.render('faq',{"session":req.session})
 });
 app.get('/terms/', function(req,res) {
    res.render('terms',{"session" : req.session})
@@ -128,6 +130,14 @@ app.post('/user/profile/update/', function(req,res) {                   // publi
     else
         res.redirect('/');
 });
+app.get('/user/meet/requests/', function(req,res) {
+   if(req.session.user)
+        routes.meetRequests(req,res);
+    else
+        res.redirect('/');
+});
+
+
 app.post('/profilePicUpload/', function(req,res) {
     if(req.session.user)
       routes.profilePicUpload(req,res);
@@ -159,6 +169,18 @@ app.get('/professors/', function(req,res) {             // all professors
 });
 app.get('/professor/:id/', function(req,res) {          // selected professor
     routes.professor(req,res);
+});
+app.get('/professor/:id/meet/', function(req,res) {          // selected professor meet GET
+    if(req.session.user)
+        res.render('meetRequestForm',{"session" : req.session});
+    else
+        res.redirect('/');
+});
+app.post('/professor/:id/meet/', function(req,res) {          // selected professor meet POST
+    if(req.session.user)
+        routes.professorMeetPost(req,res);
+    else
+        res.redirect('/');
 });
 
 app.get('/team/', function(req,res) {                   // about us page

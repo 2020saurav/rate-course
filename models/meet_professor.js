@@ -17,7 +17,9 @@ module.exports = function(sequelize, DataTypes) {
             user_message:{type: DataTypes.STRING, allowNull:true},
             status: {type: DataTypes.INTEGER, allowNull:false},
             professor_reply:{type: DataTypes.STRING, allowNull:true},
-            approved_time: {type: DataTypes.INTEGER, allowNull:true}
+            approved_time: {type: DataTypes.STRING(50), allowNull:true},
+            approved_date: {type: DataTypes.STRING(50), allowNull:true}
+
         },
         {
             freezeTableName : true,
