@@ -42,6 +42,7 @@ module.exports = function (req, res) {
                     });
 
                     var object = req.body;
+                    var value1, value2;
                     for(var x in  object )
                     {
                         (function(x) {
@@ -52,10 +53,16 @@ module.exports = function (req, res) {
                                     value: object[x]
                                 });
                             }
+                            if(x == 1)
+                                value1 = object[x];
+                            if(x == 2)
+                                value2 = object[x];
                         })(x);
                     }
+                    var name1 = 1, name2 = 2;
                     helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
                     helper.reCalculateCourseRating(req.param("id"));
+                    helper.updateVisualizationCount(req.param("offeringId"), value1, value2 );
                     res.redirect(returnURL);
                 }
                 else

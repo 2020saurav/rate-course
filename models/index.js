@@ -20,6 +20,7 @@ var models = [
     'rating_param',
     'rating_value',
     'review',
+    'visualization',
     'spam',
     'user'
     ];
@@ -32,5 +33,5 @@ models.forEach(function(model) {
 //sequelize.sync({force:true})
 // force true will drop table.
 //console.log("model/index called")
-
+//sequelize.sync();
 module.exports.sequelize = sequelize;
