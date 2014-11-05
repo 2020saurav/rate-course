@@ -68,7 +68,7 @@ app.post('/reset/', function (req, res) {                   // reset Password PO
 });
 
 app.get('/faq/', function (req, res) {                      // FAQ
-    res.render('faq',{"session":req.session})
+    res.render('faqs',{"session":req.session})
 });
 app.get('/terms/', function(req,res) {
    res.render('terms',{"session" : req.session})

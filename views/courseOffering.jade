@@ -1,5 +1,9 @@
 extends layout
 block content
+    script(src="/js/nvd3/lib/d3.v3.js")
+    script(src="/js/nvd3/nv.d3.js")
+    script(src="/js/nvd3/src/utils.js")
+    script(src="/js/nvd3/src/models/pie.js")
     script.
         $(document).ready(function(){
             $(".glyphicon-minus-sign").hide();
@@ -14,12 +18,76 @@ block content
             {
                 $.post('/review/spam/'+reviewId+'/');
             }
+        nv.addGraph(function() {
+          var chart = nv.models.pieChart()
+              .x(function(d) { return d.label })
+              .y(function(d) { return d.value })
+              .showLabels(true)     //Display pie labels
+              .labelThreshold(0.05)  //Configure the minimum slice size for labels to show up
+              .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+              .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
+              .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
+              .width(300)
+              .height(400)
+              ;
+                    d3.select("#chart1 svg")
+                .datum(exampleData())
+                .transition().duration(350)
+                .attr('width', 300)
+                .attr('height', 400)
+                .call(chart);
+                  return chart;
+        });
+        nv.addGraph(function() {
+          var chart = nv.models.pieChart()
+              .x(function(d) { return d.label })
+              .y(function(d) { return d.value })
+              .showLabels(true)     //Display pie labels
+              .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+              .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+              .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
+              .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
+              .width(300)
+              .height(400)
+              ;
+                    d3.select("#chart2 svg")
+                .datum(exampleData())
+                .transition().duration(350)
+                .attr('width', 300)
+                .attr('height', 400)
+                .call(chart);
+                  return chart;
+        });
+        function exampleData() {
+          return  [
+              {
+                "label": "One",
+                "value" : 29.765957771107
+              } ,
+              {
+                "label": "Two",
+                "value" : 0
+              } ,
+              {
+                "label": "Three",
+                "value" : 32.807804682612
+              } ,
+              {
+                "label": "Four",
+                "value" : 196.45946739256
+              } ,
+              {
+                "label": "Five",
+                "value" : 0.19434030906893
+              }
+            ];
+        }
     div.container
         -course=courseOffering
         -professor=course.professor
         -ratingValues=course.cumulative_rating_values
         -ratings=course.ratings
-        div.col-md-9
+        div.col-md-8
             div.row
                 div.box-shadow(style="width:100%").row
                     h1 #{course.course.course_number} #{course.course.course_name}
@@ -79,7 +147,10 @@ block content
                                 a(onclick="this.innerHTML='Please login to report';").pull-right Report Spam
                                 -}
                     -}
-        div.col-md-3
-            h3.pull-right Visualizations
-
+        div.col-md-4
+            h3(align="center") Visualizations
+            div#chart1(style="height:600px")
+                svg
+            div#chart2(style="heigh:400px")
+                svg
 
