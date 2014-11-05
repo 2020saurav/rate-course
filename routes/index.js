@@ -101,5 +101,7 @@ exports.adminModelDelete = function (req, res) {
 
 exports.facultyLoginPost=require('./facultyLoginPost');
 exports.facultyHome=require('./facultyHome');
+exports.facultyApproveMeet=require('./facultyApproveMeet');
+exports.facultyRejectMeet=require('./facultyRejectMeet');
 exports.apiUserCourse = require('./apiUserCourse');
 
