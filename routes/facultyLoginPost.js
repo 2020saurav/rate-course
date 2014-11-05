@@ -1,15 +1,15 @@
 //set session if valid credentials
 var model = require('../models/index');
 
-var userModel = model.sequelize.models.user;
+var professorModel = model.sequelize.models.professor;
 
 module.exports = function(req, res) {
-    var returnURL="/login/";
+    var returnURL="/faculty/login/";
     if(req.param("returnURL")!=='undefined')
     {
         returnURL = req.body.returnURL;
     }
-    userModel.find({
+    professorModel.find({
         where: {
             "login" : req.body.login,
             "password" : req.body.password
@@ -22,7 +22,7 @@ module.exports = function(req, res) {
             req.session.firstName = result.first_name;
             req.session.lastName = result.last_name;
             req.session.photoURL = result.photo_url;
-            req.session.role = "user";
+            req.session.role = "faculty";
             res.redirect(returnURL);
         }
         else

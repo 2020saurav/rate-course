@@ -98,5 +98,8 @@ exports.adminModelDelete = function (req, res) {
     res.send("Deleting is reserved!")
 };
 
+
+exports.facultyLoginPost=require('./facultyLoginPost');
+exports.facultyHome=require('./facultyHome');
 exports.apiUserCourse = require('./apiUserCourse');
 

@@ -21,7 +21,8 @@ var models = [
     'rating_value',
     'review',
     'spam',
-    'user'
+    'user',
+    'meet_professor'
     ];
 
 models.forEach(function(model) {
@@ -30,6 +31,7 @@ models.forEach(function(model) {
 
 // create tables in db if not exist:
 //sequelize.sync({force:true})
+//sequelize.sync()
 // force true will drop table.
 //console.log("model/index called")
 

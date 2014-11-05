@@ -234,6 +234,64 @@ app.get('/admin/:model/delete/:id/', function(req,res) {   // delete a record
         routes.loginBackToAdmin(req,res);
 });
 
+//faculty pages:
+app.get('/faculty/', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        routes.facultyHome(req,res);
+    else
+        res.redirect('/faculty/login/');
+});
+app.get('/faculty/login/', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        routes.facultyHome(req,res);
+    else
+        res.render('faculty/login',{"session":req.session ,"returnURL":"/faculty/"});
+});
+app.post('/faculty/login/', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        routes.facultyHome(req,res);
+    else
+        routes.facultyLoginPost(req,res);
+});
+app.get('/faculty/logout/', function(req,res) {
+    req.session.destroy(function(err){
+        if(err)
+            console.log(err);
+        else
+            res.redirect('/faculty/');
+    })
+});
+app.get('faculty/meet/approve/:id', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        res.render('faculty/approve',{"session" : req.session});
+    else
+        res.redirect('/');
+});
+app.get('faculty/meet/reject/:id', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        res.render('faculty/reject',{"session" : req.session});
+    else
+        res.redirect('/');
+});
+app.post('faculty/meet/approve/:id', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        routes.facultyApproveMeet(req,res);
+    else
+        res.redirect('/');
+});
+app.post('faculty/meet/reject/:id', function(req,res) {
+    sess = req.session;
+    if(sess.role=="faculty")
+        routes.facultyRejectMeet(req,res);
+    else
+        res.redirect('/');
+});
 // api for Kulharia and Arnab
 app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
