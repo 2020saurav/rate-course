@@ -264,28 +264,28 @@ app.get('/faculty/logout/', function(req,res) {
             res.redirect('/faculty/');
     })
 });
-app.get('faculty/meet/approve/:id', function(req,res) {
+app.get('/faculty/meet/approve/:id', function(req,res) {
     sess = req.session;
     if(sess.role=="faculty")
         res.render('faculty/approve',{"session" : req.session});
     else
         res.redirect('/');
 });
-app.get('faculty/meet/reject/:id', function(req,res) {
+app.get('/faculty/meet/reject/:id', function(req,res) {
     sess = req.session;
     if(sess.role=="faculty")
         res.render('faculty/reject',{"session" : req.session});
     else
         res.redirect('/');
 });
-app.post('faculty/meet/approve/:id', function(req,res) {
+app.post('/faculty/meet/approve/:id', function(req,res) {
     sess = req.session;
     if(sess.role=="faculty")
         routes.facultyApproveMeet(req,res);
     else
         res.redirect('/');
 });
-app.post('faculty/meet/reject/:id', function(req,res) {
+app.post('/faculty/meet/reject/:id', function(req,res) {
     sess = req.session;
     if(sess.role=="faculty")
         routes.facultyRejectMeet(req,res);

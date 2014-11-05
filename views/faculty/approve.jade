@@ -1,3 +1,16 @@
-//
-   Created by saurav on 5/11/14.
 
+extends layout
+block content
+    div
+        h2 Approve Meeting
+        form.form-horizontal(method='post', action ='')
+            div.form-group
+                label.col-md-2.control-label Message
+                div.col-md-10
+                    textarea.form-control(type="textarea" rows="10" name="reply" placeholder="Approval Message")
+            div.form-group
+                label.col-md-2.control-label Time
+                div.col-md-10
+                    textarea.form-control(type="textarea" rows="10" name="time" placeholder="Time")
+            div.form-group
+            button.btn.btn-primary.col-md-offset-10(type = 'submit') Submit
