@@ -196,6 +196,297 @@ exports.reCalculateCourseRating = function(courseId) {
     });
 
 };
+
+exports.updateVisualizationCount = function(courseOfferingId, ratingValue1, ratingValue2) {
+    var visualizationModel = model.sequelize.models.visualization;
+    visualizationModel.findAll({
+        where: {
+            "course_offering_id": courseOfferingId
+        }
+    }).success(function (entry) {
+        console.log("ratingValue1 = " + ratingValue1 + "  ratingvalue2 = " + ratingValue2);
+        if (entry.length == 0)    // create if not exists
+        {   console.log("creating entry  ");
+            visualizationModel.create(
+                {
+                    "course_offering_id": courseOfferingId
+                }).success(function(){
+                    console.log("updating table");
+                    if (ratingValue1 <= 1) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q1_count1;
+                            visualizationModel.update({
+                                q1_count1: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue1 > 1 && ratingValue1 <= 2) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q1_count2;
+                            visualizationModel.update({
+                                q1_count2: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue1 > 2 && ratingValue1 <= 3) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q1_count3;
+                            visualizationModel.update({
+                                q1_count3: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue1 > 3 && ratingValue1 <= 4) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q1_count4;
+                            visualizationModel.update({
+                                q1_count4: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+
+                    }
+                    else if (ratingValue1 > 4 && ratingValue1 <= 5) {
+                        console.log("entered q1 count5");
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q1_count5;
+                            visualizationModel.update({
+                                q1_count5: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    if (ratingValue2 <= 1) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q2_count1;
+                            visualizationModel.update({
+                                q2_count1: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue2 > 1 && ratingValue2 <= 2) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q2_count2;
+                            visualizationModel.update({
+                                q2_count2: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue2 > 2 && ratingValue2 <= 3) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q2_count3;
+                            visualizationModel.update({
+                                q2_count3: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue2 > 3 && ratingValue2 <= 4) {
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q2_count4;
+                            visualizationModel.update({
+                                q2_count4: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                    else if (ratingValue2 > 4 && ratingValue2 <= 5) {
+                        console.log("entered q2 count5");
+                        visualizationModel.findOne({
+                            where: {"course_offering_id": courseOfferingId}
+                        }).success(function (result) {
+                            var count = result.q2_count5;
+                            visualizationModel.update({
+                                q2_count5: count + 1
+                            }, {
+                                where: {"course_offering_id": courseOfferingId}
+                            });
+
+                        });
+                    }
+                });
+        }
+        else {
+            console.log("updating table");
+            if (ratingValue1 <= 1) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q1_count1;
+                    visualizationModel.update({
+                        q1_count1: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue1 > 1 && ratingValue1 <= 2) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q1_count2;
+                    visualizationModel.update({
+                        q1_count2: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue1 > 2 && ratingValue1 <= 3) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q1_count3;
+                    visualizationModel.update({
+                        q1_count3: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue1 > 3 && ratingValue1 <= 4) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q1_count4;
+                    visualizationModel.update({
+                        q1_count4: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+
+            }
+            else if (ratingValue1 > 4 && ratingValue1 <= 5) {
+                console.log("entered q1 count5");
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q1_count5;
+                    visualizationModel.update({
+                        q1_count5: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            if (ratingValue2 <= 1) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q2_count1;
+                    visualizationModel.update({
+                        q2_count1: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue2 > 1 && ratingValue2 <= 2) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q2_count2;
+                    visualizationModel.update({
+                        q2_count2: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue2 > 2 && ratingValue2 <= 3) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q2_count3;
+                    visualizationModel.update({
+                        q2_count3: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue2 > 3 && ratingValue2 <= 4) {
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q2_count4;
+                    visualizationModel.update({
+                        q2_count4: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+            else if (ratingValue2 > 4 && ratingValue2 <= 5) {
+                console.log("entered q2 count5");
+                visualizationModel.findOne({
+                    where: {"course_offering_id": courseOfferingId}
+                }).success(function (result) {
+                    var count = result.q2_count5;
+                    visualizationModel.update({
+                        q2_count5: count + 1
+                    }, {
+                        where: {"course_offering_id": courseOfferingId}
+                    });
+
+                });
+            }
+        }
+
+    });
+
+};
 exports.getParentFromTag = function(tag)
 {
     tag = tag.toLocaleLowerCase();
