@@ -11,5 +11,9 @@ module.exports = {
         port : '3000'
 
     },
+    gmail : {
+        user: 'rate.course.iitk@gmail.com',
+        pass: 'rate.course.iitk2014'
+    },
     modelConnect : store = new Sequelize('rate-course', 'root','root')
 }

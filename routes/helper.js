@@ -5,17 +5,20 @@ var Sequelize = require('sequelize');
 var ip  = config.ip;
 var port = config.port;
 var host;
+var gmail = require('../config').gmail;
+var gmailUser = gmail.user;
+var gmailPass = gmail.pass;
 
 host="http://"+ip;
-if(port!=80)
+if(port!==80)
     host+=":"+port;
 
 var userModel = model.sequelize.models.user;
 var transporter = nodemailer.createTransport("SMTP",{
     service: 'Gmail',
     auth: {
-        user: 'rate.course.iitk@gmail.com',
-        pass: 'rate.course.iitk2014'
+        user: gmailUser,
+        pass: gmailPass
     }
 });
 
