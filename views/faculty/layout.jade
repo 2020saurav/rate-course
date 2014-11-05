@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        block head
+            block title
+                title Rate My Course
+            block meta
+                meta(name='description' content='')
+                meta(name='keywords' content='')
+            link(rel='stylesheet', href='/css/bootstrap.min.css')
+            link(rel='stylesheet', href='/css/font-awesome.min.css')
+            link(rel='stylesheet', href='/css/site.css')
+            link(rel='stylesheet', href='/css/star-rating.min.css')
+            | <style>
+            | html { height:100%;}
+            | body { padding-top: 60px; min-height:100%; height:100%}
+            | </style>
+            script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+            script(src='/js/star-rating.min.js')
+    body.body-light
+        include header
+        div(style="min-height:100%;")
+            block content
+        include footer
