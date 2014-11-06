@@ -84,7 +84,9 @@ module.exports = function (req, res) {
                     department: req.body.department,
                     email: req.body.email,
                     homepage_url: req.body.homepageUrl,
-                    photo_url: req.body.photoUrl
+                    photo_url: req.body.photoUrl,
+                    login : req.body.login,
+                    password : req.body.password
                 },
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                 console.log(affectedRows);

@@ -4,6 +4,14 @@ block content
         h2 Update Professor Details
         form.form-horizontal(method='post', action ='')
             div.form-group
+                label.col-md-2.control-label Username
+                div.col-md-10
+                    input.form-control(type="text" name="login" value="#{professor.login}")
+            div.form-group
+                label.col-md-2.control-label Password
+                div.col-md-10
+                    input.form-control(type="password" name="password" value="#{professor.password}")
+            div.form-group
                 label.col-md-2.control-label First Name
                 div.col-md-10
                     input.form-control(type="text" name="firstName" value="#{professor.first_name}")
