@@ -9,6 +9,7 @@ module.exports = function(req, res) {
         },
         { where: {id: req.param("id")}
         }).success(function(info){
+            // TODO send email
             console.log("Meet updated");
             res.redirect('/faculty/');
         });

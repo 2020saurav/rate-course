@@ -593,3 +593,40 @@ exports.randomToken = function()
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
 };
+
+exports.meetApprovedUserEmail = function(userEmail,userName,professor,date,time,message)
+{
+    var mailOptions = {
+        from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
+        to: userEmail,
+        subject: 'Professor Meeting Request Approved',
+        text: 'Dear '+userName+'!\n Professor '+professor+' has accepted your meeting Request. Here are the details:'+
+        '\nMessage: '+message+
+        '\nDate: ' + date +
+        '\n Time: '+time+
+        '\n\n--\nAdmin',
+        html:
+            'Dear <b>'+userName+'</b>!<br> Professor '+professor+' has accepted your meeting Request. Here are the details:'+
+            '<br>Message: '+message+
+            '<br>Date: ' + date +
+            '<br> Time: '+time+
+            '<br><br>--<br>Admin'
+
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error)
+        {
+            console.log(error);
+        }
+        else
+        {
+            console.log(
+                    "Sent: \nFrom: " + mailOptions.from +
+                    "\nTo: "+ mailOptions.to +
+                    "\n Subject: "+ mailOptions.subject+
+                    "\n Body: "+ mailOptions.text+
+                    "\n HTML: "+ mailOptions.html
+            );
+        }
+    });
+};
