@@ -15,5 +15,9 @@ module.exports = {
         user: 'rate.course.iitk@gmail.com',
         pass: 'rate.course.iitk2014'
     },
+    recommender : {
+        updateLink : "http://localhost/xman/post.php",
+        getLink : "http://localhost/xman/recommend.php"
+    },
     modelConnect : store = new Sequelize('rate-course', 'root','root')
-}
+};
