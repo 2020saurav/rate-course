@@ -5,12 +5,13 @@
 4. set session or redirect to login page
  */
 var model = require('../models/index');
+var sha1 = require('sha1');
 var userModel = model.sequelize.models.user;
 module.exports = function (req, res) {
     var userId = req.body.userId;
     var token = req.body.token;
-    var password = req.body.password;
-    if(token==""||token==null) // put more checks : undefined null etc TODO
+    var password = sha1(req.body.password);
+    if(token==""||token==null)
     {
         res.render('message',{"session" : req.session, "message" : "Oops! There was error processing your request. There is something wrong with your token. Please try again!"})
     }

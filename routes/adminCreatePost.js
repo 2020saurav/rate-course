@@ -1,4 +1,5 @@
 var model = require('../models/index');
+var sha1 = require('sha1');
 
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
@@ -68,7 +69,7 @@ module.exports = function (req, res) {
                 homepage_url: req.body.homepageUrl,
                 photo_url: req.body.photoUrl,
                 login : req.body.login,
-                password : req.body.password
+                password : sha1(req.body.password)
             }).success(function(data){
                 console.log("Table PROF : Entry Added");
             });
@@ -122,7 +123,7 @@ module.exports = function (req, res) {
         case "user":
             userModel.create({
                 login: req.body.login,
-                password: req.body.password,
+                password: sha1(req.body.password),
                 email: req.body.email,
                 first_name: req.body.firstName,
                 last_name: req.body.lastName,

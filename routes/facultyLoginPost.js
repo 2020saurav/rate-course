@@ -1,5 +1,6 @@
 //set session if valid credentials
 var model = require('../models/index');
+var sha1 = require('sha1');
 
 var professorModel = model.sequelize.models.professor;
 
@@ -12,7 +13,7 @@ module.exports = function(req, res) {
     professorModel.find({
         where: {
             "login" : req.body.login,
-            "password" : req.body.password
+            "password" : sha1(req.body.password)
         }
     }).success(function (result) {
         if(result)

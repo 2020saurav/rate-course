@@ -1,8 +1,37 @@
 {
   "name": "rate-course",
-  "description": "App to rate courses in IIT Kanpur",
+  "description": "App to rate courses and schedule meeting with Professors in IIT Kanpur",
   "version": "0.0.1",
   "private": true,
+  "author" : "Saurav Kumar <2020saurav@gmail.com>",
+  "contributors": [
+      {
+        "name" : "Saurav Kumar",
+        "email" : "2020saurav@gmail.com"
+      },
+      {
+          "name" : "Abhilash Kumar",
+          "email" : "abhilak@iitk.ac.in"
+      },
+      {
+          "name" : "Ankita Pasricha",
+          "email" : "ankitap@iitk.ac.in"
+      },
+      {
+          "name" : "Shubhangee Verma",
+          "email" : "shubhv@iitk.ac.in"
+      }
+  ],
+    "repository" : {
+        "type" : "git",
+        "url" : "https://git.cse.iitk.ac.in/cs252/rate-course"
+    },
+    "keywords" :
+        [
+            "rate-course",
+            "course",
+            "iitk"
+        ],
   "dependencies": {
     "express": "4.x",
     "jade": "*",
@@ -13,6 +42,7 @@
     "nodemailer": "0.7",
     "jsftp" : "*",
     "moment" : "*",
-    "formidable" : "*"
+    "formidable" : "*",
+    "sha1" : "*"
   }
 }

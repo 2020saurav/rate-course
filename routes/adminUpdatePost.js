@@ -1,5 +1,5 @@
 var model = require('../models/index');
-
+var sha1 = require('sha1');
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
 var professorModel = model.sequelize.models.professor;
@@ -11,6 +11,7 @@ var ratingValueModel = model.sequelize.models.rating_value;
 var reviewModel = model.sequelize.models.review;
 var spamModel = model.sequelize.models.spam;
 var userModel = model.sequelize.models.user;
+
 
 module.exports = function (req, res) {
     var reqModel = req.param("model");
@@ -86,7 +87,7 @@ module.exports = function (req, res) {
                     homepage_url: req.body.homepageUrl,
                     photo_url: req.body.photoUrl,
                     login : req.body.login,
-                    password : req.body.password
+                    password : sha1(req.body.password)
                 },
                 { where: {id: req.param("id")}}).success(function(affectedRows) {
                 console.log(affectedRows);
