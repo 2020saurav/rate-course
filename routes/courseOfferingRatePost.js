@@ -63,6 +63,9 @@ module.exports = function (req, res) {
                     helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
                     helper.reCalculateCourseRating(req.param("id"));
                     helper.updateVisualizationCount(req.param("offeringId"), value1, value2 );
+                    var course_id = req.param("id");
+                    var user_id = req.session.userId;
+                    helper.updateRecommendationSystemData(user_id,course_id,value1);
                     res.redirect(returnURL);
                 }
                 else

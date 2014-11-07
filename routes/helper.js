@@ -2,12 +2,14 @@ var nodemailer = require('nodemailer');
 var model = require('../models/index');
 var config    = require('../config').server;
 var Sequelize = require('sequelize');
+var request = require('request');
 var ip  = config.ip;
 var port = config.port;
 var host;
 var gmail = require('../config').gmail;
 var gmailUser = gmail.user;
 var gmailPass = gmail.pass;
+var recommenderLink = require('../config').recommender.updateLink;
 
 host="http://"+ip;
 if(port!==80)
@@ -486,6 +488,10 @@ exports.updateVisualizationCount = function(courseOfferingId, ratingValue1, rati
 
     });
 
+};
+
+exports.updateRecommendationSystemData = function (user_id, course_id, value) {
+    request.get(recommenderLink+"?user_id="+user_id+"&course_id="+course_id+"&value="+value);
 };
 exports.getParentFromTag = function(tag)
 {

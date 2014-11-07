@@ -50,6 +50,13 @@ app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
 app.get('/courses/dept/:dept/', function(req, res) {       // courses of selected department
     routes.coursesDept(req,res);
 });
+app.get('/recommended/', function(req,res) {
+    if(req.session.user)
+        routes.recommendedCourses(req,res);
+    else
+        res.redirect('/');
+});
+
 app.get('/forgot/', function (req, res) {                   // forgot Password GET
     if(req.session.user)
         res.redirect('/');

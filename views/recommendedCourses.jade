@@ -1,0 +1,12 @@
+extends layout
+block content
+    div.container
+        div.col-md-12
+            -for course in courses
+                div.box-shadow
+                    a(href='/course/#{course.id}/')
+                        h3 #{course.course_number} #{course.course_name}
+                    p(style=" text-overflow: ellipsis; overflow:hidden; white-space: nowrap;") Contents: #{course.description}
+                    p Department: #{course.department}
+
+

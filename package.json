@@ -43,6 +43,7 @@
     "jsftp" : "*",
     "moment" : "*",
     "formidable" : "*",
-    "sha1" : "*"
+    "sha1" : "*",
+    "request" : "*"
   }
 }

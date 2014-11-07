@@ -70,6 +70,7 @@ exports.courseOffering = require('./courseOffering');   // details of selected c
 exports.courseOfferingRate = require('./courseOfferingRate');
 exports.courseOfferingRatePost = require('./courseOfferingRatePost');
 exports.courseDiscussionPost = require('./courseDiscussionPost');
+exports.recommendedCourses = require('./recommendedCourses');
 
 exports.forgotPost = require('./forgotPost');
 exports.search = require('./search');
