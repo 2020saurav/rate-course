@@ -6,21 +6,36 @@ block content
             {
                 $.post('/course/'+courseId+'/discussion/spam/'+discussionId+'/');
             }
+            $(document).ready(function(){
+                $(".glyphicon-minus-sign").hide();
+                $(".label-default").hide();
+                $(".label-success").hide();
+                $(".label-primary").hide();
+                $(".label-danger").hide();
+                $(".label-warning").hide();
+                $(".label-info").hide();
+            });
         -discussions = course.discussions
-        h2 #{course.course_number} #{course.course_name}
         div.row
-            div.col-md-7.well
-                h3 Description
-                p(style="white-space:pre-wrap") #{course.description}
-
-            div.col-md-5.well
-                h3 Offerings
-                -offerings=course.course_offerings
-                -for offering in offerings
-                    div.box-shadow(style="width:100%")
-                        a(href='/course/#{course.id}/#{offering.id}/') Year #{offering.year} Semester #{offering.semester}
-                        |  by
-                        a(href="/professor/#{offering.professor.id}/")  Professor #{offering.professor.first_name} #{offering.professor.last_name}
+            div.box-shadow(style="width:100%").row
+                div.row
+                    div.col-md-10
+                        h2 #{course.course_number} #{course.course_name}
+                    div.col-md-2
+                        input.rating.form-control(type="number" value="#{course.overall_rating}" min=0 max=5 step=0.1 data-size="xs" disabled="true")
+                div.row
+                    div.col-md-7
+                        h3 Description
+                        p(style="white-space:pre-wrap") #{course.description}
+                    div.col-md-5(style="border-left: 1px solid #ccc;")
+                        h3 Offerings
+                        -offerings=course.course_offerings
+                        -for offering in offerings
+                            div.well.box-shadow(style="width:100%")
+                               b
+                                a(href='/course/#{course.id}/#{offering.id}/') Year #{offering.year} Semester #{offering.semester}
+                                |  by
+                                a(href="/professor/#{offering.professor.id}/")  Professor #{offering.professor.first_name} #{offering.professor.last_name}
         div.row
             h3 Discussions
             -for discussion in discussions
@@ -28,7 +43,7 @@ block content
                 - user = discussion.user
                 - var timeago = moment(String(discussion.create_time),"X").fromNow();
                 - var actualTime = moment.unix(discussion.create_time).format("YYYY-MM-DD HH:mm");
-                div.box-shadow.row(style="padding:15px 0px 10px;")
+                div.box-shadow.row(style="padding:15px 0px 10px; width:100%")
                     -if(discussion.as_anon==false) {
                     div.col-md-1
                         a(href="/user/#{user.login}/")
