@@ -13,7 +13,8 @@ module.exports = function(req, res) {
     userModel.find({
         where: {
             "login" : req.body.login,
-            "password" : sha1(req.body.password)
+            "password" : sha1(req.body.password),
+            "is_active" : 1
         }
     }).success(function (result) {
         if(result)
