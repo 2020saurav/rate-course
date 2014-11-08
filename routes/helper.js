@@ -12,7 +12,7 @@ var gmailPass = gmail.pass;
 var recommenderLink = require('../config').recommender.updateLink;
 var courseOfferingRatingParamModel = model.sequelize.models.course_offering_rating_param;
 host="http://"+ip;
-if(port!==80)
+if(port!=='80')
     host+=":"+port;
 
 var userModel = model.sequelize.models.user;

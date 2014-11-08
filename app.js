@@ -12,7 +12,7 @@ var fs = require('fs');
 var app = express();
 //environments
 
-app.set('port', process.env.PORT||3000);
+app.set('port', process.env.PORT||80);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,7 +25,7 @@ app.use(session({
     name: 'IITKRateCourseCookie',
     resave: true,
     saveUninitialized: true
-}));
+})); // ^ TODO change it on deployed version
 
 var sess;
 
