@@ -1,3 +1,5 @@
+-q1data = q1data
+-q2data = q2data
 extends layout
 block content
     script(src="/js/nvd3/lib/d3.v3.js")
@@ -14,6 +16,8 @@ block content
             $(".label-warning").hide();
             $(".label-info").hide();
         });
+        var q1data = !{JSON.stringify(q1data)};
+        var q2data = !{JSON.stringify(q2data)};
         function reportSpam (reviewId)
             {
                 $.post('/review/spam/'+reviewId+'/');
@@ -31,7 +35,7 @@ block content
               .height(400)
               ;
                     d3.select("#chart1 svg")
-                .datum(exampleData())
+                .datum(q1data)
                 .transition().duration(350)
                 .attr('width', 300)
                 .attr('height', 400)
@@ -43,7 +47,7 @@ block content
               .x(function(d) { return d.label })
               .y(function(d) { return d.value })
               .showLabels(true)     //Display pie labels
-              .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+              .labelThreshold(0)  //Configure the minimum slice size for labels to show up
               .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
               .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
               .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
@@ -51,7 +55,7 @@ block content
               .height(400)
               ;
                     d3.select("#chart2 svg")
-                .datum(exampleData())
+                .datum(q2data)
                 .transition().duration(350)
                 .attr('width', 300)
                 .attr('height', 400)
@@ -61,24 +65,24 @@ block content
         function exampleData() {
           return  [
               {
-                "label": "One",
-                "value" : 29.765957771107
+                label: q1data[0].label,
+                value : q1data[0].value
               } ,
               {
-                "label": "Two",
-                "value" : 0
+                label: q1data[1].label,
+                value : q1data[1].value
               } ,
               {
-                "label": "Three",
-                "value" : 32.807804682612
+                label: q1data[2].label,
+                value : q1data[2].value
               } ,
               {
-                "label": "Four",
-                "value" : 196.45946739256
+                label: q1data[3].label,
+                value : q1data[3].value
               } ,
               {
-                "label": "Five",
-                "value" : 0.19434030906893
+                label: q1data[4].label,
+                value : q1data[4].value
               }
             ];
         }
@@ -87,7 +91,7 @@ block content
         -professor=course.professor
         -ratingValues=course.cumulative_rating_values
         -ratings=course.ratings
-        div.col-md-8
+        div.col-md-9
             div.row
                 div.box-shadow(style="width:100%").row
                     h1 #{course.course.course_number} #{course.course.course_name}
@@ -147,10 +151,10 @@ block content
                                 a(onclick="this.innerHTML='Please login to report';").pull-right Report Spam
                                 -}
                     -}
-        div.col-md-4
-            h3(align="center") Visualizations
-            div#chart1(style="height:600px")
+        div.col-md-3
+            h2(align="center") Overall Rating
+            div#chart1(style="height:350px")
                 svg
-            div#chart2(style="heigh:400px")
+            h2.pull-right Satisfaction Level
+            div#chart2(style="heigh:350px")
                 svg
-
