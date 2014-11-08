@@ -54,7 +54,7 @@ app.get('/recommended/', function(req,res) {
     if(req.session.user)
         routes.recommendedCourses(req,res);
     else
-        res.redirect('/');
+        res.render('login',{"session":req.session ,"returnURL":"/recommended/"});
 });
 
 app.get('/forgot/', function (req, res) {                   // forgot Password GET
