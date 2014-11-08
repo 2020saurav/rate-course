@@ -14,7 +14,8 @@ block content
                         -}
                     div
                         input.col-md-6(type='file' name='profilePic')
-                        button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Upload
+                        small The maximum file size allowed is 100KB.
+                        button.btn.btn-success.col-md-3.pull-right(type = 'submit') Upload
             div.row
                 form.form-horizontal(method='post', action ='')
                     div.form-group.row
@@ -34,4 +35,4 @@ block content
                             fieldset(disabled)
                                 input.form-control(type="text" value="#{user.email}")
                     div
-                        button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Update
+                        button.btn.btn-success.col-md-3.pull-right(type = 'submit') Update

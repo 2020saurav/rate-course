@@ -14,7 +14,7 @@ module.exports = function(req, res) {
             file_ext = pic.name.split('.').pop(),
             file_name = req.session.user,
             new_path = path.join(process.env.PWD, '/public/images/', file_name + '.' + file_ext);
-        if(file_size>100000 || (file_ext!=="jpg" && file_ext!=="JPG" && file_ext!=="png" && file_ext!=="PNG"))
+        if(file_size>103000 || (file_ext!=="jpg" && file_ext!=="JPG" && file_ext!=="png" && file_ext!=="PNG"))
         {
             res.render('message',{"message":"Please upload an image (jpg/png) of less than 100 kB", "session":req.session});
         }
