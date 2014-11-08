@@ -92,8 +92,10 @@ block content
                 div.box-shadow(style="width:100%").row
                     h1 #{course.course.course_number} #{course.course.course_name}
                     div.row
-                        h4.col-md-9 Year #{course.year} Semester #{course.semester} by Professor #{professor.first_name} #{professor.last_name}
-                        a.col-md-3.btn.btn-success(href='rate/') RATE
+                        h4.col-md-10 Year #{course.year} Semester #{course.semester} by Professor #{professor.first_name} #{professor.last_name}
+                        div.col-md-2
+                            a.btn.btn-success(href='rate/')
+                                b &emsp; RATE &emsp;
             div.row
                 h3 Average Ratings by Students
                 div.box-shadow.row(style="width:100%")

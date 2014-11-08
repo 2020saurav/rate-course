@@ -1,15 +1,19 @@
 extends layout
 block content
     div.container
-        h2 Professors
-        table.table.table-hover
-            tr
-                td Professor
-                td Department
-                td Email
-            -for professor in professors
-                tr
-                    td
-                        a(href="/professor/#{professor.id}/") #{professor.first_name} #{professor.last_name}
-                    td #{professor.department}
-                    td #{professor.email}
+        div.row
+            h2(align="center") Professors
+        div
+        -for professor in professors
+            div.box-shadow
+                div.col-md-2
+                    a(href="/professor/#{professor.id}/")
+                        -if (professor.photo_url) {
+                        img(src="#{professor.photo_url}" width="100%" height="100px" style="max-width:100px;")
+                        -} else {
+                        img(src="/images/anon.jpg" width="100%" style="max-width:100px;")
+                        -}
+                div.col-md-4
+                    a(href="/professor/#{professor.id}/")
+                        b #{professor.first_name} #{professor.last_name}
+                    p #{professor.department}
