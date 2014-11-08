@@ -10,7 +10,7 @@ var gmail = require('../config').gmail;
 var gmailUser = gmail.user;
 var gmailPass = gmail.pass;
 var recommenderLink = require('../config').recommender.updateLink;
-
+var courseOfferingRatingParamModel = model.sequelize.models.course_offering_rating_param;
 host="http://"+ip;
 if(port!==80)
     host+=":"+port;
@@ -106,7 +106,7 @@ exports.forgotEmail = function(userLogin)
     });
 };
 
-exports.reCalculateCourseOfferingRating = function(res,courseOfferingId)
+exports.reCalculateCourseOfferingRating = function(res,courseOfferingId, courseId)
 {
 
 
@@ -176,7 +176,9 @@ var avg, rpi;
                         },
                         {
                             where: {"id": courseOfferingId}
-                        });
+                        }).success(function(){
+                               reCalculateCourseRating(courseId);
+                            });
                     }
                 })(i);
             }
@@ -184,7 +186,7 @@ var avg, rpi;
     });
 };
 
-exports.reCalculateCourseRating = function(courseId) {
+function reCalculateCourseRating(courseId) {
     var courseModel = model.sequelize.models.course;
     model.sequelize.query('select avg(overall_rating) as average from course_offering WHERE course_id = ' + courseId + ' and overall_rating>=0').success(function (overall_average) {
         var avg = overall_average[0].average;
@@ -635,4 +637,78 @@ exports.meetApprovedUserEmail = function(userEmail,userName,professor,date,time,
             );
         }
     });
+};
+exports.insertDefaultRatingParams= function(course_offering_id)
+{
+    courseOfferingRatingParamModel.create({
+        course_offering_id: course_offering_id,
+        rating_param_id: 1,
+        weight: 100,
+        max_value: 5
+    }).success(function(data){
+        console.log("Table CORP : Entry Added");
+        courseOfferingRatingParamModel.create({
+            course_offering_id: course_offering_id,
+            rating_param_id: 2,
+            weight: 100,
+            max_value: 5
+        }).success(function(data){
+            console.log("Table CORP : Entry Added");
+            courseOfferingRatingParamModel.create({
+                course_offering_id: course_offering_id,
+                rating_param_id: 3,
+                weight: 100,
+                max_value: 5
+            }).success(function(data){
+                console.log("Table CORP : Entry Added");
+                courseOfferingRatingParamModel.create({
+                    course_offering_id: course_offering_id,
+                    rating_param_id: 4,
+                    weight: 100,
+                    max_value: 5
+                }).success(function(data){
+                    console.log("Table CORP : Entry Added");
+                    courseOfferingRatingParamModel.create({
+                        course_offering_id: course_offering_id,
+                        rating_param_id: 5,
+                        weight: 100,
+                        max_value: 5
+                    }).success(function(data){
+                        console.log("Table CORP : Entry Added");
+                        courseOfferingRatingParamModel.create({
+                            course_offering_id: course_offering_id,
+                            rating_param_id: 6,
+                            weight: 100,
+                            max_value: 5
+                        }).success(function(data){
+                            console.log("Table CORP : Entry Added");
+                            courseOfferingRatingParamModel.create({
+                                course_offering_id: course_offering_id,
+                                rating_param_id: 7,
+                                weight: 100,
+                                max_value: 5
+                            }).success(function(data){
+                                console.log("Table CORP : Entry Added");
+                                courseOfferingRatingParamModel.create({
+                                    course_offering_id: course_offering_id,
+                                    rating_param_id: 8,
+                                    weight: 100,
+                                    max_value: 5
+                                }).success(function(data){
+                                    console.log("Table CORP : Entry Added");
+                                    var visualizationModel = model.sequelize.models.visualization;
+                                    visualizationModel.create({
+                                        course_offering_id: course_offering_id
+                                    }).success(function(visualization) {
+                                        console.log("Visualization Entry added")
+                                    })
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
 };

@@ -35,5 +35,5 @@ models.forEach(function(model) {
 //sequelize.sync()
 // force true will drop table.
 //console.log("model/index called")
-sequelize.sync();
+//sequelize.sync();
 module.exports.sequelize = sequelize;

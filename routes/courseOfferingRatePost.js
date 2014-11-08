@@ -60,8 +60,8 @@ module.exports = function (req, res) {
                         })(x);
                     }
                     var name1 = 1, name2 = 2;
-                    helper.reCalculateCourseOfferingRating(res,req.param("offeringId"));
-                    helper.reCalculateCourseRating(req.param("id"));
+                    helper.reCalculateCourseOfferingRating(res,req.param("offeringId"),req.param("id"));
+//                    helper.reCalculateCourseRating(req.param("id"));
                     helper.updateVisualizationCount(req.param("offeringId"), value1, value2 );
                     var course_id = req.param("id");
                     var user_id = req.session.userId;

@@ -1,6 +1,6 @@
 var model = require('../models/index');
 var sha1 = require('sha1');
-
+var helper = require('./helper');
 var courseModel = model.sequelize.models.course;
 var courseOfferingModel = model.sequelize.models.course_offering;
 var professorModel = model.sequelize.models.professor;
@@ -36,6 +36,8 @@ module.exports = function (req, res) {
                 number_of_students: req.body.numberOfStudents,
                 website: req.body.website
             }).success(function(data){
+                helper.insertDefaultRatingParams(data.id);
+
                 console.log("Table CO: Entry Added");
             });
             break;
