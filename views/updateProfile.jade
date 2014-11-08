@@ -7,7 +7,11 @@ block content
                 form.form-horizontal(method='post' action='/profilePicUpload/' enctype='multipart/form-data')
                     h4 Profile Picture
                     div.well
+                        -if(user.photo_url) {
                         img(src="#{user.photo_url}" width="250px")
+                        -} else {
+                        img(src="/images/anon.jpg" width="250px")
+                        -}
                     div
                         input.col-md-6(type='file' name='profilePic')
                         button.btn.btn-primary.col-md-3.pull-right(type = 'submit') Upload
