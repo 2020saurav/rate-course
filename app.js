@@ -41,8 +41,11 @@ app.get('/courses/', routes.courses);                    // list all courses
 app.get('/course/:id/', function(req,res) {               // selected course
     routes.course(req,res)
 });
-app.post('/course/:id/', function (req, res) {
-   routes.courseDiscussionPost(req,res);
+app.post('/course/:id/', function (req, res) {          // course discussion POST
+    if(req.session.role=="user")
+        routes.courseDiscussionPost(req,res);
+    else
+        res.render("message",{"session":req.session, "message":"You are not allowed to this action. Please login as a user."})
 });
 app.get('/course/:id/:offeringId/', function(req,res) {   // selected offering
     routes.courseOffering(req,res);
@@ -52,7 +55,12 @@ app.get('/courses/dept/:dept/', function(req, res) {       // courses of selecte
 });
 app.get('/recommended/', function(req,res) {
     if(req.session.user)
-        routes.recommendedCourses(req,res);
+    {
+        if(req.session.role=="user")
+            routes.recommendedCourses(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"You are not allowed to view this page. Please login as a user."})
+    }
     else
         res.render('login',{"session":req.session ,"returnURL":"/recommended/"});
 });
@@ -64,7 +72,10 @@ app.get('/forgot/', function (req, res) {                   // forgot Password G
         res.render('forgot',{"session":req.session});
 });
 app.post('/forgot/', function (req, res) {                   // forgot Password POST
-    routes.forgotPost(req,res);
+    if(req.session.user)
+        res.redirect('/');
+    else
+        routes.forgotPost(req,res);
 });
 app.get('/reset/', function (req, res) {                   // reset Password GET
     if(req.session.user)
@@ -73,7 +84,10 @@ app.get('/reset/', function (req, res) {                   // reset Password GET
         routes.reset(req,res);
 });
 app.post('/reset/', function (req, res) {                   // reset Password POST
-    routes.resetPost(req,res);
+    if(req.session.user)
+        res.redirect('/');
+    else
+        routes.resetPost(req,res);
 });
 
 app.get('/faq/', function (req, res) {                      // FAQ
@@ -89,21 +103,33 @@ app.get('/register/', function (req, res) {                 // register GET
     res.render('register',{"session":req.session});
 });
 app.post('/register/', function (req, res) {                 // register POST
-    routes.registerPost(req,res);
+    if(req.session.user)
+        res.redirect('/');
+    else
+        routes.registerPost(req,res);
 });
 app.get('/search/', function (req, res) {                   // search
     routes.search(req,res);
 });
 
-app.post('/course/:id/discussion/spam/:discussionId/', function(req,res) {
-    if(req.session.user)
-        routes.spamDiscussion(req,res);
+app.post('/course/:id/discussion/spam/:discussionId/', function(req,res) { // discussion spam reporting POST
+    if(req.session.user) {
+        if(req.session.role=="user")
+            routes.spamDiscussion(req, res);
+        else
+            res.send("Only users can report spam")
+    }
     else
         res.send("Login to report spam");
 });
-app.post('/review/spam/:reviewId/', function(req,res) {
+app.post('/review/spam/:reviewId/', function(req,res) {     // review spam reporting POST
     if(req.session.user)
-        routes.spamReview(req,res);
+    {
+        if(req.session.role=="user")
+            routes.spamReview(req,res);
+        else
+            res.send("Only users can report spam")
+    }
     else
         res.send("Login to report spam");
 });
@@ -111,13 +137,23 @@ app.post('/review/spam/:reviewId/', function(req,res) {
 
 app.get('/course/:id/:offeringId/rate/', function(req,res) {   // selected offering rating : user needs to be logged in
     if(req.session.user)
-        routes.courseOfferingRate(req,res);
+    {
+        if(req.session.role=="user")
+            routes.courseOfferingRate(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"Only users are allowed to rate a course. Please login as a user."})
+    }
     else
         routes.loginBackToCourse(req,res);
 });
 app.post('/course/:id/:offeringId/rate/', function(req,res) {   // POST selected offering rating : user needs to be logged in
     if(req.session.user)
-        routes.courseOfferingRatePost(req,res);
+    {
+        if(req.session.role=="user")
+            routes.courseOfferingRatePost(req, res);
+        else
+            res.send("Only users can rate courses")
+    }
     else
         routes.loginBackToCourse(req,res);
 });
@@ -127,19 +163,34 @@ app.get('/user/:login/', function(req,res) {                   // public profile
 });
 app.get('/user/profile/update/', function(req,res) {                   // public profile of this user
     if(req.session.user)
-        routes.userUpdate(req,res);
+    {
+        if(req.session.role=="user")
+            routes.userUpdate(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+    }
     else
         res.redirect('/');
 });
 app.post('/user/profile/update/', function(req,res) {                   // public profile of this user
     if(req.session.user)
-        routes.userUpdatePost(req,res);
+    {
+        if(req.session.role=="user")
+            routes.userUpdatePost(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+    }
     else
         res.redirect('/');
 });
 app.get('/user/meet/requests/', function(req,res) {
    if(req.session.user)
-        routes.meetRequests(req,res);
+   {
+       if(req.session.role=="user")
+            routes.meetRequests(req,res);
+       else
+           res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+   }
     else
         res.redirect('/');
 });
@@ -147,7 +198,12 @@ app.get('/user/meet/requests/', function(req,res) {
 
 app.post('/profilePicUpload/', function(req,res) {
     if(req.session.user)
-      routes.profilePicUpload(req,res);
+    {
+        if(req.session.role=="user")
+            routes.profilePicUpload(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+    }
     else
         res.redirect('/');
 });
@@ -179,13 +235,23 @@ app.get('/professor/:id/', function(req,res) {          // selected professor
 });
 app.get('/professor/:id/meet/', function(req,res) {          // selected professor meet GET
     if(req.session.user)
-        res.render('meetRequestForm',{"session" : req.session});
+    {
+        if(req.session.role=="user")
+            res.render('meetRequestForm',{"session" : req.session});
+        else
+            res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+    }
     else
         res.redirect('/');
 });
 app.post('/professor/:id/meet/', function(req,res) {          // selected professor meet POST
     if(req.session.user)
-        routes.professorMeetPost(req,res);
+    {
+        if(req.session.role=="user")
+            routes.professorMeetPost(req,res);
+        else
+            res.render("message",{"session":req.session, "message":"This feature is available to users only. Please login as a user."})
+    }
     else
         res.redirect('/');
 });
@@ -321,7 +387,7 @@ app.post('/faculty/meet/reject/:id', function(req,res) {
     else
         res.redirect('/');
 });
-// api for Kulharia and Arnab
+// api for Kulharia and Arnab : no longer required! We update their db as soon as we get any data
 app.get('/api/:user/:courseNumber/xmanIsTheSecretKey', function(req,res) {
     routes.apiUserCourse(req,res);
 });

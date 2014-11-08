@@ -41,7 +41,7 @@ module.exports = function (req, res) {
                         if (user)
                         {
                             helper.regEmail(cclogin);
-                            res.render('message', {"message": "Congratulations! Your account has been created. We have sent you a link in your email to reset your password. Please click the link and complete your registration", "session": req.session})
+                            res.render('message', {"message": "Congratulations! Your account has been created. We have sent you a link in your email to reset your password. Please click the link and complete your registration. In case you have not received the email, please look into other folders of your inbox.", "session": req.session})
                         }
                         else
                         {
