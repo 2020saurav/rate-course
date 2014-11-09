@@ -500,20 +500,30 @@ exports.getParentFromTag = function(tag)
     tag = tag.toLocaleLowerCase();
     tag = tag.trim();
     tag = tag.split(" ");
-    var parentTags = ["CSE","EE","CE","BSBE","CHE","AE","MTH","MSE","PHY","CHM","HSS","IME"];
+    var parentTags = ["CSE","EE","CE","ME","BSBE","CHE","AE","MTH","MSE","PHY","CHM",
+        "HSS","IME","CS201","CS202","CS203","CS330","CS340","CS345","CS210"];
     var tagArray = [
-        [ "computer","dabba"],
-        ["batti" ,"electrical"],
-        ["civil","building","boom"],
-        ["bio" , "biology" ],
-        ["chemical"],
-        [ "aero" ],
-        ["maths","math"],
-        ["matti","material"],
-        ["physics"],
-        ["chemistry"],
-        ["humanities","social science"],
-        ["industrial","management"]
+        [ "CSE","computer","dabba"],
+        ["EE","batti" ,"electrical"],
+        ["CE","civil","building","boom"],
+        ["ME","mech"],
+        ["BSBE","bio" , "biology" ],
+        ["CHE","chemical"],
+        ["AE","aero" ],
+        ["MTH","maths","math"],
+        ["MSE","matti","material"],
+        ["PHY","physics"],
+        ["CHM","chemistry"],
+        ["HSS","humanities","social science"],
+        ["IME","industrial","management"],
+        ["CS201","discrete","maths"],
+        ["CS202","logic","abstract","algebra"],
+        ["CS203","abstract","algebra"],
+        ["CS330", "os","unix","nachos"],
+        ["CS340","toc","turing","automata"],
+        ["CS345","algo2","algorithm","advanced algorithms","algo","algorithms"],
+        ["CS210","algorithm","algo","algorithms","data","data structure"]
+
     ];
     for (var k = tag.length - 1; k >= 0; k--) {
         for (var i = tagArray.length - 1; i >= 0; i--) {
