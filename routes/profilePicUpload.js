@@ -3,6 +3,7 @@ var fs = require('fs');
 var formidable = require('formidable');
 var path = require('path');
 var userModel = model.sequelize.models.user;
+var publicPath = require('../config').publicPath.path;
 
 module.exports = function(req, res) {
     var userId = req.session.userId;
@@ -13,7 +14,8 @@ module.exports = function(req, res) {
             file_size = pic.size,
             file_ext = pic.name.split('.').pop(),
             file_name = req.session.user,
-            new_path = path.join(process.env.PWD, '/public/images/', file_name + '.' + file_ext);
+//            new_path = path.join(process.env.PWD, '/public/images/', String(file_name) + '.' + String(file_ext));
+            new_path = publicPath+'/images/' + String(file_name) + "." + String(file_ext);
         if(file_size>103000 || (file_ext!=="jpg" && file_ext!=="JPG" && file_ext!=="png" && file_ext!=="PNG"))
         {
             res.render('message',{"message":"Please upload an image (jpg/png) of less than 100 kB", "session":req.session});

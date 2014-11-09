@@ -9,7 +9,6 @@ module.exports = {
     server : {
         ip : '172.24.128.203',
         port : '3000'
-
     },
     gmail : {
         user: 'rate.course.iitk@gmail.com',
@@ -18,6 +17,9 @@ module.exports = {
     recommender : {
         updateLink : "http://localhost/xman/post.php",
         getLink : "http://localhost/xman/recommend.php"
+    },
+    publicPath : {
+        path : "/home/saurav/rate-course/public/"
     },
     modelConnect : store = new Sequelize('rate-course', 'root','root')
 };

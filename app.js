@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use(session({
-    secret: 'cookieKaSecret',
+    secret: 'cookieKaSecret34',
     name: 'IITKRateCourseCookie',
     resave: true,
     saveUninitialized: true
