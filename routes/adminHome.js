@@ -8,13 +8,21 @@ var discussionSpams, reviewSpams;
 // select top 10 each which are not already deleted.
 module.exports = function (req, res) {
     discussionModel.findAll({
-        where: ["is_deleted = ?", 0],
+//        where: ["is_deleted = ?", 0],
+        where: model.sequelize.and(
+            {is_deleted : 0},
+            {spam_flag_count :{gt:0}}
+        ),
         limit: 10,
         order: 'spam_flag_count DESC'
     }).success(function (discussions) {
         discussionSpams = discussions;
         reviewModel.findAll({
-            where: ["is_deleted = ?", 0],
+//            where: ["is_deleted = ?", 0],
+            where: model.sequelize.and(
+                {is_deleted : 0},
+                {spam_flag_count :{gt:0}}
+            ),
             limit: 10,
             order: 'spam_flag_count DESC'
         }).success(function (reviews) {
