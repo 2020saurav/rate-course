@@ -648,6 +648,42 @@ exports.meetApprovedUserEmail = function(userEmail,userName,professor,date,time,
         }
     });
 };
+
+exports.meetRejectedUserEmail = function(userEmail,userName,professor,message)
+{
+    var mailOptions = {
+        from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
+        to: userEmail,
+        subject: 'Professor Meeting Request Rejected',
+        text: 'Dear '+userName+'!\n Professor '+professor+' has rejected your meeting Request. Here is the message:'+
+            '\nMessage: '+message+
+
+            '\n\n--\nAdmin',
+        html:
+            'Dear <b>'+userName+'</b>!<br> Professor '+professor+' has rejected your meeting Request. Here is the message:'+
+            '<br>Message: '+message+
+
+            '<br><br>--<br>Admin'
+
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error)
+        {
+            console.log(error);
+        }
+        else
+        {
+            console.log(
+                    "Sent: \nFrom: " + mailOptions.from +
+                    "\nTo: "+ mailOptions.to +
+                    "\n Subject: "+ mailOptions.subject+
+                    "\n Body: "+ mailOptions.text+
+                    "\n HTML: "+ mailOptions.html
+            );
+        }
+    });
+};
+
 exports.insertDefaultRatingParams= function(course_offering_id)
 {
     courseOfferingRatingParamModel.create({
