@@ -2,7 +2,9 @@ var model = require('../models/index');
 
 module.exports = function(req, res) {
     var courseModel = model.sequelize.models.course;
-    courseModel.findAll().success(function(courses) {
+    courseModel.findAll({
+        order: 'overall_rating DESC'
+    }).success(function(courses) {
         if(courses) {
             res.render('courses', {
                 "courses": courses,

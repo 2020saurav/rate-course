@@ -37,11 +37,11 @@ exports.regEmail = function(userLogin)
         var mailOptions = {
             from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
             to: email,
-            subject: 'Rate My Course: Complete your registration!',
-            text: 'Welcome ' + name+ '\n \nYour email id has been used to register at Course Rate IITK. Please use this link '
+            subject: 'Rate My Course: Welcome to Rate My Course!',
+            text: 'Welcome ' + name+ '\n \nYour email id has been used to register at Rate My Course. Please use this link '
                 + host+'/reset/?u='+userId+'&token='+token +' to reset your password.\n\n--\nAdmin',
             html: 'Welcome ' + name+'!<br>'+
-                'Your email id has been used to register at Course Rate IITK.' +
+                'Your email id has been used to register at Rate My Course.' +
                 ' Please <a href="'+host+'/reset/?u='+userId+'&token='+token + '">click here</a> ' +
                 'to reset your password.<br><br>'+
                 '--<br>Admin'
@@ -78,7 +78,7 @@ exports.forgotEmail = function(userLogin)
         var mailOptions = {
             from: 'Rate Course IITK <rate.course.iitk@gmail.com>',
             to: email,
-            subject: 'Rate My Course: Reset your password!',
+            subject: 'Rate My Course: Password Reset!',
             text: 'Hi ' + name+ '!\n \nYou have requested to change your password. Please use this link '
                 + host+'/reset/?u='+userId+'&token='+token +' to reset your password.\n\n--\nAdmin',
             html: 'Hi ' + name+'!<br>'+
@@ -501,7 +501,7 @@ exports.getParentFromTag = function(tag)
     tag = tag.trim();
     tag = tag.split(" ");
     var parentTags = ["CSE","EE","CE","ME","BSBE","CHE","AE","MTH","MSE","PHY","CHM",
-        "HSS","IME","CS201","CS202","CS203","CS330","CS340","CS345","CS210"];
+        "HSS","IME","CS201","CS202","CS203","CS330","CS340","CS345","CS210","ME321"];
     var tagArray = [
         [ "CSE","computer","dabba"],
         ["EE","batti" ,"electrical"],
@@ -522,7 +522,8 @@ exports.getParentFromTag = function(tag)
         ["CS330", "os","unix","nachos"],
         ["CS340","toc","turing","automata"],
         ["CS345","algo2","algorithm","advanced algorithms","algo","algorithms"],
-        ["CS210","algorithm","algo","algorithms","data","data structure"]
+        ["CS210","algorithm","algo","algorithms","data","data structure"],
+        ["ME321","admos","mos","advanced","mechanics of solid","solid","solids"]
 
     ];
     for (var k = tag.length - 1; k >= 0; k--) {
