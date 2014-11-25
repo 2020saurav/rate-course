@@ -31,7 +31,6 @@ var sess;
 
 //routes
 
-// TODO ensure professor does not access other user portals when logged in as professor
 
 app.get('/', routes.courses);                             // app home
 app.get('/contact/', function(req,res) {                   // about us page

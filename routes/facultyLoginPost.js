@@ -29,7 +29,6 @@ module.exports = function(req, res) {
         else
         {
             res.redirect(returnURL);
-            // TODO attach a failure message
         }
     });
 

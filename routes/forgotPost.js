@@ -1,10 +1,3 @@
-/*
-TODO
-1. check for valid username and email id.
-2. if not already present, generate random string for token and save there
-3. send email with this token
-4. redirect to some page with success message
- */
 var model = require('../models/index');
 var userModel = model.sequelize.models.user;
 var helper = require('./helper');
